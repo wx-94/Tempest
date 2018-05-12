@@ -11,28 +11,21 @@
         <title>Monsoon Login</title>
     </head>
     <body>
-        
         <form role="form" action="authenticate" method = "post">
-            
             <input class="form-control" type="text" name="username" placeholder="Username">
-                                    </div>
-                                    <div class="form-group">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                <%
+                    String errorMessage = (String) request.getAttribute("errorMsg");
 
-                                        <input class="form-control" type="password" name="password" placeholder="Password">
-
-                                        <%
-                                            String errorMessage = (String) request.getAttribute("errorMsg");
-
-                                            if (errorMessage != null) {
-                                                out.println(errorMessage);
-                                            }
-                                        %>
-                                    </div>
-                                        
-                                    
-                                    <input type="submit" value="Sign In" class="btn btn-lg btn-success btn-block">
+                    if (errorMessage != null) {
+                        out.println(errorMessage);
+                    }
+                %>
+            </div>
+            <input type="submit" value="Sign In" class="btn btn-lg btn-success btn-block">
         </form>
-       
-                                     
+            <a href="ChangePassword.jsp">Change Password </a>
     </body>
 </html>
