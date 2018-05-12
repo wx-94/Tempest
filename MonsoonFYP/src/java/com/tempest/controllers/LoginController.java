@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.tempest.utility.Authenticate;
-
+import com.tempest.dao.StaffDAO;
 /**
  *
  * @author jacky
@@ -48,16 +48,16 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("Homepage.jsp");
                 return;
             }
-        }/* else if (StaffDAO.verifyStudent(username, password)) { //if student id and pwd is correct
+        } else if (StaffDAO.verifyStaff(username, password)) { //if staff id and pwd is correct
             String token = Authenticate.sign(username);
             request.getSession().setAttribute("token", token);
-            response.sendRedirect("StudentHomepage.jsp");
+            response.sendRedirect("Homepage.jsp");
             return;
         } else { //if user pwd is wrong, or both fields are not entered
             request.setAttribute("errorMsg", "Invalid username/password");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
             return;
-        }*/
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

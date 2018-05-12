@@ -1,4 +1,4 @@
-package com.bios_g3t8.dbconnection;
+package com.tempest.dbconnection;
 
 import java.sql.*;
 import java.util.Properties;
