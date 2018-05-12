@@ -1,0 +1,5 @@
+use MonsoonDB;
+
+INSERT INTO Staff VALUES ('audreytan','tan123','Audrey Tan', 'Junction 8', 'cashier'), 
+('nicolelee','lee123','Nicole Lee', 'Ion Orchard', 'cashier'),
+('prisng','ng123','Pris Ng', 'Jurong Point', 'cashier');

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.tempest.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utility.authenticate.Authenticate;
-
+import com.tempest.utility.Authenticate;
+import com.tempest.dao.StaffDAO;
 /**
  *
  * @author jacky
@@ -43,21 +43,21 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
                 return;
             } else {
-                //String token = Authenticate.sign("admin");
-                //request.getSession().setAttribute("token", token);
+                String token = Authenticate.sign("admin");
+                request.getSession().setAttribute("token", token);
                 response.sendRedirect("Homepage.jsp");
                 return;
             }
-        }/* else if (StaffDAO.verifyStudent(username, password)) { //if student id and pwd is correct
+        } else if (StaffDAO.verifyStaff(username, password)) { //if staff id and pwd is correct
             String token = Authenticate.sign(username);
             request.getSession().setAttribute("token", token);
-            response.sendRedirect("StudentHomepage.jsp");
+            response.sendRedirect("Homepage.jsp");
             return;
         } else { //if user pwd is wrong, or both fields are not entered
             request.setAttribute("errorMsg", "Invalid username/password");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
             return;
-        }*/
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
