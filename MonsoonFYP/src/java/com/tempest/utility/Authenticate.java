@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utility.authenticate;
+package com.tempest.utility;
 
 import is203.JWTException;
 import is203.JWTUtility;
@@ -14,7 +14,7 @@ import is203.JWTUtility;
  */
 public class Authenticate {
     public static String getSecret(){
-        return "1234567890123456";
+        return "1234567890";
     }
     
     

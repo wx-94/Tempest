@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.tempest.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import utility.authenticate.Authenticate;
+import com.tempest.utility.Authenticate;
 
 /**
  *
@@ -43,8 +43,8 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
                 return;
             } else {
-                //String token = Authenticate.sign("admin");
-                //request.getSession().setAttribute("token", token);
+                String token = Authenticate.sign("admin");
+                request.getSession().setAttribute("token", token);
                 response.sendRedirect("Homepage.jsp");
                 return;
             }
