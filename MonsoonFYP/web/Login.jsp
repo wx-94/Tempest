@@ -26,6 +26,7 @@
             </div>
             <input type="submit" value="Sign In" class="btn btn-lg btn-success btn-block">
         </form>
-            <a href="ChangePassword.jsp">Change Password </a>
+            <a href="CreateAccount.jsp">Create Account</a><br>
+            <a href="ChangePassword.jsp">Change Password</a>
     </body>
 </html>

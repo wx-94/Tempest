@@ -14,7 +14,15 @@ public class Customer {
     private String customerEmail;
     private double customerPoints;
     private String customerPassword;
-    private int customerNumber;
+    private String customerNumber;
+    
+    public Customer(String customerName, String customerEmail, double customerPoints, String customerPassword, String customerNumber) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPoints = customerPoints;
+        this.customerPassword = customerPassword;
+        this.customerNumber = customerNumber;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -48,11 +56,11 @@ public class Customer {
         this.customerPassword = customerPassword;
     }
 
-    public int getCustomerNumber() {
+    public String getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(int customerNumber) {
+    public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
     

@@ -5,9 +5,14 @@
  */
 package com.tempest.controllers;
 
+import com.tempest.daos.CustomerDAO;
+import com.tempest.entities.Customer;
 import com.tempest.utility.BCrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Xuan
  */
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/changepassword"})
-public class ChangePasswordController extends HttpServlet {
+@WebServlet(name = "CreateAccountController", urlPatterns = {"/createaccount"})
+public class CreateAccountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,20 +37,29 @@ public class ChangePasswordController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String oldPassword = request.getParameter("oldpassword");
-        String newPassword = request.getParameter("newpassword");
-        String confirmNewPassword = request.getParameter("confirmnewpassword");
-
-        // Hash a password for the first time
-        String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-        System.out.println(hashed);
-
-        // Check that an unencrypted password matches one that has
-        // previously been hashed
-        if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-            System.out.println("It matches A");
-        } else {
-            System.out.println("It does not match A");
+        try {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            double points = 0.0;
+            String mobile = request.getParameter("mobile");
+            String password = request.getParameter("password");
+            String confirmPassword = request.getParameter("confirmPassword");
+            
+            System.out.println(name + email + points + password + confirmPassword + mobile);
+            
+            System.out.println("Creating Account");
+            CustomerDAO customerDAO = new CustomerDAO();
+            // Hash a password for the first time
+            String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+            Customer customer = new Customer(name, email, 0 , hashed, mobile);
+            System.out.println(customer);
+            customerDAO.createCustomer(customer);
+            System.out.println("Account created");
+            
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

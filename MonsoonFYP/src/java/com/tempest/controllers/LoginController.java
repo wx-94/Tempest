@@ -5,6 +5,7 @@
  */
 package com.tempest.controllers;
 
+import com.tempest.daos.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -16,7 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.tempest.utility.Authenticate;
-import com.tempest.dao.StaffDAO;
+import com.tempest.daos.StaffDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author jacky
@@ -33,30 +37,38 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    CustomerDAO customerDAO = new CustomerDAO();
+    StaffDAO staffDAO = new StaffDAO();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        if (username.equals("admin")) {
-            if (password == null || !password.equals("password")) {
-                request.setAttribute("errorMsg", "Invalid username/password");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-                return;
-            } else {
-                String token = Authenticate.sign("admin");
+        try {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            
+            if (username.equals("admin")) {
+                if (password == null || !password.equals("password")) {
+                    request.setAttribute("errorMsg", "Invalid username/password");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
+                } else {
+                    String token = Authenticate.sign("admin");
+                    request.getSession().setAttribute("token", token);
+                    response.sendRedirect("Homepage.jsp");
+                }
+            } else if (staffDAO.verifyStaff(username, password)) { //if staff id and pwd is correct
+                String token = Authenticate.sign(username);
                 request.getSession().setAttribute("token", token);
                 response.sendRedirect("Homepage.jsp");
-                return;
+            } else if (customerDAO.verifyCustomer(username, password)) { //if customer id and pwd is correct
+                String token = Authenticate.sign(username);
+                request.getSession().setAttribute("token", token);
+                response.sendRedirect("Homepage.jsp");
+            } else { //if user pwd is wrong, or both fields are not entered
+                request.setAttribute("errorMsg", "Invalid username/password");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
-        } else if (StaffDAO.verifyStaff(username, password)) { //if staff id and pwd is correct
-            String token = Authenticate.sign(username);
-            request.getSession().setAttribute("token", token);
-            response.sendRedirect("Homepage.jsp");
-            return;
-        } else { //if user pwd is wrong, or both fields are not entered
-            request.setAttribute("errorMsg", "Invalid username/password");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-            return;
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
