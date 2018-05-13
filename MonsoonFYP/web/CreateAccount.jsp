@@ -4,6 +4,7 @@
     Author     : Xuan
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,6 +25,22 @@
             <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password">
             <br>
             <input type="submit" value="Submit" class="btn btn-lg btn-success btn-block">
+
+            <%
+                ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
+                if (error != null) {
+            %>
+            <br>
+            <%
+                for (String str : error) {
+                    out.println(str);
+            %>
+            <br>
+            <%
+                    }
+                    session.setAttribute("errorMsg", null);
+                }
+            %>  
         </form>
     </body>
 </html>

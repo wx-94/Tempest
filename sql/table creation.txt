@@ -6,18 +6,18 @@ use MonsoonDB;
 
 CREATE TABLE Staff(
 	userID         	varchar(128),
-	password		varchar(128),
+	password	varchar(1000),
 	staffName       varchar(100),
 	staffOffice     varchar(50),
-	staffRank		varchar(50),
+	staffRank	varchar(50),
 	CONSTRAINT StaffPK PRIMARY KEY (userid)
 );
 
 
 CREATE TABLE Product(
-	productID		varchar(128),
-	productName		varchar(128),
-	productDesc		varchar(1000),
+	productID	varchar(128),
+	productName	varchar(128),
+	productDesc	varchar(1000),
 	productPrice	decimal(5,2),
 	CONSTRAINT StaffPK PRIMARY KEY(productID)
 );
@@ -29,7 +29,7 @@ CREATE TABLE Customer(
 	points		decimal(5,2),
 	password	varchar(128),
 	number		int(10),
-	CONSTRAINT CustomerPK PRIMARY KEY(number)
+	CONSTRAINT CustomerPK PRIMARY KEY(email)
 );
 
 
@@ -42,9 +42,9 @@ CREATE TABLE Outlet(
 
 
 CREATE TABLE OutletInventory(
-	outletID			varchar(128),
+	outletID		varchar(128),
 	outletInventoryID	varchar(128),
-	productName			varchar(128),
+	productName		varchar(128),
 	productQuantity		int(5),
 	Constraint OutletPK PRIMARY KEY(outletID,outletInventoryID),
 	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletID)

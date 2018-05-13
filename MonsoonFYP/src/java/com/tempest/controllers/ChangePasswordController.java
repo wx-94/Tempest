@@ -5,9 +5,17 @@
  */
 package com.tempest.controllers;
 
+import com.tempest.daos.CustomerDAO;
+import com.tempest.daos.StaffDAO;
+import com.tempest.entities.Customer;
+import com.tempest.entities.Staff;
 import com.tempest.utility.BCrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,22 +38,51 @@ public class ChangePasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    CustomerDAO customerDAO = new CustomerDAO();
+    StaffDAO staffDAO = new StaffDAO();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ArrayList<String> errorList = new ArrayList<>();
+
+        String username = request.getParameter("username");
         String oldPassword = request.getParameter("oldpassword");
         String newPassword = request.getParameter("newpassword");
         String confirmNewPassword = request.getParameter("confirmnewpassword");
 
-        // Hash a password for the first time
-        String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-        System.out.println(hashed);
+        //check whether user exist
+        try {
+            //check whether is it a staff
+            if (staffDAO.verifyStaff(username, oldPassword)) { //if staff id and pwd is correct
+                // Hash a password for the first time
+                String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+                // Check that an unencrypted password matches one that has
+                // previously been hashed
+                if (BCrypt.checkpw(confirmNewPassword, hashed)) {
+                    Staff staff = staffDAO.retrieveStaff(username, oldPassword);
+                    staff.setPassword(hashed);
+                    staffDAO.updatePassword(staff);
+                } else {
+                    errorList.add("Passwords do not match");
+                }
+            } //check whether is it a customer 
+            else if (customerDAO.verifyCustomer(username, oldPassword)) { //if customer id and pwd is correct
 
-        // Check that an unencrypted password matches one that has
-        // previously been hashed
-        if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-            System.out.println("It matches A");
-        } else {
-            System.out.println("It does not match A");
+            } else {
+                errorList.add("Invalid username/password");
+            }
+            
+            if (errorList.size() == 0) {
+                request.getSession().setAttribute("success", "Password has been successfully changed");
+                response.sendRedirect("Login.jsp");
+                
+            } else {
+                request.getSession().setAttribute("errorMsg", errorList);
+                request.getRequestDispatcher("ChangePassword.jsp").forward(request,response);
+                return;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -32,8 +32,11 @@ public class StaffDAO {
             stmt.setString(1, userID);
             //Resultset returned by query
             rs = stmt.executeQuery();
-        
-            String staffPassword = rs.getString("password");
+            String staffPassword ="";
+            if (rs.next()) {
+                staffPassword = rs.getString("password");
+            }
+
             if (BCrypt.checkpw(password, staffPassword)) {
                     return true;
                 }
@@ -68,5 +71,24 @@ public class StaffDAO {
         return s;
     }
 
+    public static void updatePassword(Staff staff) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("update Staff set password = ? where userID = ?");
+            stmt.setString(1, staff.getUserID());
+            stmt.setString(2, staff.getPassword());
+            stmt.setString(3, staff.getStaffName());
+            stmt.setString(4, staff.getStaffOffice());
+            stmt.setString(5, staff.getStaffRank());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
 
 }

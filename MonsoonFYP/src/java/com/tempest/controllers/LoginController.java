@@ -55,14 +55,17 @@ public class LoginController extends HttpServlet {
                     request.getSession().setAttribute("token", token);
                     response.sendRedirect("Homepage.jsp");
                 }
+                
             } else if (staffDAO.verifyStaff(username, password)) { //if staff id and pwd is correct
                 String token = Authenticate.sign(username);
                 request.getSession().setAttribute("token", token);
                 response.sendRedirect("Homepage.jsp");
+                
             } else if (customerDAO.verifyCustomer(username, password)) { //if customer id and pwd is correct
                 String token = Authenticate.sign(username);
                 request.getSession().setAttribute("token", token);
                 response.sendRedirect("Homepage.jsp");
+                
             } else { //if user pwd is wrong, or both fields are not entered
                 request.setAttribute("errorMsg", "Invalid username/password");
                 request.getRequestDispatcher("Login.jsp").forward(request, response);

@@ -35,7 +35,10 @@ public class CustomerDAO {
             //Resultset returned by query
             rs = stmt.executeQuery();
         
-            String customerPassword = rs.getString("password");
+            String customerPassword ="";
+            if (rs.next()) {
+                customerPassword = rs.getString("password");
+            }
             if (BCrypt.checkpw(password, customerPassword)) {
                     return true;
                 }

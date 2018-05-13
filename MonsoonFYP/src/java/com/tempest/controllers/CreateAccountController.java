@@ -11,6 +11,7 @@ import com.tempest.utility.BCrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ public class CreateAccountController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ArrayList<String> errorList = new ArrayList<>();
         try {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
@@ -44,20 +46,36 @@ public class CreateAccountController extends HttpServlet {
             String mobile = request.getParameter("mobile");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
-            
-            System.out.println(name + email + points + password + confirmPassword + mobile);
-            
-            System.out.println("Creating Account");
-            CustomerDAO customerDAO = new CustomerDAO();
-            // Hash a password for the first time
-            String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-            Customer customer = new Customer(name, email, 0 , hashed, mobile);
-            System.out.println(customer);
-            customerDAO.createCustomer(customer);
-            System.out.println("Account created");
-            
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-            
+            System.out.println("Check acc");
+
+            //check for mobile
+            try {
+                Integer.parseInt(mobile);
+            } catch (Exception e) {
+                errorList.add("Mobile number must be digits");
+            }
+
+            //check for pw           
+            if (!password.equals(confirmPassword)) {
+                errorList.add("Passwords do not match");
+            }
+
+            if (errorList.size() == 0) {
+                CustomerDAO customerDAO = new CustomerDAO();
+                // Hash a password for the first time
+                String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+                Customer customer = new Customer(name, email, 0, hashed, mobile);
+                System.out.println(customer);
+                customerDAO.createCustomer(customer);
+                System.out.println("Account created");
+                request.getSession().setAttribute("success", "Account has been successfully created");
+                response.sendRedirect("Login.jsp");
+                
+            } else {
+                request.getSession().setAttribute("errorMsg", errorList);
+                request.getRequestDispatcher("CreateAccount.jsp").forward(request,response);
+                return;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
