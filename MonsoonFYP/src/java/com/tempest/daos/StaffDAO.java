@@ -18,56 +18,72 @@ import com.tempest.utility.BCrypt;
  * @author jacky
  */
 public class StaffDAO {
+
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs;
-    
+
     public boolean verifyStaff(String userID, String password) throws SQLException {
-         conn = ConnectionManager.getConnection();
 
-        if (userID != null && !userID.isEmpty()) {
+        try {
+            conn = ConnectionManager.getConnection();
 
-            //getting PreparedStatement to execute query
-            stmt = conn.prepareStatement("SELECT * FROM STAFF WHERE userID = ?");
-            stmt.setString(1, userID);
-            //Resultset returned by query
-            rs = stmt.executeQuery();
-            String staffPassword ="";
-            if (rs.next()) {
-                staffPassword = rs.getString("password");
-            }
+            if (userID != null && !userID.isEmpty()) {
 
-            if (BCrypt.checkpw(password, staffPassword)) {
-                    return true;
+                //getting PreparedStatement to execute query
+                stmt = conn.prepareStatement("SELECT * FROM STAFF WHERE userID = ?");
+                stmt.setString(1, userID);
+                //Resultset returned by query
+                rs = stmt.executeQuery();
+                String staffPassword = "";
+                if (rs.next()) {
+                    staffPassword = rs.getString("password");
                 }
+                if (!staffPassword.isEmpty()) {
+                    if (BCrypt.checkpw(password, staffPassword)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionManager.close(conn, stmt, rs);
         }
         return false;
     }
-    
+
     public Staff retrieveStaff(String userID, String password) throws SQLException {
         Staff s = null;
-        conn = ConnectionManager.getConnection();
+        try {
+            conn = ConnectionManager.getConnection();
 
-        if (userID != null && !userID.isEmpty()) {
+            if (userID != null && !userID.isEmpty()) {
 
-            //getting PreparedStatement to execute query
-            stmt = conn.prepareStatement("SELECT * FROM STAFF WHERE userID = ?");
-            stmt.setString(1, userID);
-            //Resultset returned by query
-            rs = stmt.executeQuery();
-        
-            while (rs.next()) {
-                String staffID = rs.getString("userID");
-                String staffPassword = rs.getString("password");
-                String staffName = rs.getString("staffName");
-                String staffOffice = rs.getString("staffOffice");
-                String staffRank = rs.getString("staffRank");
-                if (BCrypt.checkpw(password, staffPassword)) {
-                    s = new Staff(staffID, staffPassword, staffName, staffOffice, staffRank);
+                //getting PreparedStatement to execute query
+                stmt = conn.prepareStatement("SELECT * FROM STAFF WHERE userID = ?");
+                stmt.setString(1, userID);
+                //Resultset returned by query
+                rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    String staffID = rs.getString("userID");
+                    String staffPassword = rs.getString("password");
+                    String staffName = rs.getString("staffName");
+                    String staffOffice = rs.getString("staffOffice");
+                    String staffRank = rs.getString("staffRank");
+                    if (BCrypt.checkpw(password, staffPassword)) {
+                        s = new Staff(staffID, staffPassword, staffName, staffOffice, staffRank);
+                    }
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionManager.close(conn, stmt, rs);
         }
-        ConnectionManager.close(conn, stmt, rs);
         return s;
     }
 
@@ -77,12 +93,9 @@ public class StaffDAO {
 
         try {
             conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("update Staff set password = ? where userID = ?");
-            stmt.setString(1, staff.getUserID());
-            stmt.setString(2, staff.getPassword());
-            stmt.setString(3, staff.getStaffName());
-            stmt.setString(4, staff.getStaffOffice());
-            stmt.setString(5, staff.getStaffRank());
+            stmt = conn.prepareStatement("UPDATE Staff SET password = ? where userID = ?");
+            stmt.setString(1, staff.getPassword());
+            stmt.setString(2, staff.getUserID());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

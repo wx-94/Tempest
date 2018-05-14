@@ -23,25 +23,34 @@ public class CustomerDAO {
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs;
-    
+
     public boolean verifyCustomer(String email, String password) throws SQLException {
-         conn = ConnectionManager.getConnection();
+        try {
+            conn = ConnectionManager.getConnection();
 
-        if (email != null && !email.isEmpty()) {
+            if (email != null && !email.isEmpty()) {
 
-            //getting PreparedStatement to execute query
-            stmt = conn.prepareStatement("SELECT * FROM CUSTOMER WHERE email = ?");
-            stmt.setString(1, email);
-            //Resultset returned by query
-            rs = stmt.executeQuery();
-        
-            String customerPassword ="";
-            if (rs.next()) {
-                customerPassword = rs.getString("password");
-            }
-            if (BCrypt.checkpw(password, customerPassword)) {
-                    return true;
+                //getting PreparedStatement to execute query
+                stmt = conn.prepareStatement("SELECT * FROM CUSTOMER WHERE email = ?");
+                stmt.setString(1, email);
+                //Resultset returned by query
+                rs = stmt.executeQuery();
+
+                String customerPassword = "";
+                if (rs.next()) {
+                    customerPassword = rs.getString("password");
                 }
+                if (!customerPassword.isEmpty()) {
+                    if (BCrypt.checkpw(password, customerPassword)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            ConnectionManager.close(conn, stmt, rs);
         }
         return false;
     }
@@ -69,7 +78,7 @@ public class CustomerDAO {
         ConnectionManager.close(conn, stmt, rs);
         return success;
     }
-    
+
     public Customer retrieveCustomer(String email, String password) throws SQLException {
         Customer c = null;
         conn = ConnectionManager.getConnection();
@@ -81,7 +90,7 @@ public class CustomerDAO {
             stmt.setString(1, email);
             //Resultset returned by query
             rs = stmt.executeQuery();
-        
+
             while (rs.next()) {
                 String customerName = rs.getString("name");
                 String customerEmail = rs.getString("email");

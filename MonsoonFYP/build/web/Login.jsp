@@ -29,6 +29,7 @@
                 String msg = (String) session.getAttribute("success");
                 if (msg!= null){
                     out.println(msg);
+                    session.setAttribute("success", null);
                 }
                 %>
         </form>
