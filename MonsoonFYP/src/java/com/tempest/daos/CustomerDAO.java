@@ -7,7 +7,6 @@ package com.tempest.daos;
 
 import com.tempest.dbconnection.ConnectionManager;
 import com.tempest.entities.Customer;
-import com.tempest.entities.Staff;
 import com.tempest.utility.BCrypt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,5 +103,22 @@ public class CustomerDAO {
         }
         ConnectionManager.close(conn, stmt, rs);
         return c;
+    }
+    
+    public static void updatePassword(Customer customer) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Customer SET password = ? where email = ?");
+            stmt.setString(1, customer.getCustomerPassword());
+            stmt.setString(2, customer.getCustomerEmail());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
     }
 }

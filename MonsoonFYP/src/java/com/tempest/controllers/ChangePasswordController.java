@@ -67,7 +67,17 @@ public class ChangePasswordController extends HttpServlet {
                 }
             } //check whether is it a customer 
             else if (customerDAO.verifyCustomer(username, oldPassword)) { //if customer id and pwd is correct
-
+                // Hash a password for the first time
+                String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+                // Check that an unencrypted password matches one that has
+                // previously been hashed
+                if (BCrypt.checkpw(confirmNewPassword, hashed)) {
+                    Customer customer = customerDAO.retrieveCustomer(username, oldPassword);
+                    customer.setCustomerPassword(hashed);
+                    customerDAO.updatePassword(customer);
+                } else {
+                    errorList.add("Passwords do not match");
+                }
             } else {
                 errorList.add("Invalid username/password");
             }
