@@ -5,12 +5,12 @@ use MonsoonDB;
 
 
 CREATE TABLE Staff(
-       	userID         	varchar(128),
-       	password	varchar(128),
-       	staffName       varchar(100) ,
+	userID         	varchar(128),
+	password	varchar(1000),
+	staffName       varchar(100),
 	staffOffice     varchar(50),
 	staffRank	varchar(50),
-       	CONSTRAINT StaffPK PRIMARY KEY (userid)
+	CONSTRAINT StaffPK PRIMARY KEY (userid)
 );
 
 
@@ -24,11 +24,12 @@ CREATE TABLE Product(
 
 
 CREATE TABLE Customer(
-	phoneNum	int(10),
-	customerName	varchar(128),
-	emailAddress	varchar(200),
-	loyaltyPoints	decimal(5,2),
-	CONSTRAINT CustomerPK PRIMARY KEY(phoneNum)
+	name		varchar(128),
+	email		varchar(200),
+	points		decimal(5,2),
+	password	varchar(128),
+	number		int(10),
+	CONSTRAINT CustomerPK PRIMARY KEY(email)
 );
 
 

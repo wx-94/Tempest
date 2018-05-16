@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ChangePassword
-    Created on : 12 May, 2018, 11:20:46 AM
+    Document   : CreateAccount
+    Created on : May 13, 2018, 11:07:56 AM
     Author     : Xuan
 --%>
 
@@ -10,19 +10,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Change Password Page</title>
+        <title>Account Creation Page</title>
     </head>
     <body>
-        <form role="form" action="changepassword" method = "post">
-            <input class="form-control" type="text" name="username" placeholder="Username/Email">
+        <form role="form" action="createaccount" method = "post">
+            <input class="form-control" type="text" name="name" placeholder="Name">
             <br>
-            <input class="form-control" type="password" name="oldpassword" placeholder="Old Password">
+            <input class="form-control" type="text" name="mobile" placeholder="Mobile Number">
             <br>
-            <input class="form-control" type="password" name="newpassword" placeholder="New Password">
+            <input class="form-control" type="text" name="email" placeholder="Email">
             <br>
-            <input class="form-control" type="password" name="confirmnewpassword" placeholder="Confirm New Password">
+            <input class="form-control" type="password" name="password" placeholder="Password">
+            <br>
+            <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password">
             <br>
             <input type="submit" value="Submit" class="btn btn-lg btn-success btn-block">
+
             <%
                 ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
                 if (error != null) {

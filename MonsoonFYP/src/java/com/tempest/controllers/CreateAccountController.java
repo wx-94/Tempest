@@ -6,9 +6,7 @@
 package com.tempest.controllers;
 
 import com.tempest.daos.CustomerDAO;
-import com.tempest.daos.StaffDAO;
 import com.tempest.entities.Customer;
-import com.tempest.entities.Staff;
 import com.tempest.utility.BCrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Xuan
  */
-@WebServlet(name = "ChangePasswordController", urlPatterns = {"/changepassword"})
-public class ChangePasswordController extends HttpServlet {
+@WebServlet(name = "CreateAccountController", urlPatterns = {"/createaccount"})
+public class CreateAccountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,61 +36,48 @@ public class ChangePasswordController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    CustomerDAO customerDAO = new CustomerDAO();
-    StaffDAO staffDAO = new StaffDAO();
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<String> errorList = new ArrayList<>();
-
-        String username = request.getParameter("username");
-        String oldPassword = request.getParameter("oldpassword");
-        String newPassword = request.getParameter("newpassword");
-        String confirmNewPassword = request.getParameter("confirmnewpassword");
-
-        //check whether user exist
         try {
-            //check whether is it a staff
-            if (staffDAO.verifyStaff(username, oldPassword)) { //if staff id and pwd is correct
-                // Hash a password for the first time
-                String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-                // Check that an unencrypted password matches one that has
-                // previously been hashed
-                if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-                    Staff staff = staffDAO.retrieveStaff(username, oldPassword);
-                    staff.setPassword(hashed);
-                    staffDAO.updatePassword(staff);
-                } else {
-                    errorList.add("Passwords do not match");
-                }
-            } //check whether is it a customer 
-            else if (customerDAO.verifyCustomer(username, oldPassword)) { //if customer id and pwd is correct
-                // Hash a password for the first time
-                String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-                // Check that an unencrypted password matches one that has
-                // previously been hashed
-                if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-                    Customer customer = customerDAO.retrieveCustomer(username, oldPassword);
-                    customer.setCustomerPassword(hashed);
-                    customerDAO.updatePassword(customer);
-                } else {
-                    errorList.add("Passwords do not match");
-                }
-            } else {
-                errorList.add("Invalid username/password");
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            double points = 0.0;
+            String mobile = request.getParameter("mobile");
+            String password = request.getParameter("password");
+            String confirmPassword = request.getParameter("confirmPassword");
+            System.out.println("Check acc");
+
+            //check for mobile
+            try {
+                Integer.parseInt(mobile);
+            } catch (Exception e) {
+                errorList.add("Mobile number must be digits");
             }
-            
+
+            //check for pw           
+            if (!password.equals(confirmPassword)) {
+                errorList.add("Passwords do not match");
+            }
+
             if (errorList.size() == 0) {
-                request.getSession().setAttribute("success", "Password has been successfully changed");
+                CustomerDAO customerDAO = new CustomerDAO();
+                // Hash a password for the first time
+                String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+                Customer customer = new Customer(name, email, 0, hashed, mobile);
+                System.out.println(customer);
+                customerDAO.createCustomer(customer);
+                System.out.println("Account created");
+                request.getSession().setAttribute("success", "Account has been successfully created");
                 response.sendRedirect("Login.jsp");
                 
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);
-                request.getRequestDispatcher("ChangePassword.jsp").forward(request,response);
+                request.getRequestDispatcher("CreateAccount.jsp").forward(request,response);
                 return;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

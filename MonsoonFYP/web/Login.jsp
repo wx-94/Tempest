@@ -12,7 +12,7 @@
     </head>
     <body>
         <form role="form" action="authenticate" method = "post">
-            <input class="form-control" type="text" name="username" placeholder="Username">
+            <input class="form-control" type="text" name="username" placeholder="Username/Email">
             </div>
             <div class="form-group">
                 <input class="form-control" type="password" name="password" placeholder="Password">
@@ -25,7 +25,15 @@
                 %>
             </div>
             <input type="submit" value="Sign In" class="btn btn-lg btn-success btn-block">
+            <%
+                String msg = (String) session.getAttribute("success");
+                if (msg!= null){
+                    out.println(msg);
+                    session.setAttribute("success", null);
+                }
+                %>
         </form>
-            <a href="ChangePassword.jsp">Change Password </a>
+            <a href="CreateAccount.jsp">Create Account</a><br>
+            <a href="ChangePassword.jsp">Change Password</a>
     </body>
 </html>

@@ -1,5 +1,5 @@
 use MonsoonDB;
 
-INSERT INTO Staff VALUES ('audreytan','tan123','Audrey Tan', 'Junction 8', 'cashier'), 
-('nicolelee','lee123','Nicole Lee', 'Ion Orchard', 'cashier'),
-('prisng','ng123','Pris Ng', 'Jurong Point', 'cashier');
+INSERT INTO Staff VALUES ('audreytan','$2a$10$qxl1XSHVe47rhONiwQ0SNePGAQmAos1VF.pt05xISptyWUzJ/kyc6','Audrey Tan', 'Junction 8', 'cashier'), 
+('nicolelee','$2a$10$vjc0yIBBIcNSkwuMrx5b.eR4LtHgBO5K2zSaJDqXMoMcN.KITPDdW','Nicole Lee', 'Ion Orchard', 'cashier'),
+('prisng','$2a$10$EyShABNp.x/BJ2ruke5gouGpa.uU/EZNlMoviQmTyjOVPQkmVCBnm','Pris Ng', 'Jurong Point', 'cashier');
