@@ -32,12 +32,26 @@ CREATE TABLE Customer(
 	CONSTRAINT CustomerPK PRIMARY KEY(email)
 );
 
+CREATE TABLE Appointment(
+	customerEmail		varchar(128),
+	staffID			varchar(128),
+	treatment		varchar(500),
+	outletNumber		int(8),
+	appointmentDate		date,
+	appointmentStart	time,
+	appointmentEnd		time,	
+	
+	CONSTRAINT AppointmentPK PRIMARY KEY(appointmentID),
+	CONSTRAINT AppointmentFK1 FOREIGN KEY(customerEmail) REFERENCES Customer(email)
+	CONSTRAINT AppointmentFK2 FOREIGN KEY(staffID) REFERENCES Staff(userID)
+)
+
 
 CREATE TABLE Outlet(
-	outletID	varchar(128),
 	outletName	varchar(128),
-	outletDesc	varchar(1000),
-	CONSTRAINT OutletPK PRIMARY KEY(outletID)
+	outletAddress	varchar(1000),
+	outletNumber	int(8),
+	CONSTRAINT OutletPK PRIMARY KEY(outletNumber)
 );
 
 
@@ -48,5 +62,4 @@ CREATE TABLE OutletInventory(
 	productQuantity		int(5),
 	Constraint OutletPK PRIMARY KEY(outletID,outletInventoryID),
 	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletID)
-
 );
