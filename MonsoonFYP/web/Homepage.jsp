@@ -14,6 +14,8 @@
     <body>
         <h1>Welcome back!</h1>
         <br>
-        <a href="ProcessLogOut.jsp"><i class="fa fa-fw fa-sign-out"></i> Log out </a>
+        <a href="AppointmentBooking.jsp"> Book Appointment </a>
+        <br>
+        <a href="ProcessLogOut.jsp"> Log out </a>
     </body>
 </html>
