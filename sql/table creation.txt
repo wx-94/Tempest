@@ -41,10 +41,10 @@ CREATE TABLE Appointment(
 	appointmentStart	time,
 	appointmentEnd		time,	
 	
-	CONSTRAINT AppointmentPK PRIMARY KEY(appointmentID),
-	CONSTRAINT AppointmentFK1 FOREIGN KEY(customerEmail) REFERENCES Customer(email)
+	CONSTRAINT AppointmentPK PRIMARY KEY(customerEmail,staffID),
+	CONSTRAINT AppointmentFK1 FOREIGN KEY(customerEmail) REFERENCES Customer(email),
 	CONSTRAINT AppointmentFK2 FOREIGN KEY(staffID) REFERENCES Staff(userID)
-)
+);
 
 
 CREATE TABLE Outlet(
