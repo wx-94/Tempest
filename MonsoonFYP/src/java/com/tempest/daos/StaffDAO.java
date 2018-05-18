@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import com.tempest.entities.Staff;
 import com.tempest.dbconnection.ConnectionManager;
 import com.tempest.utility.BCrypt;
+import java.util.ArrayList;
 
 /**
  *
@@ -72,9 +73,9 @@ public class StaffDAO {
                     String staffPassword = rs.getString("password");
                     String staffName = rs.getString("staffName");
                     String staffOffice = rs.getString("staffOffice");
-                    String staffRank = rs.getString("staffRank");
+                    String staffPosition = rs.getString("staffPosition");
                     if (BCrypt.checkpw(password, staffPassword)) {
-                        s = new Staff(staffID, staffPassword, staffName, staffOffice, staffRank);
+                        s = new Staff(staffID, staffPassword, staffName, staffOffice, staffPosition);
                     }
                 }
             }
@@ -102,6 +103,29 @@ public class StaffDAO {
         } finally {
             ConnectionManager.close(conn, stmt);
         }
+    }
+    
+    public static ArrayList<Staff> retrieveAllStaffs() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;    
+        ArrayList<Staff> staffList = new ArrayList<>();
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("select * from Staff");
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Staff s = new Staff(rs.getString("userID"), rs.getString("password"), rs.getString("staffName"),rs.getString("staffOffice"),rs.getString("staffPosition"));
+                staffList.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return staffList;
     }
 
 }

@@ -9,7 +9,7 @@ CREATE TABLE Staff(
 	password	varchar(1000),
 	staffName       varchar(100),
 	staffOffice     varchar(50),
-	staffRank	varchar(50),
+	staffPosition	varchar(50),
 	CONSTRAINT StaffPK PRIMARY KEY (userid)
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE Appointment(
 	customerEmail		varchar(128),
 	staffID			varchar(128),
 	treatment		varchar(500),
-	outletNumber		int(8),
+	outletName		int(8),
 	appointmentDate		date,
 	appointmentStart	time,
 	appointmentEnd		time,	

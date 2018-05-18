@@ -14,14 +14,14 @@ public class Staff {
     private String password;
     private String staffName;
     private String staffOffice;
-    private String staffRank;
+    private String staffPosition;
 
-    public Staff(String userID, String password, String staffName, String staffOffice, String staffRank) {
+    public Staff(String userID, String password, String staffName, String staffOffice, String staffPosition) {
         this.userID = userID;
         this.password = password;
         this.staffName = staffName;
         this.staffOffice = staffOffice;
-        this.staffRank = staffRank;
+        this.staffPosition = staffPosition;
     }
 
     public String getUserID() {
@@ -40,8 +40,8 @@ public class Staff {
         return staffOffice;
     }
 
-    public String getStaffRank() {
-        return staffRank;
+    public String getStaffPosition() {
+        return staffPosition;
     }
 
     public void setPassword(String password) {

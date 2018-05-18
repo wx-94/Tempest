@@ -78,7 +78,7 @@ public class CustomerDAO {
         return success;
     }
 
-    public Customer retrieveCustomer(String email, String password) throws SQLException {
+    public Customer retrieveCustomer(String email) throws SQLException {
         Customer c = null;
         conn = ConnectionManager.getConnection();
 
@@ -96,15 +96,14 @@ public class CustomerDAO {
                 double customerPoints = rs.getDouble("points");
                 String customerPassword = rs.getString("password");
                 String customerNumber = rs.getString("number");
-                if (BCrypt.checkpw(password, customerPassword)) {
-                    c = new Customer(customerName, customerEmail, customerPoints, customerPassword, customerNumber);
-                }
+                c = new Customer(customerName, customerEmail, customerPoints, customerPassword, customerNumber);
+
             }
         }
         ConnectionManager.close(conn, stmt, rs);
         return c;
     }
-    
+
     public static void updatePassword(Customer customer) {
         Connection conn = null;
         PreparedStatement stmt = null;

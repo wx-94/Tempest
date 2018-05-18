@@ -19,33 +19,42 @@ import java.util.ArrayList;
  * @author jacky
  */
 public class OutletDAO {
+
     private Connection conn;
     private PreparedStatement stmt;
     private ResultSet rs;
-    
-    public Outlet retrieveOutlet(String number) throws SQLException {
-        Outlet o = null;
-        conn = ConnectionManager.getConnection();
 
-        if (number != null && !number.isEmpty()) {
+    public Outlet retrieveOutlet(String name) throws SQLException {
+        Outlet o = null;
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            if (name != null && !name.isEmpty()) {
 
             //getting PreparedStatement to execute query
-            stmt = conn.prepareStatement("SELECT * FROM OUTLET WHERE outletNumber = ?");
-            stmt.setString(1, number);
+            stmt = conn.prepareStatement("SELECT * FROM OUTLET WHERE name = ?");
+            stmt.setString(1, name);
             //Resultset returned by query
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 String outletName = rs.getString("outletName");
                 String outletAddress = rs.getString("outletAddress");
-                String outletNumber = rs.getString("outletNumber");                
+                String outletNumber = rs.getString("outletNumber");
+                o = new Outlet(outletName,outletAddress,outletNumber);
             }
         }
-        ConnectionManager.close(conn, stmt, rs);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        
         return o;
     }
-    
-    public static void updateAddress(Outlet outlet) {
+
+    public void updateAddress(Outlet outlet) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -61,18 +70,18 @@ public class OutletDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
-    
-    public static ArrayList<Outlet> retrieveAll() {
+
+    public ArrayList<Outlet> retrieveAllOutlets() {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;    
+        ResultSet rs = null;
         ArrayList<Outlet> outletList = new ArrayList<>();
 
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("select * from Outlet");
             rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 Outlet o = new Outlet(rs.getString("outletName"), rs.getString("outletAddress"), rs.getString("outletNumber"));
                 outletList.add(o);

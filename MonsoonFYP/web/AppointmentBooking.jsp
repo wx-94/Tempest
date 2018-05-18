@@ -4,6 +4,11 @@
     Author     : jacky
 --%>
 
+<%@page import="com.tempest.daos.StaffDAO"%>
+<%@page import="com.tempest.entities.Staff"%>
+<%@page import="com.tempest.daos.OutletDAO"%>
+<%@page import="com.tempest.entities.Outlet"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,35 +18,46 @@
     </head>
     <body>
         <form role="form" action="appointmentBooking" method = "post">
-            <%
-                //check if customer has already login
-                String username = (String) session.getAttribute("username");
-                String password = (String) session.getAttribute("password");
-                if (username != null && password != null){
+
+            <input class="form-control" type="text" name="username" placeholder="Username/Email">
+            <!should auto fill in username?>
+
+
+            <div class="form-group">
+                <label>Select Outlet</label>
+                <select name="outletChosen">
+                    <%  ArrayList<Outlet> totalOutlets = OutletDAO.retrieveAllOutlets();
+                        for (Outlet outlet : totalOutlets) {
+                            out.println("<option value=" + outlet.getOutletName() + ">" + outlet.getOutletName() + "</option>");
+                        }
+                    %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Stylist</label>
+                <select name="stylistChosen">
+                    <%  ArrayList<Staff> staffs = StaffDAO.retrieveAllStaffs();
+                        for (Staff staff : staffs) {
+                            if (!staff.getStaffPosition().equals("cashier")) {
+                                out.println("<option value=" + staff.getStaffName() + ">" + staff.getStaffName() + "</option>");
+                            }
+                        }
+                    %>
+                </select>
+            </div>
+                    <%
+                        //need have drop down of DATE and START TIME
+                        %>
                 
+            <%
+                String errorMessage = (String) request.getAttribute("errorMsg");
+
+                if (errorMessage != null) {
+                    out.println(errorMessage);
                 }
             %>
-            
-            <input class="form-control" type="text" name="username" placeholder="Username/Email">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
-                <%
-                    String errorMessage = (String) request.getAttribute("errorMsg");
-
-                    if (errorMessage != null) {
-                        out.println(errorMessage);
-                    }
-                %>
-            </div>
-            <input type="submit" value="Sign In" class="btn btn-lg btn-success btn-block">
-            <%
-                String msg = (String) session.getAttribute("success");
-                if (msg!= null){
-                    out.println(msg);
-                    session.setAttribute("success", null);
-                }
-                %>
+            <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block">      
         </form>
     </body>
 </html>

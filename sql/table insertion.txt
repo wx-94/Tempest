@@ -6,9 +6,9 @@ prisng -> ng123
 */
 
 INSERT INTO Staff VALUES 
-('audreytan','$2a$10$qxl1XSHVe47rhONiwQ0SNePGAQmAos1VF.pt05xISptyWUzJ/kyc6','Audrey Tan', 'Junction 8', 'cashier'), 
+('audreytan','$2a$10$qxl1XSHVe47rhONiwQ0SNePGAQmAos1VF.pt05xISptyWUzJ/kyc6','Audrey Tan', 'Junction 8', 'stylist'), 
 ('nicolelee','$2a$10$vjc0yIBBIcNSkwuMrx5b.eR4LtHgBO5K2zSaJDqXMoMcN.KITPDdW','Nicole Lee', 'Ion Orchard', 'cashier'),
-('prisng','$2a$10$EyShABNp.x/BJ2ruke5gouGpa.uU/EZNlMoviQmTyjOVPQkmVCBnm','Pris Ng', 'Jurong Point', 'cashier');
+('prisng','$2a$10$EyShABNp.x/BJ2ruke5gouGpa.uU/EZNlMoviQmTyjOVPQkmVCBnm','Pris Ng', 'Jurong Point', 'lead stylist');
 
 /*
 jacky -> jacky
@@ -24,5 +24,5 @@ INSERT INTO Customer VALUES
 ('timonthy','timonthy@hotmail.com','18.4','$2a$10$tSlVTnKwnrInFdhbFYey7eQP8yVsyKMHDOgs6WDueLauKZY7LFNY2','92345676');
 
 INSERT INTO Outlet VALUES
-('MONSOON @ Novena Square, Novena', '238 Thomson Road, Novena Square #03-29/30 Singapore 307683', '63335586'),
-('MONSOON @ Bukit Timah Plaza, Bukit Timah', '1 Jalan Anak Bukit #B1-60, Bukit Timah Plaza Singapore 588996', '64631842');
+('MONSOON @ Novena Square', '238 Thomson Road, Novena Square #03-29/30 Singapore 307683', '63335586'),
+('MONSOON @ Bukit Timah Plaza', '1 Jalan Anak Bukit #B1-60, Bukit Timah Plaza Singapore 588996', '64631842');

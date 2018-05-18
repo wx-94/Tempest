@@ -19,14 +19,20 @@ public class Appointment {
     private Date dateOfAppointment;
     private Time startTimeOfAppointment;
     private Time endTimeOfAppointment;
+    private Treatment treatment;
 
-    public Appointment(Outlet outlet, Customer customer, Staff staff, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment) {
+    public Appointment(Outlet outlet, Customer customer, Staff staff, Treatment treatment, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment) {
         this.outlet = outlet;
         this.customer = customer;
         this.staff = staff;
+        this.treatment = treatment;
         this.dateOfAppointment = dateOfAppointment;
         this.startTimeOfAppointment = startTimeOfAppointment;
         this.endTimeOfAppointment = endTimeOfAppointment;
+    }
+
+    public Treatment getTreatment() {
+        return treatment;
     }
 
     public Outlet getOutlet() {
