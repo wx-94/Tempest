@@ -25,6 +25,7 @@ public class OutletDAO {
     private ResultSet rs;
 
     public Outlet retrieveOutlet(String name) throws SQLException {
+        
         Outlet o = null;
         
         try {
@@ -71,7 +72,7 @@ public class OutletDAO {
         }
     }
 
-    public ArrayList<Outlet> retrieveAllOutlets() {
+    public static ArrayList<Outlet> retrieveAllOutlets() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

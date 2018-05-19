@@ -19,19 +19,20 @@ public class Appointment {
     private Date dateOfAppointment;
     private Time startTimeOfAppointment;
     private Time endTimeOfAppointment;
-    private Treatment treatment;
+    private HairServices treatment;
 
-    public Appointment(Outlet outlet, Customer customer, Staff staff, Treatment treatment, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment) {
+    public Appointment(Customer customer, Staff staff, Outlet outlet, HairServices treatment, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment) {
         this.outlet = outlet;
         this.customer = customer;
         this.staff = staff;
+        this.outlet = outlet;
         this.treatment = treatment;
         this.dateOfAppointment = dateOfAppointment;
         this.startTimeOfAppointment = startTimeOfAppointment;
         this.endTimeOfAppointment = endTimeOfAppointment;
     }
 
-    public Treatment getTreatment() {
+    public HairServices getTreatment() {
         return treatment;
     }
 

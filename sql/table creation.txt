@@ -35,15 +35,25 @@ CREATE TABLE Customer(
 CREATE TABLE Appointment(
 	customerEmail		varchar(128),
 	staffID			varchar(128),
+	outletName		varchar(128),
 	treatment		varchar(500),
-	outletName		int(8),
 	appointmentDate		date,
-	appointmentStart	time,
-	appointmentEnd		time,	
+	appointmentStartTime	time,
+	appointmentEndTime	time,	
 	
 	CONSTRAINT AppointmentPK PRIMARY KEY(customerEmail,staffID),
 	CONSTRAINT AppointmentFK1 FOREIGN KEY(customerEmail) REFERENCES Customer(email),
 	CONSTRAINT AppointmentFK2 FOREIGN KEY(staffID) REFERENCES Staff(userID)
+);
+
+CREATE TABLE HairServices(
+	hairService		varchar(128),
+	duration		int(5),
+	minCost			decimal(5,2),
+	maxCost			decimal(5,2),
+	loyaltyPoints		decimal(5,2),
+	
+	CONSTRAINT HairServicesPK PRIMARY KEY(hairService)
 );
 
 

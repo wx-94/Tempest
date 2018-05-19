@@ -55,7 +55,7 @@ public class StaffDAO {
         return false;
     }
 
-    public Staff retrieveStaff(String userID, String password) throws SQLException {
+    public Staff retrieveStaff(String userID) throws SQLException {
         Staff s = null;
         try {
             conn = ConnectionManager.getConnection();
@@ -74,9 +74,8 @@ public class StaffDAO {
                     String staffName = rs.getString("staffName");
                     String staffOffice = rs.getString("staffOffice");
                     String staffPosition = rs.getString("staffPosition");
-                    if (BCrypt.checkpw(password, staffPassword)) {
-                        s = new Staff(staffID, staffPassword, staffName, staffOffice, staffPosition);
-                    }
+                    s = new Staff(staffID, staffPassword, staffName, staffOffice, staffPosition);
+
                 }
             }
         } catch (SQLException e) {
@@ -104,20 +103,20 @@ public class StaffDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
-    
+
     public static ArrayList<Staff> retrieveAllStaffs() {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;    
+        ResultSet rs = null;
         ArrayList<Staff> staffList = new ArrayList<>();
 
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("select * from Staff");
             rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
-                Staff s = new Staff(rs.getString("userID"), rs.getString("password"), rs.getString("staffName"),rs.getString("staffOffice"),rs.getString("staffPosition"));
+                Staff s = new Staff(rs.getString("userID"), rs.getString("password"), rs.getString("staffName"), rs.getString("staffOffice"), rs.getString("staffPosition"));
                 staffList.add(s);
             }
         } catch (SQLException e) {

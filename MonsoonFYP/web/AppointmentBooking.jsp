@@ -4,6 +4,8 @@
     Author     : jacky
 --%>
 
+<%@page import="com.tempest.daos.HairServicesDAO"%>
+<%@page import="com.tempest.entities.HairServices"%>
 <%@page import="com.tempest.daos.StaffDAO"%>
 <%@page import="com.tempest.entities.Staff"%>
 <%@page import="com.tempest.daos.OutletDAO"%>
@@ -46,12 +48,23 @@
                     %>
                 </select>
             </div>
-                    <%
-                        //need have drop down of DATE and START TIME
-                        %>
-                
+
+            <div class="form-group">
+                <label>Select Hair Service</label>
+                <select name="hairService">
+                    <%  ArrayList<HairServices> hairService = HairServicesDAO.retrieveAllHairServices();
+                        for (HairServices hair : hairService) {
+                            out.println("<option value=" + hair.getHairService()+ ">" + hair.getHairService()+ "</option>");
+
+                        }
+                    %>
+                </select>
+            </div>
             <%
-                String errorMessage = (String) request.getAttribute("errorMsg");
+                //need have drop down of DATE and START TIME
+            %>
+
+            <%                String errorMessage = (String) request.getAttribute("errorMsg");
 
                 if (errorMessage != null) {
                     out.println(errorMessage);
