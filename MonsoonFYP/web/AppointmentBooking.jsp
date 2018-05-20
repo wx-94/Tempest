@@ -22,17 +22,18 @@
         <script src="js/combodate.js"></script> 
     </head>
     <body>
-        <form role="form" action="appointmentBooking" method = "post">
+        <form role="form" action="bookAppointment" method = "post">
             Username
-            <input class="form-control" type="text" name="username" value=<% out.print((String)session.getAttribute("username"));%>>
+            <input class="form-control" type="text" name="username" value=<% out.print((String) session.getAttribute("username"));%>>
 
             <div class="form-group">
                 <label>Select Outlet</label>
                 <select name="outletChosen">
                     <%  ArrayList<Outlet> totalOutlets = OutletDAO.retrieveAllOutlets();
                         for (Outlet outlet : totalOutlets) {
-                            out.println("<option value=" + outlet.getOutletName() + ">" + outlet.getOutletName() + "</option>");
-                        }
+                    %>
+                    <option value="<%=outlet.getOutletName()%>"><%=outlet.getOutletName()%></option> 
+                    <% }
                     %>
                 </select>
             </div>
@@ -43,8 +44,9 @@
                     <%  ArrayList<Staff> staffs = StaffDAO.retrieveAllStaffs();
                         for (Staff staff : staffs) {
                             if (!staff.getStaffPosition().equals("cashier")) {
-                                out.println("<option value=" + staff.getStaffName() + ">" + staff.getStaffName() + "</option>");
-                            }
+                    %>
+                    <option value="<%=staff.getStaffName()%>"><%=staff.getStaffName()%></option> 
+                    <% }
                         }
                     %>
                 </select>
@@ -54,10 +56,10 @@
                 <label>Select Hair Service</label>
                 <select name="hairService">
                     <%  ArrayList<HairServices> hairService = HairServicesDAO.retrieveAllHairServices();
-                        for (HairServices hair : hairService) {
-                            out.println("<option value=" + hair.getHairService() + ">" + hair.getHairService() + "</option>");
+                        for (HairServices hair : hairService) {%>
+                    <option value="<%=hair.getHairService()%>"><%=hair.getHairService()%></option> 
 
-                        }
+                    <% }
                     %>
                 </select>
             </div>
@@ -69,19 +71,19 @@
                     $(function () {
                         $('#date').combodate(
                                 {minYear: 2018,
-                                maxYear: 2020});
+                                    maxYear: 2020});
                     });
                 </script>
             </div>
 
             <div class="form-group">
                 <label>Select Time</label>
-                <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="datetime">
+                <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
                 <script>
                     $(function () {
                         $('#time').combodate({
                             firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
-                            minuteStep: 1
+                            minuteStep: 15
                         });
                     });
                 </script>

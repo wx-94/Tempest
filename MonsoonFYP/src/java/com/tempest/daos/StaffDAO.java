@@ -86,6 +86,38 @@ public class StaffDAO {
         }
         return s;
     }
+    
+    public Staff retrieveStaffByName(String name) throws SQLException {
+        Staff s = null;
+        try {
+            conn = ConnectionManager.getConnection();
+
+            if (name != null && !name.isEmpty()) {
+
+                //getting PreparedStatement to execute query
+                stmt = conn.prepareStatement("SELECT * FROM STAFF WHERE staffName = ?");
+                stmt.setString(1, name);
+                //Resultset returned by query
+                rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    String staffID = rs.getString("userID");
+                    String staffPassword = rs.getString("password");
+                    String staffName = rs.getString("staffName");
+                    String staffOffice = rs.getString("staffOffice");
+                    String staffPosition = rs.getString("staffPosition");
+                    s = new Staff(staffID, staffPassword, staffName, staffOffice, staffPosition);
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            ConnectionManager.close(conn, stmt, rs);
+        }
+        return s;
+    }
 
     public static void updatePassword(Staff staff) {
         Connection conn = null;

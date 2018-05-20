@@ -34,7 +34,7 @@ public class AppointmentDAO {
         conn.setAutoCommit(false);
         boolean success = false;
         //getting PreparedStatement to execute query
-        stmt = conn.prepareStatement("INSERT into Appointment(name,staff,outlet,treatment,appointmentDate, appointmentStart, appointmentEnd) VALUES(?,?,?,?,?,?,?)");
+        stmt = conn.prepareStatement("INSERT into Appointment(customerEmail,staffID,outletName,treatment,appointmentDate, appointmentStartTime, appointmentEndTime) VALUES(?,?,?,?,?,?,?)");
 
         stmt.setString(1, appt.getCustomer().getCustomerEmail());
         stmt.setString(2, appt.getStaff().getStaffName());

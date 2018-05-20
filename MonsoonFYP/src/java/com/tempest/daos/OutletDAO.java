@@ -33,7 +33,7 @@ public class OutletDAO {
             if (name != null && !name.isEmpty()) {
 
             //getting PreparedStatement to execute query
-            stmt = conn.prepareStatement("SELECT * FROM OUTLET WHERE name = ?");
+            stmt = conn.prepareStatement("SELECT * FROM OUTLET WHERE outletName = ?");
             stmt.setString(1, name);
             //Resultset returned by query
             rs = stmt.executeQuery();
