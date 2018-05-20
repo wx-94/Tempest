@@ -31,8 +31,8 @@ public class HairServicesDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                HairServices h = new HairServices(rs.getString("hairService"), rs.getInt("duration"),rs.getDouble("minCost"), rs.getDouble("maxCost"), rs.getDouble("loyaltyPoints"));
-                hairServicesList.add(h);
+                HairServices hairService = new HairServices(rs.getString("hairService"), rs.getInt("duration"),rs.getDouble("minCost"), rs.getDouble("maxCost"), rs.getDouble("loyaltyPoints"));
+                hairServicesList.add(hairService);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class HairServicesDAO {
         return hairServicesList;
     }
     
-    public HairServices retrieveHairServices(String hairService) {
+    public HairServices retrieveHairService(String hairService) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

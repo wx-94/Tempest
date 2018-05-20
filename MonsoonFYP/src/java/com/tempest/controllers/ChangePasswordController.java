@@ -59,7 +59,7 @@ public class ChangePasswordController extends HttpServlet {
                 // Check that an unencrypted password matches one that has
                 // previously been hashed
                 if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-                    Staff staff = staffDAO.retrieveStaff(username, oldPassword);
+                    Staff staff = staffDAO.retrieveStaff(username);
                     staff.setPassword(hashed);
                     staffDAO.updatePassword(staff);
                 } else {
@@ -72,7 +72,7 @@ public class ChangePasswordController extends HttpServlet {
                 // Check that an unencrypted password matches one that has
                 // previously been hashed
                 if (BCrypt.checkpw(confirmNewPassword, hashed)) {
-                    Customer customer = customerDAO.retrieveCustomer(username, oldPassword);
+                    Customer customer = customerDAO.retrieveCustomer(username);
                     customer.setCustomerPassword(hashed);
                     customerDAO.updatePassword(customer);
                 } else {

@@ -28,21 +28,40 @@ public class HairServices {
         return hairService;
     }
 
+    public void setHairService(String hairService) {
+        this.hairService = hairService;
+    }
+
     public int getDuration() {
         return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public double getMinCost() {
         return minCost;
     }
 
+    public void setMinCost(double minCost) {
+        this.minCost = minCost;
+    }
+
     public double getMaxCost() {
         return maxCost;
+    }
+
+    public void setMaxCost(double maxCost) {
+        this.maxCost = maxCost;
     }
 
     public double getLoyaltyPoints() {
         return loyaltyPoints;
     }
-    
+
+    public void setLoyaltyPoints(double loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
+    }
     
 }

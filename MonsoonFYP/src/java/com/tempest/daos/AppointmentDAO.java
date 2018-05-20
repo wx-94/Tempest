@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import com.tempest.dbconnection.ConnectionManager;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 
 /**
  *
@@ -57,27 +58,29 @@ public class AppointmentDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Appointment> apptList = new ArrayList<>();
+        ArrayList<Appointment> appointmentList = new ArrayList<>();
 
         try {
             conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("select * from Outlet where customerEmail = ?");
+            stmt = conn.prepareStatement("select * from Appointment where customerEmail = ?");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Customer c = customerDAO.retrieveCustomer(rs.getString("customerEmail"));
-                Staff f = staffDAO.retrieveStaff(rs.getString("staffID"));
-                Outlet o = outletDAO.retrieveOutlet(rs.getString("outletName"));
-                HairServices h = hairServicesDAO.retrieveHairServices(rs.getString("treatment"));
-               
-                Appointment a = new Appointment(c,f,o, h, rs.getDate("appointmentDate"), rs.getTime("appointmentStartTime"), rs.getTime("appointmentEndTime"));
-                apptList.add(a);
+                Outlet outlet = outletDAO.retrieveOutlet(rs.getString("outletName"));
+                Customer customer = customerDAO.retrieveCustomer(rs.getString("customerEmail"));
+                Staff staff = staffDAO.retrieveStaff(rs.getString("staffID"));
+                Date dateOfAppointment = rs.getDate("appointmentDate");
+                Time appointmentStartTime = rs.getTime("appointmentStartTime");
+                Time appointmentEndTime = rs.getTime("appointmentEndTime");
+                HairServices hairServices = hairServicesDAO.retrieveHairService(rs.getString("treatment"));
+                Appointment appointment = new Appointment(outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
+                appointmentList.add(appointment);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             ConnectionManager.close(conn, stmt);
         }
-        return apptList;
+        return appointmentList;
     }
 }

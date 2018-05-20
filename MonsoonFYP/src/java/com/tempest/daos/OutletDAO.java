@@ -26,7 +26,7 @@ public class OutletDAO {
 
     public Outlet retrieveOutlet(String name) throws SQLException {
         
-        Outlet o = null;
+        Outlet outlet = null;
         
         try {
             conn = ConnectionManager.getConnection();
@@ -42,7 +42,7 @@ public class OutletDAO {
                 String outletName = rs.getString("outletName");
                 String outletAddress = rs.getString("outletAddress");
                 String outletNumber = rs.getString("outletNumber");
-                o = new Outlet(outletName,outletAddress,outletNumber);
+                outlet = new Outlet(outletName,outletAddress,outletNumber);
             }
         }
             
@@ -52,7 +52,7 @@ public class OutletDAO {
             ConnectionManager.close(conn, stmt);
         }
         
-        return o;
+        return outlet;
     }
 
     public void updateAddress(Outlet outlet) {
@@ -84,8 +84,8 @@ public class OutletDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Outlet o = new Outlet(rs.getString("outletName"), rs.getString("outletAddress"), rs.getString("outletNumber"));
-                outletList.add(o);
+                Outlet outlet = new Outlet(rs.getString("outletName"), rs.getString("outletAddress"), rs.getString("outletNumber"));
+                outletList.add(outlet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

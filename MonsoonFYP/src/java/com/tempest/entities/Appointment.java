@@ -21,14 +21,61 @@ public class Appointment {
     private Time endTimeOfAppointment;
     private HairServices treatment;
 
-    public Appointment(Customer customer, Staff staff, Outlet outlet, HairServices treatment, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment) {
+    public Appointment(Outlet outlet, Customer customer, Staff staff, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment, HairServices treatment) {
         this.outlet = outlet;
         this.customer = customer;
         this.staff = staff;
-        this.outlet = outlet;
-        this.treatment = treatment;
         this.dateOfAppointment = dateOfAppointment;
         this.startTimeOfAppointment = startTimeOfAppointment;
+        this.endTimeOfAppointment = endTimeOfAppointment;
+        this.treatment = treatment;
+    }
+
+    public Outlet getOutlet() {
+        return outlet;
+    }
+
+    public void setOutlet(Outlet outlet) {
+        this.outlet = outlet;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public Date getDateOfAppointment() {
+        return dateOfAppointment;
+    }
+
+    public void setDateOfAppointment(Date dateOfAppointment) {
+        this.dateOfAppointment = dateOfAppointment;
+    }
+
+    public Time getStartTimeOfAppointment() {
+        return startTimeOfAppointment;
+    }
+
+    public void setStartTimeOfAppointment(Time startTimeOfAppointment) {
+        this.startTimeOfAppointment = startTimeOfAppointment;
+    }
+
+    public Time getEndTimeOfAppointment() {
+        return endTimeOfAppointment;
+    }
+
+    public void setEndTimeOfAppointment(Time endTimeOfAppointment) {
         this.endTimeOfAppointment = endTimeOfAppointment;
     }
 
@@ -36,30 +83,8 @@ public class Appointment {
         return treatment;
     }
 
-    public Outlet getOutlet() {
-        return outlet;
+    public void setTreatment(HairServices treatment) {
+        this.treatment = treatment;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public Date getDateOfAppointment() {
-        return dateOfAppointment;
-    }
-
-    public Time getStartTimeOfAppointment() {
-        return startTimeOfAppointment;
-    }
-
-    public Time getEndTimeOfAppointment() {
-        return endTimeOfAppointment;
-    }
-    
-    
-    
 }
