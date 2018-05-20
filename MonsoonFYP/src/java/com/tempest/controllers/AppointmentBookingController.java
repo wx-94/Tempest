@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,7 +33,16 @@ public class AppointmentBookingController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        
+        //to protect this controller
+        HttpSession session = request.getSession();
+
+        String customerCheck = (String) session.getAttribute("username");
+        if (customerCheck == null) {
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        
         try {
             String username = request.getParameter("username");
             String stylist = request.getParameter("stylistChosen");

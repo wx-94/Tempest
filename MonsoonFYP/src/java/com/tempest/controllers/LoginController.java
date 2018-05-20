@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
             } else if (customerDAO.verifyCustomer(username, password)) { //if customer id and pwd is correct
                 String token = Authenticate.sign(username);
                 request.getSession().setAttribute("token", token);
-                //request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("username", username);
                 //request.getSession().setAttribute("password", password);
                 response.sendRedirect("Homepage.jsp");
                 

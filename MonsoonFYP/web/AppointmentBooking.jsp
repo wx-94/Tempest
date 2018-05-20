@@ -17,13 +17,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Appointment Booking</title>
+        <script src="js/jquery-3.3.1.js"></script> 
+        <script src="js/moment.js"></script> 
+        <script src="js/combodate.js"></script> 
     </head>
     <body>
         <form role="form" action="appointmentBooking" method = "post">
-
-            <input class="form-control" type="text" name="username" placeholder="Username/Email">
-            <!should auto fill in username?>
-
+            Username
+            <input class="form-control" type="text" name="username" value=<% out.print((String)session.getAttribute("username"));%>>
 
             <div class="form-group">
                 <label>Select Outlet</label>
@@ -54,18 +55,40 @@
                 <select name="hairService">
                     <%  ArrayList<HairServices> hairService = HairServicesDAO.retrieveAllHairServices();
                         for (HairServices hair : hairService) {
-                            out.println("<option value=" + hair.getHairService()+ ">" + hair.getHairService()+ "</option>");
+                            out.println("<option value=" + hair.getHairService() + ">" + hair.getHairService() + "</option>");
 
                         }
                     %>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label>Select Date</label>
+                <input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">
+                <script>
+                    $(function () {
+                        $('#date').combodate(
+                                {minYear: 2018,
+                                maxYear: 2020});
+                    });
+                </script>
+            </div>
+
+            <div class="form-group">
+                <label>Select Time</label>
+                <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="datetime">
+                <script>
+                    $(function () {
+                        $('#time').combodate({
+                            firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+                            minuteStep: 1
+                        });
+                    });
+                </script>
+            </div>
+
             <%
-                //need have drop down of DATE and START TIME
-            %>
-
-            <%                String errorMessage = (String) request.getAttribute("errorMsg");
-
+                String errorMessage = (String) request.getAttribute("errorMsg");
                 if (errorMessage != null) {
                     out.println(errorMessage);
                 }
