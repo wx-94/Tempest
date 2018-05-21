@@ -4,11 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AppointmentBooking.jsp</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/DeleteAppointmentController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/UpdateAppointmentController.java</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/entities/Appointment.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/HairServicesDAO.java</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/OutletDAO.java</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/AppointmentDAO.java</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/CreateAccountController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/LoginController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/CustomerDAO.java</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/AppointmentBookingController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/StaffDAO.java</file>
         </group>
     </open-files>
 </project-private>

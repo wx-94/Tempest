@@ -53,6 +53,47 @@ public class AppointmentDAO {
         ConnectionManager.close(conn, stmt, rs);
         return success;
     }
+        
+    public boolean deleteAppointment(Appointment appointment) throws SQLException {
+        conn = ConnectionManager.getConnection();
+        conn.setAutoCommit(false);
+        boolean success = false;
+        
+        //Need to add appointmentID to Appointment class and appointmentID column to database as well.
+        //Uncomment below 3 lines when implemented
+        //String appointmentID = appointment.getAppointmentID();
+        
+        //getting PreparedStatement to execute query
+        //stmt = conn.prepareStatement("DELETE FROM BID WHERE appointmentID=" + appointmentID);
+
+        int check = stmt.executeUpdate();
+        if (check == 1) {
+            success = true;
+        }
+
+        conn.commit();
+        ConnectionManager.close(conn, stmt, rs);
+        return success;
+    }
+    
+    public boolean updateBid(Appointment appointment, Appointment newAppointment) throws SQLException {
+        conn = ConnectionManager.getConnection();
+        conn.setAutoCommit(false);
+        boolean success = false;
+
+        //Uncomment and change below lines when deleteAppointment stuff is implemented.
+        //getting PreparedStatement to execute query
+        //stmt = conn.prepareStatement("UPDATE BID SET amount=" + newAmount + " WHERE bidID=" + bid.getBidID() + " AND userid=\"" + bid.getUserID() + "\"");
+
+        int check = stmt.executeUpdate();
+        if (check == 1) {
+            success = true;
+        }
+
+        conn.commit();
+        ConnectionManager.close(conn, stmt, rs);
+        return success;
+    }
 
     public ArrayList<Appointment> retrieveAllAppointmentsByCustomer() {
         Connection conn = null;
