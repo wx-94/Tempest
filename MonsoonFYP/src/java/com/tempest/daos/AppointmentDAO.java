@@ -36,10 +36,10 @@ public class AppointmentDAO {
         //getting PreparedStatement to execute query
         stmt = conn.prepareStatement("INSERT into Appointment(customerEmail,staffID,outletName,treatment,appointmentDate, appointmentStartTime, appointmentEndTime) VALUES(?,?,?,?,?,?,?)");
 
-        stmt.setString(1, appt.getCustomer().getCustomerEmail());
-        stmt.setString(2, appt.getStaff().getStaffName());
-        stmt.setString(3, appt.getOutlet().getOutletName());
-        stmt.setString(4, appt.getTreatment().getHairService());
+        stmt.setString(1, appt.getCustomer());
+        stmt.setString(2, appt.getStaff());
+        stmt.setString(3, appt.getOutlet());
+        stmt.setString(4, appt.getTreatment());
         stmt.setDate(5, appt.getDateOfAppointment());
         stmt.setTime(6, appt.getStartTimeOfAppointment());
         stmt.setTime(7, appt.getEndTimeOfAppointment());
@@ -76,7 +76,7 @@ public class AppointmentDAO {
         return success;
     }
     
-    public boolean updateBid(Appointment appointment, Appointment newAppointment) throws SQLException {
+    public boolean updateAppointment(Appointment appointment, Appointment newAppointment) throws SQLException {
         conn = ConnectionManager.getConnection();
         conn.setAutoCommit(false);
         boolean success = false;
@@ -95,7 +95,7 @@ public class AppointmentDAO {
         return success;
     }
 
-    public ArrayList<Appointment> retrieveAllAppointmentsByCustomer() {
+    public ArrayList<Appointment> retrieveAllAppointmentsByCustomer(String email) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -104,17 +104,20 @@ public class AppointmentDAO {
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("select * from Appointment where customerEmail = ?");
+            stmt.setString(1, email);
+            
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Outlet outlet = outletDAO.retrieveOutlet(rs.getString("outletName"));
-                Customer customer = customerDAO.retrieveCustomer(rs.getString("customerEmail"));
-                Staff staff = staffDAO.retrieveStaff(rs.getString("staffID"));
+                int appointmentID = rs.getInt("appointmentID");
+                String outlet = rs.getString("outletName");
+                String customer = rs.getString("customerEmail");
+                String staff = rs.getString("staffID");
                 Date dateOfAppointment = rs.getDate("appointmentDate");
                 Time appointmentStartTime = rs.getTime("appointmentStartTime");
                 Time appointmentEndTime = rs.getTime("appointmentEndTime");
-                HairServices hairServices = hairServicesDAO.retrieveHairService(rs.getString("treatment"));
-                Appointment appointment = new Appointment(outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
+                String hairServices = rs.getString("treatment");
+                Appointment appointment = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
                 appointmentList.add(appointment);
             }
         } catch (SQLException e) {

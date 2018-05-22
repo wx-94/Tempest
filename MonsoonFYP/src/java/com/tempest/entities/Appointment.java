@@ -13,15 +13,27 @@ import java.sql.Time;
  * @author jacky
  */
 public class Appointment {
-    private Outlet outlet;
-    private Customer customer;
-    private Staff staff;
+    private int appointmentID;
+    private String outlet;
+    private String customer;
+    private String staff;
     private Date dateOfAppointment;
     private Time startTimeOfAppointment;
     private Time endTimeOfAppointment;
-    private HairServices treatment;
+    private String treatment;
 
-    public Appointment(Outlet outlet, Customer customer, Staff staff, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment, HairServices treatment) {
+    public Appointment(int appointmentID, String outlet, String customer, String staff, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment, String treatment) {
+        this.appointmentID = appointmentID;
+        this.outlet = outlet;
+        this.customer = customer;
+        this.staff = staff;
+        this.dateOfAppointment = dateOfAppointment;
+        this.startTimeOfAppointment = startTimeOfAppointment;
+        this.endTimeOfAppointment = endTimeOfAppointment;
+        this.treatment = treatment;
+    }
+    
+    public Appointment(String outlet, String customer, String staff, Date dateOfAppointment, Time startTimeOfAppointment, Time endTimeOfAppointment, String treatment) {
         this.outlet = outlet;
         this.customer = customer;
         this.staff = staff;
@@ -31,27 +43,35 @@ public class Appointment {
         this.treatment = treatment;
     }
 
-    public Outlet getOutlet() {
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
+    }
+
+    public String getOutlet() {
         return outlet;
     }
 
-    public void setOutlet(Outlet outlet) {
+    public void setOutlet(String outlet) {
         this.outlet = outlet;
     }
 
-    public Customer getCustomer() {
+    public String getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(String customer) {
         this.customer = customer;
     }
 
-    public Staff getStaff() {
+    public String getStaff() {
         return staff;
     }
 
-    public void setStaff(Staff staff) {
+    public void setStaff(String staff) {
         this.staff = staff;
     }
 
@@ -79,11 +99,11 @@ public class Appointment {
         this.endTimeOfAppointment = endTimeOfAppointment;
     }
 
-    public HairServices getTreatment() {
+    public String getTreatment() {
         return treatment;
     }
 
-    public void setTreatment(HairServices treatment) {
+    public void setTreatment(String treatment) {
         this.treatment = treatment;
     }
 
