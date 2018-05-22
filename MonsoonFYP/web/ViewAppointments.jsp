@@ -12,9 +12,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Appointments Made</title>
     </head>
     <body>
+        <form role="form" action="DeleteAppointmentController" method = "post">    
         <%
             ArrayList<Appointment> appointmentList = (ArrayList<Appointment>) session.getAttribute("appointmentList");
         %>
@@ -30,13 +31,13 @@
                     <th>Date</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Selected</th>
                 </tr>
             </thead>
 
-            <tbody >
+            <tbody >            
                 <%
-                    if (appointmentList != null && !appointmentList.isEmpty()) {
-                        for (Appointment a : appointmentList) {
+                    for (Appointment a : appointmentList) {
                 %> 
                 <tr>
                     <td><%= a.getAppointmentID()%></td>
@@ -45,19 +46,22 @@
                     <td><%= a.getTreatment()%></td>
                     <td><%= a.getDateOfAppointment()%></td>
                     <td><%= a.getStartTimeOfAppointment()%></td>
-                    <td><%= a.getEndTimeOfAppointment()%></td>                           
+                    <td><%= a.getEndTimeOfAppointment()%></td> 
+                    <td><input TYPE="checkbox" NAME="appointment" VALUE="<%=a.getAppointmentID()%>"></td>
                 </tr>
 
                 <%
-                            }
-                        }
-                    } else {
+                    }
+                } else {
                 %>
-            <h1>No bookings made!</h1>
-            <%
-                }
-            %>
-            </tbody>
+                <h1>No bookings made!</h1>
+                <%
+                    }
+                %>
+                </tbody>
         </table>
+                <input type="submit" value="Cancel Appointment" >
+            </form>                
+        <a href="Homepage.jsp"> Go back</a>
     </body>
 </html>
