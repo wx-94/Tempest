@@ -16,12 +16,7 @@
         <br>
         <a href="AppointmentBooking.jsp"> Book Appointment </a>
         <br>
-        <a href="ViewAppointments.jsp"> View Appointments </a>
-        <br>
-        <form action="viewAppointments" method="post">
-            <a href="ViewAppointments.jsp">View Appointments</a>
-            <input type="hidden" name="mess" value="View Appointments"/>
-        </form>
+        <a href="viewAppointments"> View Appointments </a>
         <br>
         <a href="ProcessLogOut.jsp"> Log out </a>
     </body>
