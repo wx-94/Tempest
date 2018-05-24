@@ -88,14 +88,14 @@
                     });
                 </script>
             </div>
-
             <%
                 String errorMessage = (String) request.getAttribute("errorMsg");
                 if (errorMessage != null) {
                     out.println(errorMessage);
                 }
             %>
+
             <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block">      
-        </form>
+        </form>            
     </body>
 </html>
