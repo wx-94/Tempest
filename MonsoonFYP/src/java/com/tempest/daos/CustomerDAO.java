@@ -120,4 +120,21 @@ public class CustomerDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
+    
+    public static void updateLoyaltyPoints(Customer customer) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Customer SET points = ? where email = ?");
+            stmt.setDouble(1, customer.getCustomerPoints());
+            stmt.setString(2, customer.getCustomerEmail());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
 }

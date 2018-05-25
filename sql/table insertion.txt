@@ -24,8 +24,8 @@ INSERT INTO Customer VALUES
 ('timonthy','timonthy@hotmail.com','18.4','$2a$10$tSlVTnKwnrInFdhbFYey7eQP8yVsyKMHDOgs6WDueLauKZY7LFNY2','92345676');
 
 INSERT INTO Outlet VALUES
-('MONSOON @ Novena Square', '238 Thomson Road, Novena Square #03-29/30 Singapore 307683', '63335586'),
-('MONSOON @ Bukit Timah Plaza', '1 Jalan Anak Bukit #B1-60, Bukit Timah Plaza Singapore 588996', '64631842');
+('MONSOON @ Novena Square', '238 Thomson Road, Novena Square #03-29/30 Singapore 307683', '63335586','11:00:00','21:00:00','11:00:00','20:00:00','11:00:00','19:00:00'),
+('MONSOON @ Bukit Timah Plaza', '1 Jalan Anak Bukit #B1-60, Bukit Timah Plaza Singapore 588996', '64631842','10:00:00','20:00:00','10:00:00','19:00:00','10:00:00','18:00:00');
 
 INSERT INTO HairServices VALUES
 ('Cutting','15','10.0','30.0','5.0'),

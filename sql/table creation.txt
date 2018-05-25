@@ -60,6 +60,12 @@ CREATE TABLE Outlet(
 	outletName	varchar(128),
 	outletAddress	varchar(1000),
 	outletNumber	int(8),
+	weekdayStart	time,
+	weekdayEnd	time,
+	weekendStart	time,
+	weekendEnd	time,
+	publicHolStart	time,
+	publicHolEnd	time,
 	CONSTRAINT OutletPK PRIMARY KEY(outletNumber)
 );
 
