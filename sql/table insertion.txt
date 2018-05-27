@@ -18,10 +18,10 @@ timonthy -> timonthy
 */
 
 INSERT INTO Customer VALUES
-('jacky', 'jacky@hotmail.com', '5.0', '$2a$10$G73vG1Or.S.POXRIXxvfYuyJyKfU0GSYe1pmRnyrgZ4nO0vdyCLTC', '87654321'),
-('alexia', 'alexia@hotmail.com', '12.4', '$2a$10$RpMTK0vLJT2YQixTNxZmH.exuaFRcQN6J3E5m4Ydo5rIWXLg8f996', '86543451'),
-('valerie','valerie@hotmail.com','20.3','$2a$10$MJAml/l54edCk6ykNw7BTeZE3Exe2z.7HDbIZuBdQRlzIwQyC4sy6','97345632'),
-('timonthy','timonthy@hotmail.com','18.4','$2a$10$tSlVTnKwnrInFdhbFYey7eQP8yVsyKMHDOgs6WDueLauKZY7LFNY2','92345676');
+('jacky', 'jacky@hotmail.com', '5.0', '$2a$10$G73vG1Or.S.POXRIXxvfYuyJyKfU0GSYe1pmRnyrgZ4nO0vdyCLTC', '87654321', NULL),
+('alexia', 'alexia@hotmail.com', '12.4', '$2a$10$RpMTK0vLJT2YQixTNxZmH.exuaFRcQN6J3E5m4Ydo5rIWXLg8f996', '86543451', NULL),
+('valerie','valerie@hotmail.com','20.3','$2a$10$MJAml/l54edCk6ykNw7BTeZE3Exe2z.7HDbIZuBdQRlzIwQyC4sy6','97345632', NULL),
+('timonthy','timonthy@hotmail.com','18.4','$2a$10$tSlVTnKwnrInFdhbFYey7eQP8yVsyKMHDOgs6WDueLauKZY7LFNY2','92345676', NULL);
 
 INSERT INTO Outlet VALUES
 ('MONSOON @ Novena Square', '238 Thomson Road, Novena Square #03-29/30 Singapore 307683', '63335586','11:00:00','21:00:00','11:00:00','20:00:00','11:00:00','19:00:00'),
