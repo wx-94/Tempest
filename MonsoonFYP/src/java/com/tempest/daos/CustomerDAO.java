@@ -8,6 +8,7 @@ package com.tempest.daos;
 import com.tempest.dbconnection.ConnectionManager;
 import com.tempest.entities.Customer;
 import com.tempest.utility.BCrypt;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,6 +131,30 @@ public class CustomerDAO {
             stmt = conn.prepareStatement("UPDATE Customer SET points = ? where email = ?");
             stmt.setDouble(1, customer.getCustomerPoints());
             stmt.setString(2, customer.getCustomerEmail());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+    
+    public static void updateProfile(Customer customer, String newNumber, InputStream inputStream) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Customer SET number = ?, photo = ? where email = ?");
+            stmt.setInt(1, Integer.parseInt(newNumber));
+            
+            if (inputStream != null) {
+                // fetches input stream of the upload file for the blob column
+                stmt.setBlob(2, inputStream);
+            }
+            
+            stmt.setString(3, customer.getCustomerEmail());
+            
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -15,17 +15,19 @@
     <body>
         <% CustomerDAO custDAO = new CustomerDAO();
             String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
-            String capsName = name.substring(0,1).toUpperCase()+name.substring(1);
+            String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
         %>
-        <h1>Welcome <%out.println(capsName+"!");%></h1>
+        <h1>Welcome <%out.println(capsName + "!");%></h1>
         <br>
         <%
-                String msg = (String) session.getAttribute("success");
-                if (msg!= null){
-                    out.println(msg);
-                    session.setAttribute("success", null);
-                }
-                %>
+            String msg = (String) session.getAttribute("success");
+            if (msg != null) {
+                out.println(msg);
+                session.setAttribute("success", null);
+            }
+        %>
+        <br>
+        <a href="EditProfile.jsp"> Edit Profile </a>
         <br>
         <a href="AppointmentBooking.jsp"> Book Appointment </a>
         <br>
