@@ -33,6 +33,8 @@
         <br>
         <a href="viewAppointments"> View Appointments </a>
         <br>
+        <a href="viewAppointmentsHistory"> View Appointments History </a>
+        <br>
         <a href="ProcessLogOut.jsp"> Log out </a>
     </body>
 </html>

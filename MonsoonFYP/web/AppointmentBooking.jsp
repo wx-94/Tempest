@@ -96,6 +96,7 @@
             %>
 
             <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block">      
-        </form>            
+        </form>
+        <a href="Homepage.jsp"> Go back</a>
     </body>
 </html>

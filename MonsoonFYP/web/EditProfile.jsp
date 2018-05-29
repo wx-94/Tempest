@@ -42,5 +42,6 @@
                 }
             %>  
         </form>
+        <a href="Homepage.jsp"> Go back</a>
     </body>
 </html>

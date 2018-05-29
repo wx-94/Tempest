@@ -155,4 +155,37 @@ public class AppointmentDAO {
         ConnectionManager.close(conn, stmt, rs);
         return a;
     }
+    
+    public ArrayList<Appointment> retrieveAppointmentsHistoryByCustomer(String email) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Appointment> appointmentList = new ArrayList<>();
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("select * from Appointment where customerEmail = ?"); //to change once Appointment History table is created
+            stmt.setString(1, email);
+            
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                int appointmentID = rs.getInt("appointmentID");
+                String outlet = rs.getString("outletName");
+                String customer = rs.getString("customerEmail");
+                String staff = rs.getString("staffID");
+                Date dateOfAppointment = rs.getDate("appointmentDate");
+                Time appointmentStartTime = rs.getTime("appointmentStartTime");
+                Time appointmentEndTime = rs.getTime("appointmentEndTime");
+                String hairServices = rs.getString("treatment");
+                Appointment appointment = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
+                appointmentList.add(appointment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return appointmentList;
+    }
 }
