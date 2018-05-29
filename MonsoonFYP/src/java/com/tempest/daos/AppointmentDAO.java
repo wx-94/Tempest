@@ -164,7 +164,7 @@ public class AppointmentDAO {
         
         try {
             conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("select * from Appointment where customerEmail = ?"); //to change once Appointment History table is created
+            stmt = conn.prepareStatement("select * from AppointmentsHistory where customerEmail = ?");
             stmt.setString(1, email);
             
             rs = stmt.executeQuery();

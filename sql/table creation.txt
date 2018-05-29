@@ -34,7 +34,7 @@ CREATE TABLE Customer(
 );
 
 CREATE TABLE Appointment(
-    appointmentID int NOT NULL AUTO_INCREMENT UNIQUE,
+    	appointmentID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
 	customerEmail		varchar(128),
 	staffID			varchar(128),
 	outletName		varchar(128),
@@ -44,6 +44,19 @@ CREATE TABLE Appointment(
 	appointmentEndTime	time,	
 	
 	CONSTRAINT AppointmentPK PRIMARY KEY(appointmentID)
+);
+
+CREATE TABLE AppointmentsHistory(
+        appointmentID 		int(10),
+	customerEmail		varchar(128),
+	staffID			varchar(128),
+	outletName		varchar(128),
+	treatment		varchar(500),
+	appointmentDate		date,
+	appointmentStartTime	time,
+	appointmentEndTime	time,	
+	
+	CONSTRAINT AppointmentsHistoryPK PRIMARY KEY(appointmentID)
 );
 
 CREATE TABLE HairServices(
