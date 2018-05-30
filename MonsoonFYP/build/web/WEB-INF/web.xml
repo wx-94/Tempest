@@ -9,6 +9,10 @@
         <servlet-name>appointmentBooking</servlet-name>
         <servlet-class>com.tempest.controllers.AppointmentBookingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewLoyaltyPointsHistoryController</servlet-name>
+        <servlet-class>com.tempest.controllers.ViewLoyaltyPointsHistoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/authenticate</url-pattern>
@@ -16,6 +20,10 @@
     <servlet-mapping>
         <servlet-name>appointmentBooking</servlet-name>
         <url-pattern>/appointmentBooking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewLoyaltyPointsHistoryController</servlet-name>
+        <url-pattern>/ViewLoyaltyPointsHistoryController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

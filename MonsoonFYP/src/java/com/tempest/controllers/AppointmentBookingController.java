@@ -96,7 +96,7 @@ public class AppointmentBookingController extends HttpServlet {
             HairServices h = hairServicesDAO.retrieveHairService(hairService);
 
             Appointment appointment = new Appointment(o.getOutletName(), c.getCustomerEmail(), s.getStaffName(), dateOfAppointment, startTimeOfAppointment, endTimeOfAppointment, h.getHairService());
-            if (!validateAppointment(username, appointment)) {
+            if (validateAppointment(username, appointment)) {
                 appointmentDAO.createAppointment(appointment);
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
@@ -120,6 +120,7 @@ public class AppointmentBookingController extends HttpServlet {
 
             //check if it falls on the same day
             if (app.getDateOfAppointment() == appt.getDateOfAppointment()) {
+                //need to check for which day of the wk it is
                 if (startTime.equals(appt.getStartTimeOfAppointment())) {
                     clash = true;
                 }

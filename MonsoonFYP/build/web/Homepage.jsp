@@ -35,6 +35,8 @@
         <br>
         <a href="viewAppointmentsHistory"> View Appointments History </a>
         <br>
+        <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+        <br>
         <a href="ProcessLogOut.jsp"> Log out </a>
     </body>
 </html>

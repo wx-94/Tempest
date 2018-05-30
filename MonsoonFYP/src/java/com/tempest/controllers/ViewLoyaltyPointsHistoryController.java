@@ -6,14 +6,11 @@
 package com.tempest.controllers;
 
 import com.tempest.daos.AppointmentDAO;
-import com.tempest.daos.HairServicesDAO;
 import com.tempest.entities.Appointment;
-import com.tempest.entities.LoyaltyPoints;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +18,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Xuan
+ * @author jacky
  */
-@WebServlet(name = "ViewAppointmentsHistoryController", urlPatterns = {"/viewAppointmentsHistory"})
-public class ViewAppointmentsHistoryController extends HttpServlet {
+public class ViewLoyaltyPointsHistoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,31 +33,22 @@ public class ViewAppointmentsHistoryController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //to protect this controller
-        HttpSession session = request.getSession();
+       HttpSession session = request.getSession();
 
         String customerCheck = (String) session.getAttribute("username");
         if (customerCheck == null) {
             response.sendRedirect("index.jsp");
             return;
         }
-
+        
         try {
             String email = customerCheck;
 
             AppointmentDAO appointmentDAO = new AppointmentDAO();
-            HairServicesDAO hairServiceDAO = new HairServicesDAO();
-            ArrayList<LoyaltyPoints> loyaltyList = new ArrayList<LoyaltyPoints>();
             ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAppointmentsHistoryByCustomer(email);
-            
-            
-            for(Appointment a: appointmentList){
-                double points = hairServiceDAO.retrieveHairService(a.getTreatment()).getLoyaltyPoints();
-                LoyaltyPoints loyalty = new LoyaltyPoints(a.getAppointmentID(),a.getOutlet(),a.getDateOfAppointment(),a.getTreatment(),points);
-                loyaltyList.add(loyalty);
-            }
-            session.setAttribute("loyaltyList", loyaltyList);
-            response.sendRedirect("ViewAppointmentsHistory.jsp");
+
+            session.setAttribute("appointmentList", appointmentList);
+            response.sendRedirect("ViewLoyaltyPointsHistory.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();
