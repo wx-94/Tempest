@@ -23,6 +23,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -101,7 +102,7 @@ public class AppointmentBookingController extends HttpServlet {
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
                 response.sendRedirect("Homepage.jsp");
-            } else{
+            } else {
                 request.setAttribute("errorMsg", "Appointment has already been made at that time");
                 request.getRequestDispatcher("AppointmentBooking.jsp").forward(request, response);
             }
@@ -117,10 +118,22 @@ public class AppointmentBookingController extends HttpServlet {
             Time startTime = app.getStartTimeOfAppointment();
             Time endTime = app.getEndTimeOfAppointment();
             boolean clash = false;
+            Calendar c1 = Calendar.getInstance();
 
             //check if it falls on the same day
             if (app.getDateOfAppointment() == appt.getDateOfAppointment()) {
                 //need to check for which day of the wk it is
+                //check for public hols first
+                //check for weekend
+                c1.setTime(app.getDateOfAppointment());
+                System.out.println(c1.get(Calendar.DAY_OF_WEEK));
+
+                if ((c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
+                        || c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {  //or sunday   
+                    System.out.println("WEEKEND PRICE");
+                } else {
+                    System.out.println("WEEKDAY");
+                }
                 if (startTime.equals(appt.getStartTimeOfAppointment())) {
                     clash = true;
                 }
