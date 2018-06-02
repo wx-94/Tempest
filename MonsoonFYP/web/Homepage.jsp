@@ -41,43 +41,15 @@
         background-color: #777;
     }
     </style>
-    
     </head>
     
     <body>
-       <% CustomerDAO custDAO = new CustomerDAO();
-            out.println("hello");
-            String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
-            
-            String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
-        %>
-        <h1>Welcome <%out.println(capsName + "!");%></h1>
-        <br>
-        <%
-            String msg = (String) session.getAttribute("success");
-            if (msg != null) {
-                out.println(msg);
-                session.setAttribute("success", null);
-            }
-        %>
-        <br>
-        <a href="EditProfile.jsp"> Edit Profile </a>
-        <br>
-        <a href="AppointmentBooking.jsp"> Book Appointment </a>
-        <br>
-        <a href="viewAppointments"> View Appointments </a>
-        <br>
-        <a href="viewAppointmentsHistory"> View Appointments History </a>
-        <br>
-        <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
-        <br>
-        <a href="ProcessLogOut.jsp"> Log out </a>
+       
+
         
-      
-      
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">Monsoon</a>
+        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -122,7 +94,31 @@
             <div class="dropdown">
             <img src="img/account.svg" width="30" height="30">
                 <div class="dropdown-content">
-                  <p>Account cart to be displayed</p>
+                <% CustomerDAO custDAO = new CustomerDAO();
+                 String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
+                 String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
+                %>
+                <p>Welcome <%out.println(capsName + "!");%></p>
+                <br>
+                <%
+                    String msg = (String) session.getAttribute("success");
+                    if (msg != null) {
+                        out.println(msg);
+                        session.setAttribute("success", null);
+                    }
+                %>
+                          <!--<p>Account cart to be displayed</p>-->
+                    <a href="EditProfile.jsp"> Edit Profile </a>
+                    <br>
+                    <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                    <br>
+                    <a href="viewAppointments"> View Appointments </a>
+                    <br>
+                    <a href="viewAppointmentsHistory"> View Appointments History </a>
+                    <br>
+                    <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                    <br>
+                    <a href="ProcessLogOut.jsp"> Log out </a>
                 </div>
             </div>
             

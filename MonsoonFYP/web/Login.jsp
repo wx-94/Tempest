@@ -57,7 +57,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <a class="navbar-brand" href="#">Monsoon</a>
+        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
