@@ -6,9 +6,7 @@
 package com.tempest.controllers;
 
 import com.tempest.daos.AppointmentDAO;
-import com.tempest.daos.HairServicesDAO;
 import com.tempest.entities.Appointment;
-import com.tempest.entities.LoyaltyPoints;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -50,17 +48,9 @@ public class ViewAppointmentsHistoryController extends HttpServlet {
             String email = customerCheck;
 
             AppointmentDAO appointmentDAO = new AppointmentDAO();
-            HairServicesDAO hairServiceDAO = new HairServicesDAO();
-            ArrayList<LoyaltyPoints> loyaltyList = new ArrayList<LoyaltyPoints>();
             ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAppointmentsHistoryByCustomer(email);
-            
-            
-            for(Appointment a: appointmentList){
-                double points = hairServiceDAO.retrieveHairService(a.getTreatment()).getLoyaltyPoints();
-                LoyaltyPoints loyalty = new LoyaltyPoints(a.getAppointmentID(),a.getOutlet(),a.getDateOfAppointment(),a.getTreatment(),points);
-                loyaltyList.add(loyalty);
-            }
-            session.setAttribute("loyaltyList", loyaltyList);
+                               
+            session.setAttribute("appointmentList", appointmentList);
             response.sendRedirect("ViewAppointmentsHistory.jsp");
 
         } catch (Exception e) {
