@@ -94,7 +94,7 @@
         
     <div class="container">    
         <div class="wrapper">
-            <form class="form-signin" action="authenticate" method = "post"  style="border-radius:5%">       
+            <form class="form-signin" action="createaccount" method = "post"  style="border-radius:5%">       
                 <h2 class="form-signin-heading" style="text-align:center">MONSOON lOGO</h2>
                 <img src="#" class="img-responsive" alt="" />
              
@@ -102,7 +102,7 @@
                 
                 <div class="col-md-12 mb-3">
                  <!--<label for="validationServer01">Name</label>-->
-                 <input type="text" class="form-control is-valid" id="validationServer01" placeholder="username" value="Username" required>
+                 <input type="text" name="name" class="form-control is-valid" id="validationServer01"  placeholder="Name" value="Username" required>
                  <div class="valid-feedback">
                    Looks good!
                  </div>
@@ -110,7 +110,7 @@
                  
                 <div class="col-md-12 mb-3">
                   <!--<label for="validationServer02">Mobile Number</label>-->
-                  <input type="text" class="form-control is-valid" id="validationServer02" placeholder="mobilenumber" value="Mobile Number" required>
+                  <input type="text" name="mobile" class="form-control is-valid" id="validationServer02"  placeholder="mobilenumber" value="Mobile Number" required>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -119,7 +119,7 @@
                 <div class="col-md-12 mb-3">
                   <!--<label for="validationServerUsername">Email</label>-->
                   <div class="input-group">
-                    <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+                    <input type="text" name="email" class="form-control is-invalid" id="validationServerUsername"  placeholder="Email" aria-describedby="inputGroupPrepend3" required>
                     <div class="invalid-feedback">
                       Please choose a username.
                     </div>
@@ -130,14 +130,14 @@
             <div class="form-row">
               <div class="col-md-12 mb-3">
                 <!--<label for="validationServer03">Password</label>-->
-                <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Password" required>
+                <input type="password" name="password" class="form-control is-invalid" id="validationServer03"  placeholder="Password" required>
                 <div class="invalid-feedback">
-                  Please provide a valid password.
+                  Please provide a valid password. 
                 </div>
               </div>
               <div class="col-md-12 mb-3">
                 <!--<label for="validationServer04">Confirm Password</label>-->
-                <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="Confirm Password" required>
+                <input type="password" name="confirmPassword" class="form-control is-invalid" id="validationServer04"  placeholder="Confirm Password" required>
                 <div class="invalid-feedback">
                   Password and confirm password does not match.
                 </div>

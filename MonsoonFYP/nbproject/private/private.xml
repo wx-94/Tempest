@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewAppointmentsHistoryController.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/daos/AppointmentDAO.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/ViewAppointmentsHistory.jsp</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewLoyaltyPointsHistoryController.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/ViewLoyaltyPointsHistory.jsp</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/Homepage.jsp</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/LoginController.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/AdminHomepage.jsp</file>
+            <file>file:/C:/Tempest/MonsoonFYP/web/Login.jsp</file>
+            <file>file:/C:/Tempest/MonsoonFYP/web/CreateAccount.jsp</file>
+            <file>file:/C:/Tempest/MonsoonFYP/web/Homepage.jsp</file>
         </group>
     </open-files>
 </project-private>
