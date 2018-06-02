@@ -85,10 +85,10 @@ CREATE TABLE Outlet(
 
 
 CREATE TABLE OutletInventory(
-	outletID		varchar(128),
+	outletID		int(8),
 	outletInventoryID	varchar(128),
 	productName		varchar(128),
 	productQuantity		int(5),
 	Constraint OutletPK PRIMARY KEY(outletID,outletInventoryID),
-	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletID)
+	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletNumber)
 );
