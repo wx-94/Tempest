@@ -30,3 +30,19 @@ INSERT INTO Outlet VALUES
 INSERT INTO HairServices VALUES
 ('Cutting','15','10.0','30.0','5.0'),
 ('Washing+Drying','30','20.0','40.0','7.0');
+
+INSERT INTO Product VALUES
+('001','Product A','Description A'),
+('002','Product B','Description B');
+
+INSERT INTO OutletInventory VALUES
+('63335586','001','Product A','Description A','10.00','10','2018-06-10','New Product'),
+('63335586','002','Product B','Description B','20.00','10','2018-06-10','Restock'),
+('64631842','001','Product A','Description A','10.00','20','2018-06-11','Restock'),
+('64631842','002','Product B','Description B','20.00','20','2018-06-11','New Product');
+
+INSERT INTO Appointment VALUES
+('1','jacky@hotmail.com','Audrey Tan','MONSOON @ Novena Square','Cutting','2018-06-10','11:30:00','12:00:00'),
+('2','jacky@hotmail.com','Audrey Tan','MONSOON @ Novena Square','Washing+Drying','2018-06-11','12:30:00','13:00:00'),
+('3','alexia@hotmail.com','Pris Ng','MONSOON @ Bukit Timah Plaza','Cutting','2018-06-12','13:30:00','14:30:00'),
+('4','alexia@hotmail.com','Pris Ng','MONSOON @ Bukit Timah Plaza','Washing+Drying','2018-06-13','14:30:00','15:45:00');

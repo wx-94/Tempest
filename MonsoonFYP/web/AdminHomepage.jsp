@@ -12,6 +12,8 @@
         <title>Admin Homepage</title>
     </head>
     <body>
-        <h1>Welcome back!</h1>
+        <h1>Welcome back!</h1><br>
+        <a href="viewInventory">View Inventory</a><br>
+        <a href="ProcessLogOut.jsp">Log Out</a>
     </body>
 </html>

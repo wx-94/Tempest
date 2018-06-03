@@ -15,11 +15,10 @@ CREATE TABLE Staff(
 
 
 CREATE TABLE Product(
-	productID	varchar(128),
+	productID	int(8),
 	productName	varchar(128),
 	productDesc	varchar(1000),
-	productPrice	decimal(5,2),
-	CONSTRAINT StaffPK PRIMARY KEY(productID)
+	CONSTRAINT ProductPK PRIMARY KEY(productID)
 );
 
 
@@ -34,7 +33,7 @@ CREATE TABLE Customer(
 );
 
 CREATE TABLE Appointment(
-    	appointmentID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
+	appointmentID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
 	customerEmail		varchar(128),
 	staffID			varchar(128),
 	outletName		varchar(128),
@@ -47,7 +46,7 @@ CREATE TABLE Appointment(
 );
 
 CREATE TABLE AppointmentsHistory(
-        appointmentID 		int(10),
+	appointmentID 		int(10),
 	customerEmail		varchar(128),
 	staffID			varchar(128),
 	outletName		varchar(128),
@@ -85,10 +84,14 @@ CREATE TABLE Outlet(
 
 
 CREATE TABLE OutletInventory(
-	outletID		int(8),
-	outletInventoryID	varchar(128),
-	productName		varchar(128),
-	productQuantity		int(5),
-	Constraint OutletPK PRIMARY KEY(outletID,outletInventoryID),
+	outletID			int(8),
+	productID			int(8),
+	productName			varchar(128),
+	productDesc			varchar(1000),
+	productPrice			decimal(5,2),
+	productQty			int(5),
+	dateAdded			date,
+	comments			varchar(1000),
+	Constraint OutletPK PRIMARY KEY(outletID,productID),
 	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletNumber)
 );
