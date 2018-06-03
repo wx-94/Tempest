@@ -14,7 +14,7 @@
         <title>View Inventory Page</title>
     </head>
     <body>
-        <form role="form" action="DeleteAppointmentController" method = "post">    
+        <form role="form" action="deleteItem" method = "post">    
             <%
                 ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
             %>
@@ -47,7 +47,7 @@
                         <td><%= i.getDateAdded()%></td>
                         <td><%= i.getComments()%></td>
                         <td><%= i.getOutletId()%></td> 
-                        <td><input TYPE="checkbox" NAME="item" VALUE="<%=i.getId()%>"></td>
+                        <td><input TYPE="checkbox" NAME="item" VALUE="<%=i.getId()+","+i.getOutletId()%>"></td>
                     </tr>
 
                     <%
