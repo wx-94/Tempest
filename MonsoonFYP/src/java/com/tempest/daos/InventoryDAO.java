@@ -120,7 +120,31 @@ public class InventoryDAO {
     }
 
     //add inventory
-    
+    public boolean addItem(Item item) throws SQLException {
+        conn = ConnectionManager.getConnection();
+        conn.setAutoCommit(false);
+        boolean success = false;
+        //getting PreparedStatement to execute query
+        stmt = conn.prepareStatement("INSERT into `outletinventory`(outletID,productID,productName,productDesc,productPrice,productQty,dateAdded,comments) VALUES(?,?,?,?,?,?,?,?)");
+        
+        stmt.setInt(1, item.getOutletId());
+        stmt.setInt(2, item.getId());
+        stmt.setString(3, item.getName());
+        stmt.setString(4, item.getDescription());
+        stmt.setDouble(5, item.getPrice());
+        stmt.setInt(6, item.getQuantity());
+        stmt.setDate(7, item.getDateAdded());
+        stmt.setString(8, item.getComments());
+        int check = stmt.executeUpdate();
+        
+        if (check == 1) {
+            success = true;
+        }
+        
+        conn.commit();
+        ConnectionManager.close(conn, stmt, rs);
+        return success;
+    }
     
     
     //delete inventory
