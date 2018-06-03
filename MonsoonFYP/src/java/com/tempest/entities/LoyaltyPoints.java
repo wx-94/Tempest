@@ -12,37 +12,59 @@ import java.sql.Date;
  * @author jacky
  */
 public class LoyaltyPoints {
-    private int appointmentID;
-    private String outlet;
-    private Date dateOfAppointment;
-    private String treatment;
-    private double loyaltyPoints;
+    private int pointsID;
+    private Date dateOfChanges;
+    private double loyaltyPointsAdd;
+    private double loyaltyPointsMinus;
+    private String type;
+    private String customerID;
+	private int appointmentID;
 
-    public LoyaltyPoints(int appointmentID, String outlet, Date dateOfAppointment, String treatment, double loyaltyPoints) {
-        this.appointmentID = appointmentID;
-        this.outlet = outlet;
-        this.dateOfAppointment = dateOfAppointment;
-        this.treatment = treatment;
-        this.loyaltyPoints = loyaltyPoints;
+    public LoyaltyPoints(int pointsID, Date dateOfChanges, double loyaltyPointsAdd, double loyaltyPointsMinus, String type, String customerID, int appointmentID) {
+        this.pointsID = pointsID;
+        this.dateOfChanges = dateOfChanges;
+        this.loyaltyPointsAdd = loyaltyPointsAdd;
+        this.loyaltyPointsMinus = loyaltyPointsMinus;
+        this.type = type;
+        this.customerID = customerID; //customer email
+		this.appointmentID = appointmentID;
     }
 
-    public int getAppointmentID() {
-        return appointmentID;
+    public int getPointsID() {
+        return pointsID;
     }
 
-    public String getOutlet() {
-        return outlet;
+    public Date getDateOfChanges() {
+        return dateOfChanges;
     }
 
-    public Date getDateOfAppointment() {
-        return dateOfAppointment;
+    public double getLoyaltyPointsAdd() {
+        return loyaltyPointsAdd;
     }
 
-    public String getTreatment() {
-        return treatment;
+    public double getLoyaltyPointsMinus() {
+        return loyaltyPointsMinus;
     }
 
-    public double getLoyaltyPoints() {
-        return loyaltyPoints;
+    public String getType() {
+        return type;
     }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+	
+	public int getAppointmentID() {
+		return appointmentID;
+	}
+
+    public void setLoyaltyPointsAdd(double loyaltyPointsAdd) {
+        this.loyaltyPointsAdd = loyaltyPointsAdd;
+    }
+
+    public void setLoyaltyPointsMinus(double loyaltyPointsMinus) {
+        this.loyaltyPointsMinus = loyaltyPointsMinus;
+    }
+
+
 }
