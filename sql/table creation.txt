@@ -58,6 +58,17 @@ CREATE TABLE AppointmentsHistory(
 	CONSTRAINT AppointmentsHistoryPK PRIMARY KEY(appointmentID)
 );
 
+CREATE TABLE LoyaltyPoints(
+    	pointsID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
+	dateOfChanges		date,
+	loyaltyPointsAdd	decimal(5,2),	
+	loyaltyPointsMinus	decimal(5,2),
+	type			varchar(20),
+	customerID		varchar(200),
+	appointmentID		int(10),
+	CONSTRAINT AppointmentPK PRIMARY KEY(pointsID)
+);
+
 CREATE TABLE HairServices(
 	hairService		varchar(128),
 	duration		int(5),
