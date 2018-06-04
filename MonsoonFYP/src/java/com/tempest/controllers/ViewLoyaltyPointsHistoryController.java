@@ -36,32 +36,21 @@ public class ViewLoyaltyPointsHistoryController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
         String customerCheck = (String) session.getAttribute("username");
         if (customerCheck == null) {
             response.sendRedirect("index.jsp");
             return;
         }
-        
+
         try {
             String email = customerCheck;
-
-            AppointmentDAO appointmentDAO = new AppointmentDAO();
-            ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAppointmentsHistoryByCustomer(email);            
-            HairServicesDAO hairServiceDAO = new HairServicesDAO();
             ArrayList<LoyaltyPoints> loyaltyList = new ArrayList<LoyaltyPoints>();
             
-            for(Appointment a: appointmentList){
-                double points = hairServiceDAO.retrieveHairService(a.getTreatment()).getLoyaltyPoints();
-                LoyaltyPoints loyalty = new LoyaltyPoints(a.getDateOfAppointment(),points,0.0,"Appointment",a.getCustomer(),a.getAppointmentID());
-                loyaltyList.add(loyalty);
-            }
-            
-            /*
             LoyaltyPointsDAO loyaltyPointsDAO = new LoyaltyPointsDAO();
-            ArrayList<LoyaltyPoints> loyaltyList = loyaltyPointsDAO.retrieveAllPointsByCustomer(customerCheck);
-            */
+            loyaltyList = loyaltyPointsDAO.retrieveAllPointsByCustomer(customerCheck);
+            
             session.setAttribute("loyaltyList", loyaltyList);
             response.sendRedirect("ViewLoyaltyPointsHistory.jsp");
 

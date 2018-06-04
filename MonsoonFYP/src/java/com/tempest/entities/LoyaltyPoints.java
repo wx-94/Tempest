@@ -12,13 +12,14 @@ import java.sql.Date;
  * @author jacky
  */
 public class LoyaltyPoints {
+
     private int pointsID;
     private Date dateOfChanges;
     private double loyaltyPointsAdd;
     private double loyaltyPointsMinus;
     private String type;
     private String customerID;
-	private int appointmentID;
+    private int appointmentID;
 
     public LoyaltyPoints(int pointsID, Date dateOfChanges, double loyaltyPointsAdd, double loyaltyPointsMinus, String type, String customerID, int appointmentID) {
         this.pointsID = pointsID;
@@ -27,7 +28,7 @@ public class LoyaltyPoints {
         this.loyaltyPointsMinus = loyaltyPointsMinus;
         this.type = type;
         this.customerID = customerID; //customer email
-		this.appointmentID = appointmentID;
+        this.appointmentID = appointmentID;
     }
 
     public LoyaltyPoints(Date dateOfChanges, double loyaltyPointsAdd, double loyaltyPointsMinus, String type, String customerID, int appointmentID) {
@@ -62,10 +63,10 @@ public class LoyaltyPoints {
     public String getCustomerID() {
         return customerID;
     }
-	
-	public int getAppointmentID() {
-		return appointmentID;
-	}
+
+    public int getAppointmentID() {
+        return appointmentID;
+    }
 
     public void setLoyaltyPointsAdd(double loyaltyPointsAdd) {
         this.loyaltyPointsAdd = loyaltyPointsAdd;
@@ -74,6 +75,5 @@ public class LoyaltyPoints {
     public void setLoyaltyPointsMinus(double loyaltyPointsMinus) {
         this.loyaltyPointsMinus = loyaltyPointsMinus;
     }
-
 
 }

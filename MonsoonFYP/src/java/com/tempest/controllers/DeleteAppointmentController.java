@@ -40,9 +40,9 @@ public class DeleteAppointmentController extends HttpServlet {
                 for (int i = 0; i < apptID.length; i++) {
                     Appointment app = appointmentDAO.retrieveAppointment(apptID[i]);
                     appointmentDAO.deleteAppointment(app);
-                    request.getSession().setAttribute("success", "Appointment has been successfully deleted");
-                    response.sendRedirect("Homepage.jsp");
                 }
+                request.getSession().setAttribute("success", "Appointment has been successfully deleted");
+                response.sendRedirect("Homepage.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
