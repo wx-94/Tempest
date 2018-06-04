@@ -22,11 +22,11 @@
         <table id="points">
             <thead>
                 <tr>
-                    <th>Appointment ID</th>
-                    <th>Outlet</th>
-                    <th>Treatment</th>
-                    <th>Date</th>                    
-                    <th>Loyalty Points Awarded</th>
+                    <th>Points ID</th>
+                    <th>Date</th>
+                    <th>Loyalty Points Added(+)</th>
+                    <th>Loyalty Points Minus(-)</th>                    
+                    <th>Type</th>
                 </tr>
             </thead>
 
@@ -35,11 +35,11 @@
                     for (LoyaltyPoints points : loyaltyList) {
                 %> 
                 <tr>
-                    <td><%= points.getAppointmentID()%></td>
-                    <td><%= points.getOutlet()%></td>
-                    <td><%= points.getTreatment()%></td>
-                    <td><%= points.getDateOfAppointment()%></td>
-                    <td><%= points.getLoyaltyPoints()%></td>
+                    <td><%= points.getPointsID()%></td>
+                    <td><%= points.getDateOfChanges()%></td>
+                    <td><%= points.getLoyaltyPointsAdd()%></td>
+                    <td><%= points.getLoyaltyPointsMinus()%></td>
+                    <td><%= points.getType()%></td>
                 </tr>
 
                 <%

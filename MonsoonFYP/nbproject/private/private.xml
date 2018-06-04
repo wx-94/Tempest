@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/ViewInventory.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/InventoryDAO.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/AppointmentDAO.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewInventoryController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AddNewItem.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AdminHomepage.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/entities/Item.java</file>
+            <file>file:/C:/Users/jacky/Desktop/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewLoyaltyPointsHistoryController.java</file>
+            <file>file:/C:/Users/jacky/Desktop/Tempest/MonsoonFYP/web/ViewLoyaltyPointsHistory.jsp</file>
+            <file>file:/C:/Users/jacky/Desktop/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewAppointmentsHistoryController.java</file>
+            <file>file:/C:/Users/jacky/Desktop/Tempest/MonsoonFYP/src/java/com/tempest/entities/LoyaltyPoints.java</file>
+            <file>file:/C:/Users/jacky/Desktop/Tempest/MonsoonFYP/src/java/com/tempest/daos/LoyaltyPointsDAO.java</file>
         </group>
     </open-files>
 </project-private>

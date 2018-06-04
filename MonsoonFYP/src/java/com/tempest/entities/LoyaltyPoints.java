@@ -30,6 +30,15 @@ public class LoyaltyPoints {
 		this.appointmentID = appointmentID;
     }
 
+    public LoyaltyPoints(Date dateOfChanges, double loyaltyPointsAdd, double loyaltyPointsMinus, String type, String customerID, int appointmentID) {
+        this.dateOfChanges = dateOfChanges;
+        this.loyaltyPointsAdd = loyaltyPointsAdd;
+        this.loyaltyPointsMinus = loyaltyPointsMinus;
+        this.type = type;
+        this.customerID = customerID;
+        this.appointmentID = appointmentID;
+    }
+
     public int getPointsID() {
         return pointsID;
     }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author jacky
  */
 public class LoyaltyPointsDAO {
-    public static ArrayList<LoyaltyPoints> retrieveAllPoints() {
+    public ArrayList<LoyaltyPoints> retrieveAllPoints() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -41,7 +41,7 @@ public class LoyaltyPointsDAO {
         return pointsList;
     }
     
-    public static ArrayList<LoyaltyPoints> retrieveAllPointsByCustomer(String customer) {
+    public ArrayList<LoyaltyPoints> retrieveAllPointsByCustomer(String customer) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
