@@ -105,7 +105,7 @@ public class CustomerDAO {
         return c;
     }
 
-    public static void updatePassword(Customer customer) {
+    public void updatePassword(Customer customer) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -122,15 +122,15 @@ public class CustomerDAO {
         }
     }
     
-    public static void updateLoyaltyPoints(Customer customer) {
+    public void updateLoyaltyPoints(String email, Double points) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("UPDATE Customer SET points = ? where email = ?");
-            stmt.setDouble(1, customer.getCustomerPoints());
-            stmt.setString(2, customer.getCustomerEmail());
+            stmt.setDouble(1, points);
+            stmt.setString(2, email);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

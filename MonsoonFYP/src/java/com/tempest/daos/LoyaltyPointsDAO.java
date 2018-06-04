@@ -64,4 +64,46 @@ public class LoyaltyPointsDAO {
         }
         return pointsList;
     }
+    
+    public void updatePoints(int pointsID, double pointsAdd, double pointsMinus) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE LoyaltyPoints SET loyaltyPointsAdd = ?, loyaltyPointsMinus = ?  where pointsID = ?");
+            stmt.setInt(1, pointsID);
+            stmt.setDouble(2, pointsAdd);
+            stmt.setDouble(2, pointsMinus);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+    
+    public boolean createLoyaltyPoints(LoyaltyPoints loyaltyPoints) throws SQLException {
+        Connection conn = ConnectionManager.getConnection();
+        conn.setAutoCommit(false);
+        boolean success = false;
+        //getting PreparedStatement to execute query
+        PreparedStatement stmt = conn.prepareStatement("INSERT into LoyaltyPoints(dateOfChanges,loyaltyPointsAdd,loyaltyPointsMinus,type,customerID,appointmentID) VALUES(?,?,?,?,?,?)");
+        
+        stmt.setDate(1, loyaltyPoints.getDateOfChanges());
+        stmt.setDouble(2, loyaltyPoints.getLoyaltyPointsAdd());
+        stmt.setDouble(3, loyaltyPoints.getLoyaltyPointsMinus());
+        stmt.setString(4, loyaltyPoints.getType());
+        stmt.setString(5, loyaltyPoints.getCustomerID());
+        stmt.setInt(6, loyaltyPoints.getAppointmentID());
+        int check = stmt.executeUpdate();
+        
+        if (check == 1) {
+            success = true;
+        }
+        
+        conn.commit();
+        ConnectionManager.close(conn, stmt);
+        return success;
+    }
 }
