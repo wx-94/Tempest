@@ -34,7 +34,7 @@
     </head>
     
     
-    <body>
+    <body background="img/blurImage_Demo1.jpg">
         
         
         <header>

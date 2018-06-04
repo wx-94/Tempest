@@ -34,7 +34,7 @@
     </head>
     
     
-    <body>
+    <body background="img/blurImage_Demo1.jpg">
         
         <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">

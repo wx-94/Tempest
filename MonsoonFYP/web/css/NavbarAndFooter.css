@@ -1,11 +1,11 @@
 .admin{
     position: relative;
-    margin: 75%;
+    margin: 62%;
     min-width: 100%;
 }
 
 .navbar{
-    background-color: white; 
+    background-color: #f12525fa; 
 }
 
 .navbar-brand{

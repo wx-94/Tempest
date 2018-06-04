@@ -1,7 +1,9 @@
 /*@import "bourbon";*/
 
 body {
-    background: #eee !important;	
+    /*background: #eee !important;*/
+    background-size:cover;
+
 }
 
 .wrapper {	
