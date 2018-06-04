@@ -109,14 +109,47 @@ public class AppointmentDAO {
             rs = stmt.executeQuery();
             
             while (rs.next()) {
-                int appointmentID = rs.getInt("appointmentID");
-                String outlet = rs.getString("outletName");
+                int appointmentID = rs.getInt("appointmentID");                
                 String customer = rs.getString("customerEmail");
                 String staff = rs.getString("staffID");
+                String outlet = rs.getString("outletName");
+                String hairServices = rs.getString("treatment");
                 Date dateOfAppointment = rs.getDate("appointmentDate");
                 Time appointmentStartTime = rs.getTime("appointmentStartTime");
                 Time appointmentEndTime = rs.getTime("appointmentEndTime");
+                
+                Appointment appointment = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
+                appointmentList.add(appointment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return appointmentList;
+    }
+    
+    public ArrayList<Appointment> retrieveAllAppointments() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Appointment> appointmentList = new ArrayList<>();
+        
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("select * from Appointment");
+            rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                int appointmentID = rs.getInt("appointmentID");                
+                String customer = rs.getString("customerEmail");
+                String staff = rs.getString("staffID");
+                String outlet = rs.getString("outletName");
                 String hairServices = rs.getString("treatment");
+                Date dateOfAppointment = rs.getDate("appointmentDate");
+                Time appointmentStartTime = rs.getTime("appointmentStartTime");
+                Time appointmentEndTime = rs.getTime("appointmentEndTime");
+                
                 Appointment appointment = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
                 appointmentList.add(appointment);
             }
@@ -136,20 +169,21 @@ public class AppointmentDAO {
 
             //getting PreparedStatement to execute query
             stmt = conn.prepareStatement("SELECT * FROM Appointment WHERE appointmentID = ?");
-            stmt.setString(1, appt);
+            stmt.setInt(1, Integer.parseInt(appt));
             //Resultset returned by query
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                int apptID = rs.getInt("appointmentID");
-                String customerEmail = rs.getString("customerEmail");
-                String staffID = rs.getString("staffID");
-                String outletName = rs.getString("outletName");
-                String treatment = rs.getString("treatment");
-                Date apptDate = rs.getDate("appointmentDate");
-                Time startTime = rs.getTime("appointmentStartTime");
-                Time endTime = rs.getTime("appointmentEndTime");
-                a = new Appointment(apptID, customerEmail, staffID, outletName, apptDate, startTime,endTime ,treatment);
+                int appointmentID = rs.getInt("appointmentID");                
+                String customer = rs.getString("customerEmail");
+                String staff = rs.getString("staffID");
+                String outlet = rs.getString("outletName");
+                String hairServices = rs.getString("treatment");
+                Date dateOfAppointment = rs.getDate("appointmentDate");
+                Time appointmentStartTime = rs.getTime("appointmentStartTime");
+                Time appointmentEndTime = rs.getTime("appointmentEndTime");
+                a = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
+               
             }
         }
         ConnectionManager.close(conn, stmt, rs);
@@ -170,14 +204,14 @@ public class AppointmentDAO {
             rs = stmt.executeQuery();
             
             while (rs.next()) {
-                int appointmentID = rs.getInt("appointmentID");
-                String outlet = rs.getString("outletName");
+                int appointmentID = rs.getInt("appointmentID");                
                 String customer = rs.getString("customerEmail");
                 String staff = rs.getString("staffID");
+                String outlet = rs.getString("outletName");                
+                String hairServices = rs.getString("treatment");
                 Date dateOfAppointment = rs.getDate("appointmentDate");
                 Time appointmentStartTime = rs.getTime("appointmentStartTime");
                 Time appointmentEndTime = rs.getTime("appointmentEndTime");
-                String hairServices = rs.getString("treatment");
                 Appointment appointment = new Appointment(appointmentID, outlet, customer, staff, dateOfAppointment, appointmentStartTime, appointmentEndTime, hairServices);
                 appointmentList.add(appointment);
             }
@@ -187,5 +221,31 @@ public class AppointmentDAO {
             ConnectionManager.close(conn, stmt);
         }
         return appointmentList;
+    }
+    
+    public boolean createAppointmentHistory(Appointment appt) throws SQLException {
+        conn = ConnectionManager.getConnection();
+        conn.setAutoCommit(false);
+        boolean success = false;
+        //getting PreparedStatement to execute query
+        stmt = conn.prepareStatement("INSERT into AppointmentsHistory(appointmentID,customerEmail,staffID,outletName,treatment,appointmentDate, appointmentStartTime, appointmentEndTime) VALUES(?,?,?,?,?,?,?,?)");
+        
+        stmt.setInt(1, appt.getAppointmentID());
+        stmt.setString(2, appt.getCustomer());
+        stmt.setString(3, appt.getStaff());
+        stmt.setString(4, appt.getOutlet());
+        stmt.setString(5, appt.getTreatment());
+        stmt.setDate(6, appt.getDateOfAppointment());
+        stmt.setTime(7, appt.getStartTimeOfAppointment());
+        stmt.setTime(8, appt.getEndTimeOfAppointment());
+        int check = stmt.executeUpdate();
+        
+        if (check == 1) {
+            success = true;
+        }
+        
+        conn.commit();
+        ConnectionManager.close(conn, stmt, rs);
+        return success;
     }
 }

@@ -95,11 +95,7 @@
                 %>
                 </tbody>
             </table>
-            <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
-            <input type="submit" value="Cancel Appointment" >
-            <%
-                }
-            %>
+            <input type="submit" value="Cancel Appointment" >            
         </form>                
         <a href="Homepage.jsp"> Go back</a>
     </body>
