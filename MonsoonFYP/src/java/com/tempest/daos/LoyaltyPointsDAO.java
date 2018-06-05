@@ -72,9 +72,10 @@ public class LoyaltyPointsDAO {
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("UPDATE LoyaltyPoints SET loyaltyPointsAdd = ?, loyaltyPointsMinus = ?  where pointsID = ?");
-            stmt.setInt(1, pointsID);
-            stmt.setDouble(2, pointsAdd);
+            
+            stmt.setDouble(1, pointsAdd);
             stmt.setDouble(2, pointsMinus);
+            stmt.setInt(3, pointsID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

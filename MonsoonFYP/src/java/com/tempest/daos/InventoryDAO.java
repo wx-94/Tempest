@@ -93,8 +93,8 @@ public class InventoryDAO {
     public Item retrieveItem(String itemIdOutletId) throws SQLException {
         Item item = null;
         String[] parts = itemIdOutletId.split(",");
-        String itemId = parts[0]; 
-        String outletId = parts[1]; 
+        String itemId = parts[0];
+        String outletId = parts[1];
         conn = ConnectionManager.getConnection();
 
         //getting PreparedStatement to execute query
@@ -126,7 +126,7 @@ public class InventoryDAO {
         boolean success = false;
         //getting PreparedStatement to execute query
         stmt = conn.prepareStatement("INSERT into `outletinventory`(outletID,productID,productName,productDesc,productPrice,productQty,dateAdded,comments) VALUES(?,?,?,?,?,?,?,?)");
-        
+
         stmt.setInt(1, item.getOutletId());
         stmt.setInt(2, item.getId());
         stmt.setString(3, item.getName());
@@ -136,17 +136,16 @@ public class InventoryDAO {
         stmt.setDate(7, item.getDateAdded());
         stmt.setString(8, item.getComments());
         int check = stmt.executeUpdate();
-        
+
         if (check == 1) {
             success = true;
         }
-        
+
         conn.commit();
         ConnectionManager.close(conn, stmt, rs);
         return success;
     }
-    
-    
+
     //delete inventory
     public boolean deleteItem(Item item) throws SQLException {
         conn = ConnectionManager.getConnection();
@@ -171,5 +170,128 @@ public class InventoryDAO {
         return success;
     }
 
-    //update inventory
+    //update inventory name
+    public void updateName(int itemID, String name) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productName = ? where productID = ?");
+            stmt.setString(1, name);
+            stmt.setInt(2, itemID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    //update product name
+    public void updateProductName(int itemID, String name) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Product SET productName = ? where productID = ?");
+            stmt.setString(1, name);
+            stmt.setInt(2, itemID);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    //update inventory description
+    public void updateDescription(int itemID, String desc) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productDesc = ? where productID = ?");
+            stmt.setString(1, desc);
+            stmt.setInt(2, itemID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    //update inventory description
+    public void updateProductDescription(int itemID, String desc) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Product SET productDesc = ? where productID = ?");
+            stmt.setString(1, desc);
+            stmt.setInt(2, itemID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    //need check if diff outlet got diff price
+    public void updatePrice(int itemID, double price) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productPrice = ? where productID = ?");
+            stmt.setDouble(1, price);
+            stmt.setInt(2, itemID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    public void updateQuantity(int itemID, int quantity, int outletID) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productQty = ? where productID = ? and outletID = ?");
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, itemID);
+            stmt.setInt(3, outletID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+
+    public void updateAllQuantity(int itemID, int quantity) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productQty = ? where productID = ?");
+            stmt.setInt(1, quantity);
+            stmt.setInt(2, itemID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
+    
 }

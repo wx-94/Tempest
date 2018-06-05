@@ -37,7 +37,22 @@
             Date Added: <input id="date" type="text" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018"><br>
             Comments: <input name="Comments" type="text" class="form-control"><br>
 
-            <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">      
+            <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">   
+            <%
+                ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
+                if (error != null) {
+            %>
+            <br>
+            <%
+                for (String str : error) {
+                    out.println(str);
+            %>
+            <br>
+            <%
+                    }
+                    session.setAttribute("errorMsg", null);
+                }
+            %> 
         </form>
     </body>
 </html>
