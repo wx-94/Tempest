@@ -54,7 +54,7 @@
         </style>
     </head>
     
-<body>
+<body background="img/blurImage_Demo1.jpg">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
