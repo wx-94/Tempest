@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/daos/InventoryDAO.java</file>
+            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/AddItemController.java</file>
+            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/daos/LoyaltyPointsDAO.java</file>
             <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/AdminHomepage.jsp</file>
         </group>
     </open-files>
