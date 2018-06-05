@@ -56,45 +56,123 @@
     </style>
     </head>
     
+    
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="Homepage.jsp">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Hair Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Outlets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tutorials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">E-store</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Appointment Management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="admin">
+            <div class="dropdown">
+            <img src="img/cart.svg" width="30" height="30">
+                <div class="dropdown-content">
+                  <p>Shopping cart to be displayed</p>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+            <img src="img/account.svg" width="30" height="30">
+                <div class="dropdown-content">
+                  <p>Account cart to be displayed</p>
+                </div>
+            </div>
+        </div>
+      </nav>
+    </header>
+    
     <body>
         <div class ="container">
             <div class="row">
-                <div class="col-6 offset-3">
+                <div class="col-6 offset-3 mt-5">
                     <div class="card w-10 " id="apptMenu" >
                         <div class="card-body">                           
                             <form role="form" action="addItem" method = "post">                       
                                 <div class="row">
-                                  <div class="col-12 mb-3">
-                                    <input name="Id" type="text" class="form-control" placeholder="Product Id">
-                                  </div>
-                                    
-                                  <div class="col-12 mb-3">
-                                    <input name="Name" type="text" class="form-control" placeholder="Product Name">
-                                  </div>
-                                    
-                                  <div class="col-12 mb-3">
-                                    <input name="Description" type="text" class="form-control" placeholder="Product Description">
-                                  </div>
+      
                                     
                                     <div class="col-12 mb-3">
-                                    <input name="Price" type="text" class="form-control" placeholder="Price">
-                                  </div>
+                                                                      Select Outlet
+                                    <select id="inputState" name="outletChosen" class="form-control">                                 
+        
+                                    </select>
+                                    </div>
                                     
                                     <div class="col-12 mb-3">
-                                    <input Name="Quantity" type="text" class="form-control" placeholder="Quatity">
-                                  </div>
-                                    
+                                      <input name="Id" type="text" class="form-control" placeholder="Product Id">
+                                    </div>
+
                                     <div class="col-12 mb-3">
-                                    <input name="Name" type="text" class="form-control" placeholder="Date Added">
-                                  </div>
-                                    
+                                      <input name="Name" type="text" class="form-control" placeholder="Product Name">
+                                    </div>
+
                                     <div class="col-12 mb-3">
-                                    <input name="Name" type="text" class="form-control" placeholder="Comments">
-                                  </div>
-                                 </div>
-                                 <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">      
+                                      <input name="Description" type="text" class="form-control" placeholder="Product Description">
+                                    </div>
+
+                                      <div class="col-12 mb-3">
+                                      <input name="Price" type="text" class="form-control" placeholder="Price">
+                                    </div>
+
+                                      <div class="col-12 mb-3">
+                                      <input Name="Quantity" type="text" class="form-control" placeholder="Quatity">
+                                    </div>
+
+                                      <div class="col-12 mb-3">
+                                      <input id ="date"name="date" type="text" class="form-control" placeholder="Date Added">
+                                    </div>
+
+                                      <div class="col-12 mb-3">
+                                      <input name="Comments" type="text" class="form-control" placeholder="Comments">
+                                    </div>
+                                   </div>
+                                 <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">
+                                   <%
+                                        ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
+                                        if (error != null) {
+                                    %>
+                                    <br>
+                                    <%
+                                        for (String str : error) {
+                                            out.println(str);
+                                    %>
+                                    <br>
+                                    <%
+                                            }
+                                            session.setAttribute("errorMsg", null);
+                                        }
+                                    %> 
                             </form>
-                    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="" class="btn btn-lg btn-success btn-block"> </a> 
+                    <!--<a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="" class="btn btn-lg btn-success btn-block"> </a>--> 
                 </div>
             </div>
                
@@ -114,21 +192,7 @@
             Comments: <input name="Comments" type="text" class="form-control"><br>
 
             <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">        
-            <%
-                ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
-                if (error != null) {
-            %>
-            <br>
-            <%
-                for (String str : error) {
-                    out.println(str);
-            %>
-            <br>
-            <%
-                    }
-                    session.setAttribute("errorMsg", null);
-                }
-            %> 
+          
         </form>-->
     </body>
 </html>

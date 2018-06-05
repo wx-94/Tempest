@@ -110,5 +110,7 @@
 }
 
 #logo{
-        margin-left: 5%;
+    margin-left: 5%;
+    max-width:100%;
+    max-height:90%;
 }
