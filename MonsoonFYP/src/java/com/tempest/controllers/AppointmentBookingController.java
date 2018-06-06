@@ -59,17 +59,19 @@ public class AppointmentBookingController extends HttpServlet {
 
         String customerCheck = (String) session.getAttribute("username");
         if (customerCheck == null) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("Homepage.jsp");
             return;
         }
 
         try {
+            System.out.print("hello");
             String username = request.getParameter("username");
             String outlet = request.getParameter("outletChosen");
             String stylist = request.getParameter("stylistChosen");
             String hairService = request.getParameter("hairService");
             String date = request.getParameter("date");
             String time = request.getParameter("time");
+            System.out.println(date);
 
             AppointmentDAO appointmentDAO = new AppointmentDAO();
             CustomerDAO customerDAO = new CustomerDAO();

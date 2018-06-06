@@ -74,9 +74,9 @@
         text-align: center;
     } 
     
-    .navbar-dark .navbar-nav .nav-link {
-    color: black;
-    }
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+}
     </style>
     </head>
     
@@ -190,8 +190,9 @@
 
                                 <div class="form-group col-md-12">
                                     <label>Select Date</label>
-                                    <!--<input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">-->
-                                    <input id="datepicker" name="date"/>
+                                    <input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">
+                                    <!--<input type="text" id="datepicker" name="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" value="01-01-2018"/>-->
+                                    
                                 </div>
                                     
 
@@ -204,9 +205,9 @@
 
                                 <div class="form-group col-md-12">
                                     <label>Select Time</label>
-                                    <input id="timepicker1"  type="text" name="time" class="form-control input-small">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-<!--                                    <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
+<!--                                    <input id="timepicker1"  type="text" name="time" class="form-control input-small">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>-->
+                                    <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
                                     <script>
                                         $(function () {
                                             $('#time').combodate({
@@ -214,7 +215,7 @@
                                                 minuteStep: 15
                                             });
                                         });
-                                    </script>-->
+                                    </script>
                                     
                                 </div>
                                 <%
@@ -293,10 +294,10 @@
         </div>      
                                 
         <script>
-            uiLibrary: 'bootstrap4'
+//            uiLibrary: 'bootstrap4'
         $('#datepicker').datepicker({
 //        uiLibrary: 'bootstrap4'
-        format: "dd-mm-yyyy"
+            format: "dd-mm-yyyy"
 
         });
         </script>
