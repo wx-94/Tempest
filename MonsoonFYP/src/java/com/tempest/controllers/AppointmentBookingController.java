@@ -97,7 +97,7 @@ public class AppointmentBookingController extends HttpServlet {
             HairServices h = hairServicesDAO.retrieveHairService(hairService);
 
             Appointment appointment = new Appointment(o.getOutletName(), c.getCustomerEmail(), s.getStaffName(), dateOfAppointment, startTimeOfAppointment, endTimeOfAppointment, h.getHairService());
-            if (validateAppointment(username, appointment)) {
+            if (validateAppointment(username, appointment,o)) {
                 appointmentDAO.createAppointment(appointment);
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
@@ -112,28 +112,52 @@ public class AppointmentBookingController extends HttpServlet {
         }
     }
 
-    public boolean validateAppointment(String username, Appointment appt) {
+    public boolean validateAppointment(String username, Appointment appt, Outlet o) {
         ArrayList<Appointment> appByCustomer = appDAO.retrieveAllAppointmentsByCustomer(username);
         for (Appointment app : appByCustomer) {
             Time startTime = app.getStartTimeOfAppointment();
             Time endTime = app.getEndTimeOfAppointment();
             boolean clash = false;
-            Calendar c1 = Calendar.getInstance();
 
             //check if it falls on the same day
             if (app.getDateOfAppointment() == appt.getDateOfAppointment()) {
                 //need to check for which day of the wk it is
                 //check for public hols first
                 //check for weekend
-                c1.setTime(app.getDateOfAppointment());
-                System.out.println(c1.get(Calendar.DAY_OF_WEEK));
 
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(app.getDateOfAppointment());
                 if ((c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
-                        || c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {  //or sunday   
-                    System.out.println("WEEKEND PRICE");
+                        || c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                    //weekend timing
+                    if(appt.getStartTimeOfAppointment().before(o.getWeekendStart())){
+                        clash = true;
+                    }
+                    if(appt.getStartTimeOfAppointment().after(o.getWeekendEnd())){
+                        clash = true;
+                    }
+                    if(appt.getEndTimeOfAppointment().before(o.getWeekendStart())){
+                        clash = true;
+                    }
+                    if(appt.getEndTimeOfAppointment().after(o.getWeekendEnd())){
+                        clash = true;
+                    }
                 } else {
-                    System.out.println("WEEKDAY");
+                    //weekday timing
+                    if(appt.getStartTimeOfAppointment().before(o.getWeekdayStart())){
+                        clash = true;
+                    }
+                    if(appt.getStartTimeOfAppointment().after(o.getWeekdayEnd())){
+                        clash = true;
+                    }
+                    if(appt.getEndTimeOfAppointment().before(o.getWeekdayStart())){
+                        clash = true;
+                    }
+                    if(appt.getEndTimeOfAppointment().after(o.getWeekdayEnd())){
+                        clash = true;
+                    }
                 }
+                
                 if (startTime.equals(appt.getStartTimeOfAppointment())) {
                     clash = true;
                 }
