@@ -84,7 +84,7 @@
         <!--Navigation Bar-->
         <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
+       <img src="img/Monsoon Hair Logo (Black).png" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -190,9 +190,9 @@
 
                                 <div class="form-group col-md-12">
                                     <label>Select Date</label>
-                                    <input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">
+                                    <!--<input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">-->
                                     <!--<input type="text" id="datepicker" name="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" value="01-01-2018"/>-->
-                                    
+                                    <input type="date" name="date">
                                 </div>
                                     
 
@@ -207,6 +207,7 @@
                                     <label>Select Time</label>
 <!--                                    <input id="timepicker1"  type="text" name="time" class="form-control input-small">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>-->
+
                                     <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
                                     <script>
                                         $(function () {
