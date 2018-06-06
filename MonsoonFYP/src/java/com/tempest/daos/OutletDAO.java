@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -41,8 +42,14 @@ public class OutletDAO {
             while (rs.next()) {
                 String outletName = rs.getString("outletName");
                 String outletAddress = rs.getString("outletAddress");
-                String outletNumber = rs.getString("outletNumber");
-                outlet = new Outlet(outletName,outletAddress,outletNumber);
+                String outletNumber = rs.getString("outletNumber");                
+                Time weekdayStart = rs.getTime("weekdayStart");
+                Time weekdayEnd = rs.getTime("weekdayEnd");
+                Time weekendStart = rs.getTime("weekendStart");
+                Time weekendEnd = rs.getTime("weekendEnd");
+                Time publicHolStart = rs.getTime("publicHolStart");
+                Time publicHolEnd = rs.getTime("publicHolEnd");
+                outlet = new Outlet(outletName,outletAddress,outletNumber,weekdayStart,weekdayEnd,weekendStart,weekendEnd,publicHolStart,publicHolEnd);
             }
         }
             
@@ -84,7 +91,7 @@ public class OutletDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Outlet outlet = new Outlet(rs.getString("outletName"), rs.getString("outletAddress"), rs.getString("outletNumber"));
+                Outlet outlet = new Outlet(rs.getString("outletName"), rs.getString("outletAddress"), rs.getString("outletNumber"),rs.getTime("weekdayStart"),rs.getTime("weekdayEnd"),rs.getTime("weekendStart"), rs.getTime("weekendEnd"), rs.getTime("publicHolStart"), rs.getTime("publicHolEnd"));                              
                 outletList.add(outlet);
             }
         } catch (SQLException e) {
