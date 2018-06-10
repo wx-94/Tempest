@@ -104,6 +104,7 @@
               
                 <a href="viewInventory">View Inventory</a><br>
                 <a href="AdminViewAllAppointments.jsp">View Current Appointments</a></br>
+                <a href="AdminEditProductDetails.jsp">Edit Item Information</a></br>
                 <a href="ProcessLogOut.jsp">Log Out</a>
                     
                 </div>

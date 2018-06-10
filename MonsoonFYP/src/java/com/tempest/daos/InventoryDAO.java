@@ -242,15 +242,16 @@ public class InventoryDAO {
     }
 
     //need check if diff outlet got diff price
-    public void updatePrice(int itemID, double price) {
+    public void updatePrice(int itemID, double price, int outletID) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("UPDATE OutletInventory SET productPrice = ? where productID = ?");
+            stmt = conn.prepareStatement("UPDATE OutletInventory SET productPrice = ? where productID = ? and outletID = ?");
             stmt.setDouble(1, price);
             stmt.setInt(2, itemID);
+            stmt.setInt(3, outletID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
