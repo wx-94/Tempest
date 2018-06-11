@@ -79,10 +79,9 @@ public class AppointmentBookingController extends HttpServlet {
             OutletDAO outletDAO = new OutletDAO();
             StaffDAO staffDAO = new StaffDAO();
 
-            SimpleDateFormat dateFromUser = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            String reformattedDate = myDateFormat.format(dateFromUser.parse(date)); //prob with this
+            String reformattedDate = myDateFormat.format(myDateFormat.parse(date)); 
 
             SimpleDateFormat timeFromUser = new SimpleDateFormat("HH:mm");
             SimpleDateFormat myTimeFormat = new SimpleDateFormat("hh:mm:ss");

@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/daos/InventoryDAO.java</file>
             <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/AppointmentBookingController.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/AdminEditProductDetails.jsp</file>
             <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/AppointmentBooking.jsp</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/controllers/UpdateInventoryDetailsController.java</file>
-            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/src/java/com/tempest/entities/Item.java</file>
+            <file>file:/C:/Users/jacky/Documents/fyp/Tempest/MonsoonFYP/web/Homepage.jsp</file>
         </group>
     </open-files>
 </project-private>
