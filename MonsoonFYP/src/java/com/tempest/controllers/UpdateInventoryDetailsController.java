@@ -37,10 +37,11 @@ public class UpdateInventoryDetailsController extends HttpServlet {
         try {
             ArrayList<String> errorList = new ArrayList<>();
             InventoryDAO inventoryDAO = new InventoryDAO();
-            ArrayList<Item> inventoryList = inventoryDAO.retrieveAllProduct();            
+            ArrayList<Item> inventoryList = inventoryDAO.retrieveAllProduct();
             String name[] = request.getParameterValues("name");
             String desc[] = request.getParameterValues("description");
-            
+            String price[] = request.getParameterValues("price");
+
             for (int i = 0; i < inventoryList.size(); i++) {
                 int itemID = inventoryList.get(i).getId();
                 if (name[i] != null || !name[i].isEmpty()) {
@@ -49,20 +50,36 @@ public class UpdateInventoryDetailsController extends HttpServlet {
                 } else {
                     errorList.add("Invalid Product Name");
                 }
+
                 if (desc[i] != null || !desc[i].isEmpty()) {
                     inventoryDAO.updateDescription(itemID, desc[i]);
                     inventoryDAO.updateProductDescription(itemID, desc[i]);
                 } else {
                     errorList.add("Invalid Product Description");
                 }
+
+                if (price[i] != null || !price[i].isEmpty()) {
+                    double priceItem = 0;
+                    try {
+                        priceItem = Double.parseDouble(price[i]);
+                        if (priceItem == 0.0) {
+                            errorList.add("Invalid Product Price");
+                        } else {
+                            inventoryDAO.updatePrice(itemID, priceItem);
+                            inventoryDAO.updateProductPrice(itemID, priceItem);
+                        }
+                    } catch (Exception e) {
+                        errorList.add("Invalid Product Price");
+                    }
+                }
             }
 
             if (errorList.size() == 0) {
-                request.getSession().setAttribute("success", "Item has been successfully created");
+                request.getSession().setAttribute("success", "Items has been successfully updated");
                 response.sendRedirect("AdminHomepage.jsp");
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);
-                request.getRequestDispatcher("UpdateInventory.jsp").forward(request, response);
+                request.getRequestDispatcher("AdminEditProductDetails.jsp").forward(request, response);
                 return;
             }
         } catch (Exception e) {

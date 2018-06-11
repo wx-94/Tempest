@@ -28,6 +28,7 @@
                         <th>Item ID</th>
                         <th>Name of Product</th>
                         <th>Description</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
 
@@ -39,19 +40,31 @@
                         <td><%= i.getId()%></td>
                         <td><input Type="text" Name="name" Value="<%= i.getName()%>"></td>
                         <td><input Type="text" Name="description" Value="<%= i.getDescription()%>"></td>
+                        <td><input Type="text" Name="price" Value="<%= i.getPrice()%>"></td>
                     </tr>
 
                     <%
+                            }
                         }
-                    } else {
                     %>
-                <h1>No bookings made!</h1>
-                <%
-                    }
-                %>
                 </tbody>
-            </table>
-            <input type="submit" value="Update Item Information" >            
+            </table>            
+            <input type="submit" value="Update Item Information" > 
+             <%
+                   ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
+                   if (error != null) {
+               %>
+               <br>
+               <%
+                   for (String str : error) {
+                       out.println(str);
+               %>
+               <br>
+               <%
+                       }
+                       session.setAttribute("errorMsg", null);
+                   }
+               %>  
         </form>                
         <a href="AdminHomepage.jsp"> Go back</a>
     </body>

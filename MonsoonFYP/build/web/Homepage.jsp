@@ -119,6 +119,8 @@
                     <br>
                     <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
                     <br>
+                    <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                    <br>
                     <a href="ProcessLogOut.jsp"> Log out </a>
                     
                 </div>

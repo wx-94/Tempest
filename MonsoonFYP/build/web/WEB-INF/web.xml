@@ -17,6 +17,10 @@
         <servlet-name>UpdateInventoryDetailsController</servlet-name>
         <servlet-class>com.tempest.controllers.UpdateInventoryDetailsController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddItemsToController</servlet-name>
+        <servlet-class>com.tempest.controllers.AddItemsToController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/authenticate</url-pattern>
@@ -32,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>UpdateInventoryDetailsController</servlet-name>
         <url-pattern>/UpdateInventoryDetailsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddItemsToController</servlet-name>
+        <url-pattern>/AddItemsToController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
