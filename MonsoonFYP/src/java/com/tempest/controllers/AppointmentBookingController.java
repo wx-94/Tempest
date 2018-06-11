@@ -82,7 +82,7 @@ public class AppointmentBookingController extends HttpServlet {
             SimpleDateFormat dateFromUser = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            String reformattedDate = myDateFormat.format(dateFromUser.parse(date));
+            String reformattedDate = myDateFormat.format(dateFromUser.parse(date)); //prob with this
 
             SimpleDateFormat timeFromUser = new SimpleDateFormat("HH:mm");
             SimpleDateFormat myTimeFormat = new SimpleDateFormat("hh:mm:ss");
@@ -99,13 +99,13 @@ public class AppointmentBookingController extends HttpServlet {
             HairServices h = hairServicesDAO.retrieveHairService(hairService);
 
             Appointment appointment = new Appointment(o.getOutletName(), c.getCustomerEmail(), s.getStaffName(), dateOfAppointment, startTimeOfAppointment, endTimeOfAppointment, h.getHairService());
-            if (validateAppointment(username, appointment,o)) {
+            if (validateAppointment(username, appointment, o)) {
                 appointmentDAO.createAppointment(appointment);
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
                 response.sendRedirect("Homepage.jsp");
             } else {
-                request.setAttribute("errorMsg", "Appointment has already been made at that time");
+                request.setAttribute("errorMsg", "Invalid Appointment");
                 request.getRequestDispatcher("AppointmentBooking.jsp").forward(request, response);
             }
 
@@ -116,50 +116,13 @@ public class AppointmentBookingController extends HttpServlet {
 
     public boolean validateAppointment(String username, Appointment appt, Outlet o) {
         ArrayList<Appointment> appByCustomer = appDAO.retrieveAllAppointmentsByCustomer(username);
+        boolean clash = false;
         for (Appointment app : appByCustomer) {
             Time startTime = app.getStartTimeOfAppointment();
             Time endTime = app.getEndTimeOfAppointment();
-            boolean clash = false;
 
             //check if it falls on the same day
             if (app.getDateOfAppointment() == appt.getDateOfAppointment()) {
-                //need to check for which day of the wk it is
-                //check for public hols first
-                //check for weekend
-
-                Calendar c1 = Calendar.getInstance();
-                c1.setTime(app.getDateOfAppointment());
-                if ((c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
-                        || c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-                    //weekend timing
-                    if(appt.getStartTimeOfAppointment().before(o.getWeekendStart())){
-                        clash = true;
-                    }
-                    if(appt.getStartTimeOfAppointment().after(o.getWeekendEnd())){
-                        clash = true;
-                    }
-                    if(appt.getEndTimeOfAppointment().before(o.getWeekendStart())){
-                        clash = true;
-                    }
-                    if(appt.getEndTimeOfAppointment().after(o.getWeekendEnd())){
-                        clash = true;
-                    }
-                } else {
-                    //weekday timing
-                    if(appt.getStartTimeOfAppointment().before(o.getWeekdayStart())){
-                        clash = true;
-                    }
-                    if(appt.getStartTimeOfAppointment().after(o.getWeekdayEnd())){
-                        clash = true;
-                    }
-                    if(appt.getEndTimeOfAppointment().before(o.getWeekdayStart())){
-                        clash = true;
-                    }
-                    if(appt.getEndTimeOfAppointment().after(o.getWeekdayEnd())){
-                        clash = true;
-                    }
-                }
-                
                 if (startTime.equals(appt.getStartTimeOfAppointment())) {
                     clash = true;
                 }
@@ -197,11 +160,57 @@ public class AppointmentBookingController extends HttpServlet {
                 if ((startTime.equals(appt.getStartTimeOfAppointment())) && (endTime.equals(appt.getEndTimeOfAppointment()))) {
                     clash = true;
                 }
+            }
+            //need to check for which day of the wk it is
+            //check for public hols first
+            //check for weekend
 
-                if (clash) {
-                    return false;
+            Calendar c1 = Calendar.getInstance();
+            c1.setTime(app.getDateOfAppointment());
+            if ((c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
+                    || c1.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                //weekend timing
+                if (appt.getStartTimeOfAppointment().before(o.getWeekendStart())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().after(o.getWeekendEnd())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().before(o.getWeekendStart())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().after(o.getWeekendEnd())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().equals(o.getWeekendStart())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().equals(o.getWeekendEnd())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().equals(o.getWeekendStart())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().equals(o.getWeekendEnd())) {
+                    clash = true;
+                }
+            } else {
+                //weekday timing
+                if (appt.getStartTimeOfAppointment().before(o.getWeekdayStart())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().after(o.getWeekdayEnd())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().before(o.getWeekdayStart())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().after(o.getWeekdayEnd())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().equals(o.getWeekdayStart())) {
+                    clash = true;
+                } else if (appt.getStartTimeOfAppointment().equals(o.getWeekdayEnd())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().equals(o.getWeekdayStart())) {
+                    clash = true;
+                } else if (appt.getEndTimeOfAppointment().equals(o.getWeekdayEnd())) {
+                    clash = true;
                 }
             }
+        }
+
+        if (clash) {
+            return false;
         }
         return true;
     }
