@@ -32,8 +32,8 @@ INSERT INTO HairServices VALUES
 ('Washing+Drying','30','20.0','40.0','7.0');
 
 INSERT INTO Product VALUES
-('001','Product A','Description A'),
-('002','Product B','Description B');
+('001','Product A','Description A','10.00'),
+('002','Product B','Description B','20.00');
 
 INSERT INTO OutletInventory VALUES
 ('63335586','001','Product A','Description A','10.00','10','2018-06-10','New Product'),
