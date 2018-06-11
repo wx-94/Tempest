@@ -3,7 +3,7 @@
     Created on : 17 May, 2018, 9:28:46 PM
     Author     : jacky
 --%>
-
+<!DOCTYPE HTML>
 <%@page import="com.tempest.daos.HairServicesDAO"%>
 <%@page import="com.tempest.entities.HairServices"%>
 <%@page import="com.tempest.daos.StaffDAO"%>
@@ -12,7 +12,7 @@
 <%@page import="com.tempest.entities.Outlet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html>
    <head>
     <meta charset="utf-8">
@@ -20,6 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>Monsoon Hair Saloon</title>
 

@@ -56,7 +56,7 @@
     </style>
     </head>
     
-    
+    <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <img src="img/Monsoon Hair Logo (Black).png" id="logo">
@@ -110,7 +110,7 @@
       </nav>
     </header>
     
-    <body>
+
         <div class ="container">
             <div class="row">
                 <div class="col-6 offset-3 mt-5">
@@ -121,9 +121,14 @@
       
                                     
                                     <div class="col-12 mb-3">
-                                                                      Select Outlet
+                                    Select Outlet
                                     <select id="inputState" name="outletChosen" class="form-control">                                 
-        
+                                        <%  ArrayList<Outlet> totalOutlets = OutletDAO.retrieveAllOutlets();
+                                            for (Outlet outlet : totalOutlets) {
+                                        %>
+                                        <option value="<%=outlet.getOutletName()%>"><%=outlet.getOutletName()%></option> 
+                                        <% }
+                                        %>
                                     </select>
                                     </div>
                                     
