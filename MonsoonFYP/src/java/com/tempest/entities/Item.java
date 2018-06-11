@@ -31,6 +31,12 @@ public class Item {
         this.comments = comments;
         this.outletId = outletId;
     }
+
+    public Item(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
     
     public int getId() {
         return id;

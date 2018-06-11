@@ -295,4 +295,29 @@ public class InventoryDAO {
         }
     }
     
+    public ArrayList<Item> retrieveAllProduct() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Item> itemlist = new ArrayList<>();
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("SELECT * FROM `product`");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int productId = rs.getInt("productID");
+                String name = rs.getString("productName");
+                String description = rs.getString("productDesc");
+                Item item = new Item(productId, name, description);
+                itemlist.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return itemlist;
+    }
 }

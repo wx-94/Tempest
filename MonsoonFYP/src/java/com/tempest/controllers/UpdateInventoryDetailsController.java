@@ -37,7 +37,7 @@ public class UpdateInventoryDetailsController extends HttpServlet {
         try {
             ArrayList<String> errorList = new ArrayList<>();
             InventoryDAO inventoryDAO = new InventoryDAO();
-            ArrayList<Item> inventoryList = inventoryDAO.retrieveAllInventory();            
+            ArrayList<Item> inventoryList = inventoryDAO.retrieveAllProduct();            
             String name[] = request.getParameterValues("name");
             String desc[] = request.getParameterValues("description");
             

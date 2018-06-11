@@ -18,7 +18,7 @@
         <form role="form" action="UpdateInventoryDetailsController" method = "post">    
             <%
                 InventoryDAO inventoryDAO = new InventoryDAO();
-                ArrayList<Item> inventoryList = inventoryDAO.retrieveAllInventory();
+                ArrayList<Item> inventoryList = inventoryDAO.retrieveAllProduct();
             %>
 
             <%  if (inventoryList != null && !inventoryList.isEmpty()) {           %>
@@ -28,9 +28,6 @@
                         <th>Item ID</th>
                         <th>Name of Product</th>
                         <th>Description</th>
-                        <th>Price</th>
-                        <th>Outlet</th>
-                        <th>Quantity</th>
                     </tr>
                 </thead>
 
@@ -42,10 +39,6 @@
                         <td><%= i.getId()%></td>
                         <td><input Type="text" Name="name" Value="<%= i.getName()%>"></td>
                         <td><input Type="text" Name="description" Value="<%= i.getDescription()%>"></td>
-                        <td><%= i.getDescription()%></td>
-                        <td><%= i.getPrice()%></td>
-                        <td><%= i.getOutletId()%></td>
-                        <td><%= i.getQuantity()%></td>
                     </tr>
 
                     <%
