@@ -179,25 +179,9 @@
                             </form>
                     <!--<a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="" class="btn btn-lg btn-success btn-block"> </a>--> 
                 </div>
+            </div>     
+                </div>
             </div>
-               
-                                
-                                
-<!--        <form role="form" action="addItem" method = "post">                               
-            Select Outlet
-            <select id="inputState" name="outletChosen" class="form-control">                                 
-        
-            </select><br>
-            Product Id: <input name="Id" type="text" class="form-control"><br>
-            Product Name: <input name="Name" type="text" class="form-control"><br>
-            Product Description: <input name="Description" type="text" class="form-control"><br>
-            Price: <input name="Price" type="text" class="form-control"><br>
-            Quantity: <input name="Quantity" type="text" class="form-control"><br>
-            Date Added: <input id="date" type="text" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018"><br>
-            Comments: <input name="Comments" type="text" class="form-control"><br>
-
-            <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">        
-          
-        </form>-->
+        </div>      
     </body>
 </html>
