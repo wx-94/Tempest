@@ -7,6 +7,7 @@
 <%@page import="com.tempest.utility.DateConverter"%>
 <%@page import="com.tempest.entities.Appointment"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="com.tempest.daos.CustomerDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,63 +49,147 @@
 
         </style>
     </head>
-
+    
     <body>
-        <form role="form" action="DeleteAndUpdateAppointmentController" method = "post">    
-            <%
-                ArrayList<Appointment> appointmentList = (ArrayList<Appointment>) session.getAttribute("appointmentList");
-            %>
+        
+         <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Hair Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Outlets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tutorials</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">E-store</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Appointment Management</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact Us</a>
+                </li>
+              </ul>
+            </div>
 
-            <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
-            <table id="appointments">
-                <thead>
-                    <tr>
-                        <th>Appointment ID</th>
-                        <th>Outlet</th>
-                        <th>Stylist</th>
-                        <th>Treatment</th>
-                        <th>Date</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Selected</th>
-                    </tr>
-                </thead>
+            <div class="admin">
+                <div class="dropdown">
+                <img src="img/cart.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                      <p>Shopping cart to be displayed</p>
+                    </div>
+                </div>
 
-                <tbody >            
-                    <%
-                        for (Appointment a : appointmentList) {
-                    %> 
-                    <tr>
-                        <td><%= a.getAppointmentID()%></td>
-                        <td><%= a.getOutlet()%></td>
-                        <td><%= a.getStaff()%></td>
-                        <td><%= a.getTreatment()%></td>
-                        <td><%= a.getDateOfAppointment()%></td>
-                        <td><%= a.getStartTimeOfAppointment()%></td>
-                        <td><%= a.getEndTimeOfAppointment()%></td> 
-                        <td><input TYPE="checkbox" NAME="appointment" VALUE="<%=a.getAppointmentID()%>"></td>
-                    </tr>
-
-                    <%
-                        }
-                    } else {
+                <div class="dropdown">
+                <img src="img/account.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                    <% CustomerDAO custDAO = new CustomerDAO();
+                     String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
+                     String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
                     %>
-                <h1>No bookings made!</h1>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
-            <%
-                String errorMessage = (String) request.getAttribute("errorMsg");
+                    <p>Welcome <%out.println(capsName + "!");%></p>
+                    <br>
+                    <%
+                        String msg = (String) session.getAttribute("success");
+                        if (msg != null) {
+                            out.println(msg);
+                            session.setAttribute("success", null);
+                        }
+                    %>
+                              <!--<p>Account cart to be displayed</p>-->
+                        <a href="EditProfile.jsp"> Edit Profile </a>
+                        <br>
+                        <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                        <br>
+                        <a href="viewAppointments"> View Appointments </a>
+                        <br>
+                        <a href="viewAppointmentsHistory"> View Appointments History </a>
+                        <br>
+                        <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                        <br>
+                        <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                        <br>
+                        <a href="ProcessLogOut.jsp"> Log out </a>
 
-                if (errorMessage != null) {
-                    out.println(errorMessage);
-                }
-            %>
-            <input type="submit" name="update" value="Update Appointment" >  
-            <input type="submit" name="cancel" value="Cancel Appointment" >
-        </form>                
-        <a href="Homepage.jsp"> Return to Homepage</a>
+                    </div>
+                </div>
+            </div>
+          </nav>
+        </header>
+                              
+        <div class ="container mt-5">
+            <div class="row">
+                <div class="col-12">    
+                    <form role="form" action="DeleteAndUpdateAppointmentController" method = "post">    
+                        <%
+                            ArrayList<Appointment> appointmentList = (ArrayList<Appointment>) session.getAttribute("appointmentList");
+                        %>
+
+                        <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
+                        <table class="table table-hover" id="appointments">
+                            <thead>
+                                <tr class="bg-warning">
+                                    <th scope="col">Appointment ID</th>
+                                    <th scope="col">Outlet</th>
+                                    <th scope="col">Stylist</th>
+                                    <th scope="col">Treatment</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Start Time</th>
+                                    <th scope="col">End Time</th>
+                                    <th scope="col">Selected</th>
+                                </tr>
+                            </thead>
+
+                            <tbody >            
+                                <%
+                                    for (Appointment a : appointmentList) {
+                                %> 
+                                <tr>
+                                    <td><%= a.getAppointmentID()%></td>
+                                    <td><%= a.getOutlet()%></td>
+                                    <td><%= a.getStaff()%></td>
+                                    <td><%= a.getTreatment()%></td>
+                                    <td><%= a.getDateOfAppointment()%></td>
+                                    <td><%= a.getStartTimeOfAppointment()%></td>
+                                    <td><%= a.getEndTimeOfAppointment()%></td> 
+                                    <td><input TYPE="checkbox" NAME="appointment" VALUE="<%=a.getAppointmentID()%>"></td>
+                                </tr>
+
+                                <%
+                                    }
+                                } else {
+                                %>
+                            <h1>No bookings made!</h1>
+                            <%
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                        <%
+                            String errorMessage = (String) request.getAttribute("errorMsg");
+
+                            if (errorMessage != null) {
+                                out.println(errorMessage);
+                            }
+                        %>
+                        <input class="col-3 btn btn-lg btn-success btn-block mb-3 " type="submit" name="update" value="Update Appointment" >  
+                        <input class="col-3 btn btn-lg btn-success btn-block mb-3 "type="submit" name="cancel" value="Cancel Appointment" >
+                    </form>                
+        <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class=" col-3 btn btn-lg btn-success btn-block "> </a> 
     </body>
 </html>

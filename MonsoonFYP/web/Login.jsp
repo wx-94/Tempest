@@ -54,7 +54,7 @@
         </style>
     </head>
     
-<body background="img/blurImage_Demo1.jpg">
+<body background="img/loginBg.jpeg">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <img src="img/Monsoon Hair Logo (Black).png" id="logo">
@@ -112,7 +112,7 @@
 
         <div class="wrapper">
          <form class="form-signin"  action="authenticate" method = "post" style="border-radius:5%">       
-           <h2 class="form-signin-heading" style="text-align:center">MONSOON lOGO</h2>
+           <img src="img/Monsoon Hair Logo (Black).png"  width="300">
            <!--<form role="form" action="authenticate" method = "post">-->
              <img src="#" class="img-responsive" alt="" />
              <input type="text" name="username" placeholder="Username" required class="form-control input-lg" />  

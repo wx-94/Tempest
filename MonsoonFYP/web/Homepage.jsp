@@ -33,12 +33,12 @@
         top: 0;
         left: 0;
         min-width: 100%;
-        height: 47rem;
+        height: 60rem;
     }
     
     
     .carousel-item {
-        height: 40rem;
+        height: 50rem;
         background-color: #777;
     }
     </style>
@@ -108,7 +108,7 @@
                         session.setAttribute("success", null);
                     }
                 %>
-                          <!--<p>Account cart to be displayed</p>-->
+         
                     <a href="EditProfile.jsp"> Edit Profile </a>
                     <br>
                     <a href="AppointmentBooking.jsp"> Book Appointment </a>
