@@ -64,7 +64,7 @@ public class CreateAccountController extends HttpServlet {
                 CustomerDAO customerDAO = new CustomerDAO();
                 // Hash a password for the first time
                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-                Customer customer = new Customer(name, email, 0, hashed, mobile);
+                Customer customer = new Customer(name, email, points, hashed, mobile);
                 System.out.println(customer);
                 customerDAO.createCustomer(customer);
                 System.out.println("Account created");

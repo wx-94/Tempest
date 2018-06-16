@@ -8,11 +8,8 @@ package com.tempest.controllers;
 import com.tempest.daos.CustomerDAO;
 import com.tempest.daos.StaffDAO;
 import com.tempest.entities.Customer;
-import com.tempest.entities.Staff;
-import com.tempest.utility.BCrypt;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -51,6 +48,7 @@ public class EditProfileController extends HttpServlet {
             ArrayList<String> errorList = new ArrayList<>();
             
             String email = request.getParameter("email");
+            String newEmail = request.getParameter("newEmail");
             String newNumber = request.getParameter("newNumber");
             
             InputStream inputStream = null; // input stream of the upload file
@@ -68,16 +66,17 @@ public class EditProfileController extends HttpServlet {
             }
             
             Customer customer = customerDAO.retrieveCustomer(email);
-            customerDAO.updateProfile(customer, newNumber, inputStream);
+            CustomerDAO.updateProfile(customer, newNumber, newEmail, inputStream);
+            String username = customerDAO.retrieveCustomer(newEmail).getCustomerEmail();
             
-            if (errorList.size() == 0) {
+            if (errorList.isEmpty()) {
                 request.getSession().setAttribute("success", "Profile has been successfully updated");
+                request.getSession().setAttribute("username", username);
                 response.sendRedirect("Homepage.jsp");
                 
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);
                 request.getRequestDispatcher("EditProfile.jsp").forward(request,response);
-                return;
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);

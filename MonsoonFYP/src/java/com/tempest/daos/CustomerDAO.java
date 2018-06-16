@@ -9,6 +9,7 @@ import com.tempest.dbconnection.ConnectionManager;
 import com.tempest.entities.Customer;
 import com.tempest.utility.BCrypt;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,7 +98,8 @@ public class CustomerDAO {
                 double customerPoints = rs.getDouble("points");
                 String customerPassword = rs.getString("password");
                 String customerNumber = rs.getString("number");
-                c = new Customer(customerName, customerEmail, customerPoints, customerPassword, customerNumber);
+                Blob customerPicture = rs.getBlob("photo");
+                c = new Customer(customerName, customerEmail, customerPoints, customerPassword, customerNumber, customerPicture);
 
             }
         }
@@ -139,21 +141,34 @@ public class CustomerDAO {
         }
     }
     
-    public static void updateProfile(Customer customer, String newNumber, InputStream inputStream) {
+    public static void updateProfile(Customer customer, String newNumber, String newEmail, InputStream inputStream) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
             conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("UPDATE Customer SET number = ?, photo = ? where email = ?");
-            stmt.setInt(1, Integer.parseInt(newNumber));
+            stmt = conn.prepareStatement("UPDATE Customer SET number = ?, photo = ?, email = ? where email = ?");
+            
+            if (newNumber != null & !newNumber.isEmpty()) {
+                stmt.setInt(1, Integer.parseInt(newNumber));
+            } else {
+                stmt.setInt(1, Integer.parseInt(customer.getCustomerNumber()));
+            }
             
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 stmt.setBlob(2, inputStream);
+            } else {
+                stmt.setBlob(2, customer.getCustomerPicture());
             }
             
-            stmt.setString(3, customer.getCustomerEmail());
+            if (newEmail != null && !newEmail.isEmpty()) {
+                stmt.setString(3, newEmail);
+                stmt.setString(4, customer.getCustomerEmail());
+            } else {
+                stmt.setString(3, customer.getCustomerEmail());
+                stmt.setString(4, customer.getCustomerEmail());
+            }
             
             stmt.executeUpdate();
         } catch (SQLException e) {

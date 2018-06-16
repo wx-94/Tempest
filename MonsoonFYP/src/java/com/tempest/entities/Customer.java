@@ -5,6 +5,9 @@
  */
 package com.tempest.entities;
 
+import java.io.InputStream;
+import java.sql.Blob;
+
 /**
  *
  * @author Xuan
@@ -15,6 +18,16 @@ public class Customer {
     private double customerPoints;
     private String customerPassword;
     private String customerNumber;
+    private Blob customerPicture;
+    
+    public Customer(String customerName, String customerEmail, double customerPoints, String customerPassword, String customerNumber, Blob customerPicture) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerPoints = customerPoints;
+        this.customerPassword = customerPassword;
+        this.customerNumber = customerNumber;
+        this.customerPicture = customerPicture;
+    }
     
     public Customer(String customerName, String customerEmail, double customerPoints, String customerPassword, String customerNumber) {
         this.customerName = customerName;
@@ -63,6 +76,13 @@ public class Customer {
     public void setCustomerNumber(String customerNumber) {
         this.customerNumber = customerNumber;
     }
-    
+
+    public Blob getCustomerPicture() {
+        return customerPicture;
+    }
+
+    public void setCustomerPicture(Blob customerPicture) {
+        this.customerPicture = customerPicture;
+    }
     
 }
