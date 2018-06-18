@@ -63,8 +63,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav m-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="Homepage.jsp">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="Homepage.jsp">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
@@ -94,14 +94,12 @@
             <div class="dropdown">
             <img src="img/cart.svg" width="30" height="30">
                 <div class="dropdown-content">
-                  <p>Shopping cart to be displayed</p>
                 </div>
             </div>
             
             <div class="dropdown">
             <img src="img/account.svg" width="30" height="30">
                 <div class="dropdown-content">
-                  <p>Account cart to be displayed</p>
                 </div>
             </div>
         </div>

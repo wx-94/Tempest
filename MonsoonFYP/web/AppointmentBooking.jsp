@@ -10,6 +10,7 @@
 <%@page import="com.tempest.entities.Staff"%>
 <%@page import="com.tempest.daos.OutletDAO"%>
 <%@page import="com.tempest.entities.Outlet"%>
+<%@page import="com.tempest.daos.CustomerDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -75,9 +76,9 @@
         text-align: center;
     } 
     
-.navbar-dark .navbar-nav .nav-link {
-    color: #ffffff;
-}
+    .navbar-dark .navbar-nav .nav-link {
+    color:black;
+    }
     </style>
     </head>
     
@@ -91,8 +92,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav m-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
@@ -128,9 +129,36 @@
             </div>
             
             <div class="dropdown">
-            <img src="img/account.svg" width="30" height="30">
-                <div class="dropdown-content">
-                  <p>Account cart to be displayed</p>
+                <img src="img/account.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                    <% 
+                        CustomerDAO custDAO = new CustomerDAO();
+                        String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
+                        String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
+                    %>
+                    <p>Welcome <%out.println(capsName + "!");%></p>
+                    <br>
+                    <%
+                        String msg = (String) session.getAttribute("success");
+                        if (msg != null) {
+                            out.println(msg);
+                            session.setAttribute("success", null);
+                        }
+                    %>
+
+                        <a href="EditProfile.jsp"> Edit Profile </a>
+                        <br>
+                        <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                        <br>
+                        <a href="viewAppointments"> View Appointments </a>
+                        <br>
+                        <a href="viewAppointmentsHistory"> View Appointments History </a>
+                        <br>
+                        <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                        <br>
+                        <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                        <br>
+                        <a href="ProcessLogOut.jsp"> Log out </a>
                 </div>
             </div>
         </div>

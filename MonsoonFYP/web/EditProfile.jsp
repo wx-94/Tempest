@@ -46,8 +46,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav m-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About Us</a>
@@ -83,7 +83,11 @@
 
                     <div class="dropdown">
                         <img src="img/account.svg" width="30" height="30">
-                        <div class="dropdown-content">
+                            <div class="dropdown-content">
+                            <% 
+                             String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
+                            %>
+                            <p>Welcome <%out.println(capsName + "!");%></p>
                             <br>
                             <%
                                 String msg = (String) session.getAttribute("success");
@@ -92,22 +96,21 @@
                                     session.setAttribute("success", null);
                                 }
                             %>
-                            <!--<p>Account cart to be displayed</p>-->
-                            <a href="EditProfile.jsp"> Edit Profile </a>
-                            <br>
-                            <a href="AppointmentBooking.jsp"> Book Appointment </a>
-                            <br>
-                            <a href="viewAppointments"> View Appointments </a>
-                            <br>
-                            <a href="viewAppointmentsHistory"> View Appointments History </a>
-                            <br>
-                            <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
-                            <br>
-                            <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
-                            <br>
-                            <a href="ProcessLogOut.jsp"> Log out </a>
 
-                        </div>
+                                <a href="EditProfile.jsp"> Edit Profile </a>
+                                <br>
+                                <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                                <br>
+                                <a href="viewAppointments"> View Appointments </a>
+                                <br>
+                                <a href="viewAppointmentsHistory"> View Appointments History </a>
+                                <br>
+                                <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                                <br>
+                                <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                                <br>
+                                <a href="ProcessLogOut.jsp"> Log out </a>
+                            </div>
                     </div>
                 </div>
             </nav>

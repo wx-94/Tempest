@@ -3,15 +3,38 @@
     Created on : 30 May, 2018, 10:21:24 AM
     Author     : jacky
 --%>
-
+<%@page import="com.tempest.daos.CustomerDAO"%>
 <%@page import="com.tempest.entities.LoyaltyPoints"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Loyalty Points History</title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Monsoon Hair Saloon - Loyalty Points</title>
+
+    <!-- Bootstrap core CSS -->
+    <!--Need to fix the issue of bootstrap file not loading-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--temp link-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    
+    <!-- Custom styles for this template -->
+    <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/NavbarAndFooter.css" rel="stylesheet">
+    <link href="blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+    
+    <style></style>
     </head>
     <body>
         
@@ -62,7 +85,34 @@
             <div class="dropdown">
             <img src="img/account.svg" width="30" height="30">
                 <div class="dropdown-content">
-                  <p>Account cart to be displayed</p>
+                <% CustomerDAO custDAO = new CustomerDAO();
+                 String name = custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerName();
+                 String capsName = name.substring(0, 1).toUpperCase() + name.substring(1);
+                %>
+                <p>Welcome <%out.println(capsName + "!");%></p>
+                <br>
+                <%
+                    String msg = (String) session.getAttribute("success");
+                    if (msg != null) {
+                        out.println(msg);
+                        session.setAttribute("success", null);
+                    }
+                %>
+         
+                    <a href="EditProfile.jsp"> Edit Profile </a>
+                    <br>
+                    <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                    <br>
+                    <a href="viewAppointments"> View Appointments </a>
+                    <br>
+                    <a href="viewAppointmentsHistory"> View Appointments History </a>
+                    <br>
+                    <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                    <br>
+                    <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                    <br>
+                    <a href="ProcessLogOut.jsp"> Log out </a>
+                    
                 </div>
             </div>
         </div>
@@ -101,13 +151,20 @@
                     }
                 } else {
                 %>
-            <h1>No loyalty points awarded!</h1>
+                
+            <div class ="container mt-5">
+                <div class="row">
+                    <div class="col-12 text-center">      
+                        <h1>No loyalty points awarded!</h1>
+                    </div>
+                </div>
+            </div>   
             <%
                 }
             %>
         </tbody>
     </table>
 
-    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block "> </a> 
+    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="col-12 btn btn-lg btn-success btn-block "> </a> 
     </body>
 </html>

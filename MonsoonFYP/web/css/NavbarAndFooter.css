@@ -6,12 +6,12 @@
 }
 
 .dropdown img{
-    background-color: white;
+    background-color: transparent;
     border-radius: 50%;
 }
 
 .navbar{
-    background-color:#00000094; 
+    background-color:#7979793b; 
 }
 
 
@@ -110,7 +110,7 @@
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: white;
+    color: black;
     font-size: 18px;
 }
 
