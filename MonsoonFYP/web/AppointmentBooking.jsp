@@ -23,7 +23,7 @@
     <link rel="icon" href="favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Monsoon Hair Saloon</title>
+    <title>Monsoon Hair Saloon - Appointment Booking</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
@@ -38,7 +38,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">-->
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     
@@ -93,7 +93,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav m-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home </a>
+              <a class="nav-link" href="Homepage.jsp">Home </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
@@ -138,13 +138,7 @@
                     %>
                     <p>Welcome <%out.println(capsName + "!");%></p>
                     <br>
-                    <%
-                        String msg = (String) session.getAttribute("success");
-                        if (msg != null) {
-                            out.println(msg);
-                            session.setAttribute("success", null);
-                        }
-                    %>
+                    
 
                         <a href="EditProfile.jsp"> Edit Profile </a>
                         <br>
@@ -176,7 +170,7 @@
                                     Username
                                 <% out.print((String) session.getAttribute("username"));%>
                                 </div>-->
-                                 <input class="form-control" type="text" name="username" value=<% out.print((String) session.getAttribute("username"));%>
+                                <input class="form-control" type="text" name="username" value=<% out.print((String) session.getAttribute("username"));%>
                                
                                <div class="form-group col-md-12">
                                     <label>Select Outlet</label>
@@ -189,6 +183,7 @@
                                         %>
                                     </select>
                                 </div>
+                                    
 
 
                                     
@@ -223,18 +218,16 @@
                                     <!--<input type="text" id="datepicker" name="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" value="01-01-2018"/>-->
                                     <input type="date" name="date">
                                 </div>
-                                    
 
-
-<!--        <div class="input-group bootstrap-timepicker timepicker">
-            <input id="timepicker1" type="text" class="form-control input-small">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-        </div>-->
+                          <!-- <div class="input-group bootstrap-timepicker timepicker">
+                                <input id="timepicker1" type="text" class="form-control input-small">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>-->
 
 
                                 <div class="form-group col-md-12">
                                     <label>Select Time</label>
-<!--                                    <input id="timepicker1"  type="text" name="time" class="form-control input-small">
+                                    <!--<input id="timepicker1"  type="text" name="time" class="form-control input-small">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>-->
 
                                     <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
@@ -248,14 +241,9 @@
                                     </script>
                                     
                                 </div>
-                                <%
-                                    String errorMessage = (String) request.getAttribute("errorMsg");
-                                    if (errorMessage != null) {
-                                        out.println(errorMessage);
-                                    }
-                                %>
 
-                                <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block mb-2">      
+                                <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block mb-2">   
+                               
                             </form>
                            <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block"> </a> 
                         </div>
@@ -300,7 +288,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     
                     <div class="card w-100 mb-5">
                         <div class="card-body">
