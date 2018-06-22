@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -123,7 +124,7 @@ public class CustomerDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
-    
+
     public void updateLoyaltyPoints(String email, Double points) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -140,7 +141,7 @@ public class CustomerDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
-    
+
     public static void updateProfile(Customer customer, String newNumber, String newEmail, InputStream inputStream) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -148,20 +149,20 @@ public class CustomerDAO {
         try {
             conn = ConnectionManager.getConnection();
             stmt = conn.prepareStatement("UPDATE Customer SET number = ?, photo = ?, email = ? where email = ?");
-            
+
             if (newNumber != null & !newNumber.isEmpty()) {
                 stmt.setInt(1, Integer.parseInt(newNumber));
             } else {
                 stmt.setInt(1, Integer.parseInt(customer.getCustomerNumber()));
             }
-            
+
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
                 stmt.setBlob(2, inputStream);
             } else {
                 stmt.setBlob(2, customer.getCustomerPicture());
             }
-            
+
             if (newEmail != null && !newEmail.isEmpty()) {
                 stmt.setString(3, newEmail);
                 stmt.setString(4, customer.getCustomerEmail());
@@ -169,12 +170,35 @@ public class CustomerDAO {
                 stmt.setString(3, customer.getCustomerEmail());
                 stmt.setString(4, customer.getCustomerEmail());
             }
-            
+
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             ConnectionManager.close(conn, stmt);
         }
+    }
+
+    public ArrayList<String> retrieveAllNumbers() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<String> numList = new ArrayList<>();
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("select number from Customer");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String number = rs.getString("number");
+                numList.add(number);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return numList;
     }
 }

@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CreateAccountController", urlPatterns = {"/createaccount"})
 public class CreateAccountController extends HttpServlet {
 
+    ArrayList<String> errorList = new ArrayList<>();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,7 +40,7 @@ public class CreateAccountController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ArrayList<String> errorList = new ArrayList<>();
+
         try {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
@@ -46,22 +48,20 @@ public class CreateAccountController extends HttpServlet {
             String mobile = request.getParameter("mobile");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
-            System.out.println("Check acc");
-
+            //System.out.println("Check acc");
+            CustomerDAO customerDAO = new CustomerDAO();
             //check for mobile
-            try {
-                Integer.parseInt(mobile);
-            } catch (Exception e) {
-                errorList.add("Mobile number must be digits");
+            commonValidation(mobile);
+            ArrayList<String> numList = customerDAO.retrieveAllNumbers();
+            if(numList.contains(mobile)){
+                errorList.add("Number has already been used");
             }
-
             //check for pw           
             if (!password.equals(confirmPassword)) {
                 errorList.add("Passwords do not match");
             }
-
-            if (errorList.size() == 0) {
-                CustomerDAO customerDAO = new CustomerDAO();
+            
+            if (errorList.size() == 0) {                
                 // Hash a password for the first time
                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
                 Customer customer = new Customer(name, email, points, hashed, mobile);
@@ -70,14 +70,28 @@ public class CreateAccountController extends HttpServlet {
                 System.out.println("Account created");
                 request.getSession().setAttribute("success", "Account has been successfully created");
                 response.sendRedirect("Login.jsp");
-                
+
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);
-                request.getRequestDispatcher("CreateAccount.jsp").forward(request,response);
+                request.getRequestDispatcher("CreateAccount.jsp").forward(request, response);
                 return;
             }
         } catch (SQLException ex) {
             Logger.getLogger(CreateAccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void commonValidation(String number) {
+        try {
+            int numInt = Integer.parseInt(number);
+            if (!(number.startsWith("6") || number.startsWith("8") || number.startsWith("9"))) {
+                errorList.add("Invalid Number: number must start with either 6, 8, 9");
+            }
+            if (numInt < 60000000) {
+                errorList.add("Invalid Number: must be 8 digits");
+            }
+        } catch (NumberFormatException e) {
+            errorList.add("Invalid Number: only numerical digits allowed");
         }
     }
 
