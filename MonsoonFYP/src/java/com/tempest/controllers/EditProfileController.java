@@ -26,7 +26,7 @@ import javax.servlet.http.Part;
  *
  * @author Xuan
  */
-@MultipartConfig(maxFileSize = 16177215) 
+@MultipartConfig(maxFileSize = 16177215)
 @WebServlet(name = "EditProfileController", urlPatterns = {"/EditProfile"})
 public class EditProfileController extends HttpServlet {
 
@@ -41,18 +41,18 @@ public class EditProfileController extends HttpServlet {
      */
     CustomerDAO customerDAO = new CustomerDAO();
     StaffDAO staffDAO = new StaffDAO();
+    ArrayList<String> errorList = new ArrayList<>();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            ArrayList<String> errorList = new ArrayList<>();
-            
+
             String email = request.getParameter("email");
             String newEmail = request.getParameter("newEmail");
             String newNumber = request.getParameter("newNumber");
-            
+
             InputStream inputStream = null; // input stream of the upload file
-            
+
             // obtains the upload file part in this multipart request
             Part filePart = request.getPart("photo");
             if (filePart != null) {
@@ -60,26 +60,46 @@ public class EditProfileController extends HttpServlet {
                 System.out.println(filePart.getName());
                 System.out.println(filePart.getSize());
                 System.out.println(filePart.getContentType());
-                
+
                 // obtains input stream of the upload file
                 inputStream = filePart.getInputStream();
+            } else {
+                errorList.add("Invalid Photo");
             }
-            
+
             Customer customer = customerDAO.retrieveCustomer(email);
-            CustomerDAO.updateProfile(customer, newNumber, newEmail, inputStream);
-            String username = customerDAO.retrieveCustomer(newEmail).getCustomerEmail();
-            
+            commonValidation(newNumber);
+            ArrayList<String> numList = customerDAO.retrieveAllNumbers();
+            if(numList.contains(newNumber)){
+                errorList.add("Number has already been used");
+            }
             if (errorList.isEmpty()) {
+                CustomerDAO.updateProfile(customer, newNumber, newEmail, inputStream);
+                String username = customerDAO.retrieveCustomer(newEmail).getCustomerEmail();
                 request.getSession().setAttribute("success", "Profile has been successfully updated");
                 request.getSession().setAttribute("username", username);
                 response.sendRedirect("Homepage.jsp");
-                
+
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);
-                request.getRequestDispatcher("EditProfile.jsp").forward(request,response);
+                request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void commonValidation(String number) {
+        try {
+            int numInt = Integer.parseInt(number);
+            if (!(number.startsWith("6") || number.startsWith("8") || number.startsWith("9"))) {
+                errorList.add("Invalid Number: number must start with either 6, 8, 9");
+            }
+            if (numInt < 60000000) {
+                errorList.add("Invalid Number: must be 8 digits");
+            }
+        } catch (NumberFormatException e) {
+            errorList.add("Invalid Number: only numerical digits allowed");
         }
     }
 
