@@ -30,7 +30,7 @@ public class CustomerDAO {
         try {
             conn = ConnectionManager.getConnection();
 
-            if (email != null && !email.isEmpty()) {
+            if (email != null) {
 
                 //getting PreparedStatement to execute query
                 stmt = conn.prepareStatement("SELECT * FROM CUSTOMER WHERE email = ?");

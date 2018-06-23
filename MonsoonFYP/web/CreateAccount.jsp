@@ -1,103 +1,98 @@
-<%--
-    Document   : CreateAccount
-    Created on : May 13, 2018, 11:07:56 AM
-    Author     : Xuan
---%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-           <meta charset="utf-8">
+            <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <meta name="description" content="">
+            <meta name="description" content="Monsoon The Hair Phenomenon">
             <meta name="author" content="">
             <link rel="icon" href="favicon.ico">
 
-            <title>Monsoon Hair Saloon</title>
-
-            <!-- Bootstrap core CSS -->
-            <!--Need to fix the issue of bootstrap file not loading-->
+            <title>Monsoon Hair Saloon - Create Account</title>
             <link href="css/bootstrap.min.css" rel="stylesheet">
-            <link href="css/log.css" rel="stylesheet">
-            <!--<<l!--temp link-->
-            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-
-            <!-- Custom styles for this template -->
+            
+            <!--- Style Sheets --->
             <link href="css/carousel.css" rel="stylesheet">
             <link href="css/NavbarAndFooter.css" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+            <link href="css/log.css" rel="stylesheet">
+            <!--- Scripts --->
             <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
             <script type="text/javascript" src="js/jquery.validate.js"></script>
-
-            <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
+            <style>
+                header{
+                    margin-bottom: 8%;
+                }
+                
+                #logoCreate{
+                    max-width: 100%;
+                    max-height: 90%;
+                }
+            </style>
     </head>
 
-
     <body background="img/blurImage_Demo1.jpg">
-        
         <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" id="logo">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="Homepage.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hair Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Outlets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tutorials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">E-store</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Appointment Management</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="admin">
-            <div class="dropdown">
-            <img src="img/cart.svg" width="30" height="30">
-                <div class="dropdown-content">
-                  <p>Shopping cart to be displayed</p>
-                </div>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="Homepage.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="aboutUs.jsp">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Hair Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Outlets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tutorials</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">E-store</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Appointment Management</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contactUs.jsp">Contact Us</a>
+                </li>
+              </ul>
             </div>
 
-            <div class="dropdown">
-            <img src="img/account.svg" width="30" height="30">
-                <div class="dropdown-content">
-                  <p>Account cart to be displayed</p>
+            <div class="admin">
+                <div class="dropdown">
+                <img src="img/cart.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                      <p>Shopping cart to be displayed</p>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                <img src="img/account.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                      <p>Account cart to be displayed</p>
+                    </div>
                 </div>
             </div>
-        </div>
-      </nav>
+          </nav>
     </header>
         
     <div class="container">
         <div class="wrapper">
              <form class="form-signin" id="signupForm" method="post" class="form-horizontal" action="createaccount">
-                 <h2 class="form-signin-heading" style="text-align:center">MONSOON lOGO</h2>
-                 <img src="#" class="img-responsive" alt="" />
-                <div class="form-group">
+                <img src="img/Monsoon Hair Logo (Black).png" id="logoCreate">
+                <div class="form-group mt-3">
                     <label class="col-sm-12 control-label" >Name</label>
                     <div class="col-sm-12">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
@@ -132,37 +127,37 @@
                     </div>
                 </div>
 
-                <!--<div class="form-group">
-                    <div class="col-sm-5 col-sm-offset-4">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-offset-4">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="agree" name="agree" value="agree" />Please agree to our policy
                             </label>
                         </div>
                     </div>
-                </div>-->
+                </div>
 
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                             <%
                             ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
                             if (error != null) {
-                        %>
-                        <br>
-                        <%
-                            for (String str : error) {
-                                out.println(str);
-                        %>
-                        <br>
-                        <%
+                             %>
+                            <br>
+                            <%
+                                for (String str : error) {
+                                    out.println(str);
+                            %>
+                            <br>
+                            <%
+                                    }
+                                    session.setAttribute("errorMsg", null);
                                 }
-                                session.setAttribute("errorMsg", null);
-                            }
-                        %>
+                            %>
                     </div>
                 </div>
-        </form>
+            </form>
                       
 <!--            <form class="needs-validation form-signin" novalidate action="createaccount" method = "post" id="createAccountform" >
                 <h2 class="form-signin-heading" style="text-align:center">MONSOON lOGO</h2>
@@ -231,80 +226,107 @@
               
         </div>
     </div>
+        <script type="text/javascript">
+        //  $.validator.setDefaults( {
+        //          submitHandler: function () {
+        //                  alert( "submitted!" );
+        //          }
+        //  } );
 
-<script type="text/javascript">
-//  $.validator.setDefaults( {
-//          submitHandler: function () {
-//                  alert( "submitted!" );
-//          }
-//  } );
+          $( document ).ready( function () {
+                $( "#signupForm" ).validate( {
+                        rules: {
+                                name: "required",
 
-  $( document ).ready( function () {
-          $( "#signupForm" ).validate( {
-                  rules: {
-                          name: "required",
-                         
-                          mobile: {
-                                  required: true,
-                                  digits:true,
-                                  maxlength: 8,
-                                  minlength: 8,
-                          },
-                          password: {
-                                  required: true,
-                                  minlength: 8
-                          },
-                          confirmPassword: {
-                                  required: true,
-                                  minlength: 8,
-                                  equalTo: "#password"
-                          },
-                          email: {
-                                  required: true,
-                                  email: true
-                          },
-                          agree: "required"
-                  },
-                  messages: {
-                          name: "Please enter your name",
-                          mobile:{
-                              required:"Please enter a proper phone Number",
-                              digits: "Please enter only digits",
-                              minlength: "Please enter a maximum of 8 digits",
-                              maxlength: "Please enter a maximum of 8 digits",
-                          },
- 
-                          password: {
-                                  required: "Please provide a password",
-                                  minlength: "Your password must be at least 8 characters long"
-                          },
-                          confirmPassword: {
-                                  required: "Please provide a password",
-                                  minlength: "Your password must be at least 8 characters long",
-                                  equalTo: "Please enter the same password as above"
-                          },
-                          email: "Please enter a valid email address",
-//                          agree: "Please accept our policy"
-                  },
-                  errorElement: "em",
-                  errorPlacement: function ( error, element ) {
-                          // Add the `help-block` class to the error element
-                          error.addClass( "help-block" );
+                                mobile: {
+                                    required: true,
+                                    digits:true,
+                                    maxlength: 8,
+                                    minlength: 8,
+                                    phoneSG: true
+                                },
+                                password: {
+                                    required: true,
+                                    minlength: 8,
+                                    numCheck: true,
+                                    letterCheck: true
+                                },
+                                confirmPassword: {
+                                    required: true,
+                                    minlength: 8,
+                                    equalTo: "#password"
+                                },
+                                email: {
+                                    required: true,
+                                    email: true
+                                },
+                                agree: "required"
+                        },
+                        messages: {
+                                name: "Please enter your name",
+                                mobile:{
+                                required:"Please enter a phone Number",
+                                digits: "Please enter only digits",
+                                minlength: "Please enter a maximum of 8 digits",
+                                maxlength: "Please enter a maximum of 8 digits",
+                                },
 
-                          if ( element.prop( "type" ) === "checkbox" ) {
-                                  error.insertAfter( element.parent( "label" ) );
-                          } else {
-                                  error.insertAfter( element );
-                          }
-                  },
-                  highlight: function ( element, errorClass, validClass ) {
-                          $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
-                  },
-                  unhighlight: function (element, errorClass, validClass) {
-                          $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
-                  }
+                                password: {
+                                    required: "Please provide a password",
+                                    minlength: "Your password must be at least 8 characters long"
+                                },
+                                confirmPassword: {
+                                    required: "Please provide a password",
+                                    minlength: "Your password must be at least 8 characters long",
+                                    equalTo: "Please enter the same password as above"
+                                },
+                                email: "Please enter a valid email address",
+                                agree: "Please accept our policy"
+                        },
+
+                        errorElement: "em",
+                        
+                        errorPlacement: function ( error, element ) {
+                                // Add the `help-block` class to the error element
+                                error.addClass( "help-block" );
+
+                                if ( element.prop( "type" ) === "checkbox" ) {
+                                        error.insertAfter( element.parent( "label" ) );
+                                } else {
+                                        error.insertAfter( element );
+                                }
+                        },
+                        highlight: function ( element, errorClass, validClass ) {
+                                $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+                        },
+                        unhighlight: function (element, errorClass, validClass) {
+                                $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+                        }
+                        
+                } );
+                        //Method to check if phone number start with 8 or 9
+                       jQuery.validator.addMethod("phoneSG", function(value, element) {
+                          phoneNumberFirst = value.charAt(0);     
+                          return phoneNumberFirst == 8 || phoneNumberFirst == 9
+                      }, "Please specify a valid phone number that start with 8 or 9");
+                      
+                      
+                      jQuery.validator.addMethod("numCheck", function(value, element) {
+                            if (value.search(/\d/) == -1) {
+                                return false;
+                            } 
+                          return true
+                      }, "Please put in a Number");
+                      
+                      jQuery.validator.addMethod("letterCheck", function(value, element) {
+                            if (value.search(/[a-zA-Z]/) == -1) {
+                                return false;
+                            } 
+                          return true
+                      }, "Please put in a Letter");   
+                      
+                      
           } );
-  } );
-</script>
+        </script>
     </body>
 </html>
