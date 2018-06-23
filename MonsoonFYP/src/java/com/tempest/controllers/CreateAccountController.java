@@ -48,6 +48,8 @@ public class CreateAccountController extends HttpServlet {
             String mobile = request.getParameter("mobile");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
+          
+           
             //System.out.println("Check acc");
             CustomerDAO customerDAO = new CustomerDAO();
             //check for mobile

@@ -23,7 +23,7 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
             <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>            
+            <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->            
     
     <style>
         
@@ -125,7 +125,7 @@
                      %>
 
                  <label class="checkbox">
-                      <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+                      <!--<input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me -->
                  </label>
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                      <%

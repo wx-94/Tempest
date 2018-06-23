@@ -14,6 +14,10 @@
     background-color:#7979793b; 
 }
 
+.dropdown-content p{
+    text-align: center;
+}
+
 
 .navbar-brand{
     margin-left: 2%;
