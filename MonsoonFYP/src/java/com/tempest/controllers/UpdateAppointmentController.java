@@ -106,7 +106,7 @@ public class UpdateAppointmentController extends HttpServlet {
                 Time endTime = app.getEndTimeOfAppointment();
 
                 //check if it falls on the same day
-                if (app.getDateOfAppointment() == appt.getDateOfAppointment()) {
+                if (app.getDateOfAppointment().equals(appt.getDateOfAppointment())) {
                     if (startTime.equals(appt.getStartTimeOfAppointment())) {
                         clash = true;
                     }
