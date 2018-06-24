@@ -46,3 +46,9 @@ INSERT INTO Appointment VALUES
 ('2','jacky@hotmail.com','Audrey Tan','MONSOON @ Novena Square','Washing+Drying','2018-06-11','12:30:00','13:00:00'),
 ('3','alexia@hotmail.com','Pris Ng','MONSOON @ Bukit Timah Plaza','Cutting','2018-06-12','13:30:00','14:30:00'),
 ('4','alexia@hotmail.com','Pris Ng','MONSOON @ Bukit Timah Plaza','Washing+Drying','2018-06-13','14:30:00','15:45:00');
+
+INSERT INTO StaffAvailability VALUES
+('1','Audrey Tan','MONSOON @ Novena Square','2018-06-10','11:00:00','21:00:00'),
+('2','Audrey Tan','MONSOON @ Novena Square','2018-06-11','11:00:00','21:00:00'),
+('3','Pris Ng','MONSOON @ Bukit Timah Plaza','2018-06-12','10:00:00','20:00:00'),
+('4','Pris Ng','MONSOON @ Bukit Timah Plaza','2018-06-13','10:00:00','20:00:00');

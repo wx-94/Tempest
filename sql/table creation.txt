@@ -6,7 +6,7 @@ use MonsoonDB;
 
 CREATE TABLE Staff(
 	userID         	varchar(128),
-	password	varchar(1000),
+	password		varchar(1000),
 	staffName       varchar(100),
 	staffOffice     varchar(50),
 	staffPosition	varchar(50),
@@ -15,9 +15,9 @@ CREATE TABLE Staff(
 
 
 CREATE TABLE Product(
-	productID	int(8),
-	productName	varchar(128),
-	productDesc	varchar(1000),
+	productID		int(8),
+	productName		varchar(128),
+	productDesc		varchar(1000),
 	productPrice	decimal(5,2),
 	CONSTRAINT ProductPK PRIMARY KEY(productID)
 );
@@ -34,47 +34,47 @@ CREATE TABLE Customer(
 );
 
 CREATE TABLE Appointment(
-	appointmentID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
-	customerEmail		varchar(128),
-	staffID			varchar(128),
-	outletName		varchar(128),
-	treatment		varchar(500),
-	appointmentDate		date,
+	appointmentID 			int(10) NOT NULL AUTO_INCREMENT UNIQUE,
+	customerEmail			varchar(128),
+	staffID					varchar(128),
+	outletName				varchar(128),
+	treatment				varchar(500),
+	appointmentDate			date,
 	appointmentStartTime	time,
-	appointmentEndTime	time,	
+	appointmentEndTime		time,	
 	
 	CONSTRAINT AppointmentPK PRIMARY KEY(appointmentID)
 );
 
 CREATE TABLE AppointmentsHistory(
-	appointmentID 		int(10),
-	customerEmail		varchar(128),
-	staffID			varchar(128),
-	outletName		varchar(128),
-	treatment		varchar(500),
-	appointmentDate		date,
+	appointmentID 			int(10),
+	customerEmail			varchar(128),
+	staffID					varchar(128),
+	outletName				varchar(128),
+	treatment				varchar(500),
+	appointmentDate			date,
 	appointmentStartTime	time,
-	appointmentEndTime	time,	
+	appointmentEndTime		time,	
 	
 	CONSTRAINT AppointmentsHistoryPK PRIMARY KEY(appointmentID)
 );
 
 CREATE TABLE LoyaltyPoints(
-    	pointsID 		int(10) NOT NULL AUTO_INCREMENT UNIQUE,
-	dateOfChanges		date,
-	loyaltyPointsAdd	decimal(5,2),	
-	loyaltyPointsMinus	decimal(5,2),
-	type			varchar(20),
-	customerID		varchar(200),
-	appointmentID		int(10),
+	pointsID 				int(10) NOT NULL AUTO_INCREMENT UNIQUE,
+	dateOfChanges			date,
+	loyaltyPointsAdd		decimal(5,2),	
+	loyaltyPointsMinus		decimal(5,2),
+	type					varchar(20),
+	customerID				varchar(200),
+	appointmentID			int(10),
 	CONSTRAINT AppointmentPK PRIMARY KEY(pointsID)
 );
 
 CREATE TABLE HairServices(
-	hairService		varchar(128),
-	duration		int(5),
-	minCost			decimal(5,2),
-	maxCost			decimal(5,2),
+	hairService			varchar(128),
+	duration			int(5),
+	minCost				decimal(5,2),
+	maxCost				decimal(5,2),
 	loyaltyPoints		decimal(5,2),
 	
 	CONSTRAINT HairServicesPK PRIMARY KEY(hairService)
@@ -82,15 +82,15 @@ CREATE TABLE HairServices(
 
 
 CREATE TABLE Outlet(
-	outletName	varchar(128),
-	outletAddress	varchar(1000),
-	outletNumber	int(8),
-	weekdayStart	time,
-	weekdayEnd	time,
-	weekendStart	time,
-	weekendEnd	time,
-	publicHolStart	time,
-	publicHolEnd	time,
+	outletName			varchar(128),
+	outletAddress		varchar(1000),
+	outletNumber		int(8),
+	weekdayStart		time,
+	weekdayEnd			time,
+	weekendStart		time,
+	weekendEnd			time,
+	publicHolStart		time,
+	publicHolEnd		time,
 	CONSTRAINT OutletPK PRIMARY KEY(outletNumber)
 );
 
@@ -100,10 +100,21 @@ CREATE TABLE OutletInventory(
 	productID			int(8),
 	productName			varchar(128),
 	productDesc			varchar(1000),
-	productPrice			decimal(5,2),
+	productPrice		decimal(5,2),
 	productQty			int(5),
 	dateAdded			date,
 	comments			varchar(1000),
 	Constraint OutletPK PRIMARY KEY(outletID,productID),
 	Constraint OutletFK FOREIGN KEY(outletID) REFERENCES Outlet(outletNumber)
+);
+
+CREATE TABLE StaffAvailability(
+	ID 					int(10) NOT NULL AUTO_INCREMENT UNIQUE,
+	staffName				varchar(128),
+	outletName			varchar(128),
+	availableDate		date,
+	availableStartTime	time,
+	availableEndTime	time,	
+	
+	CONSTRAINT StylistSchedulePK PRIMARY KEY(ID)
 );
