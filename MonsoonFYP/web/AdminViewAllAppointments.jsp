@@ -4,6 +4,7 @@
     Author     : jacky
 --%>
 
+<%@page import="com.tempest.daos.CustomerDAO"%>
 <%@page import="com.tempest.entities.Appointment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.tempest.daos.AppointmentDAO"%>
@@ -64,7 +65,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav m-auto">
             <li class="nav-item">
-              <a class="nav-link" href="Homepage.jsp">Home</a>
+              <a class="nav-link" href="AdminHomepage.jsp">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
@@ -122,6 +123,7 @@
             <%  
                 AppointmentDAO appointmentDAO = new AppointmentDAO();                
                 ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAllAppointments();
+                CustomerDAO customerDAO = new CustomerDAO();
             %>
 
             <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
@@ -130,7 +132,8 @@
                 <thead>
                   <tr>
                     <th scope="col">Appointment ID</th>
-                    <th scope="col">Staff</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Stylist</th>
                     <th scope="col">Outlet</th>
                     <th scope="col">Date</th>
                     <th scope="col">Treatment</th>
@@ -145,6 +148,7 @@
                     %> 
                   <tr>
                     <td><%= a.getAppointmentID()%></td>
+                    <td><%= customerDAO.retrieveCustomer(a.getCustomer()).getCustomerName()%></td>
                     <td><%= a.getStaff()%></td>
                     <td><%= a.getOutlet()%></td>
                     <td><%= a.getTreatment()%></td>

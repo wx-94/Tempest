@@ -63,7 +63,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav m-auto">
             <li class="nav-item">
-              <a class="nav-link" href="Homepage.jsp">Home</a>
+              <a class="nav-link" href="AdminHomepage.jsp">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About Us</a>
