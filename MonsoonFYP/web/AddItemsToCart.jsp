@@ -44,7 +44,7 @@
                   <a class="nav-link" href="Homepage.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About Us</a>
+                  <a class="nav-link" href="aboutUs.jsp">About Us</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Hair Services</a>
@@ -114,7 +114,7 @@
                               
         <div class ="container mt-5">
             <div class="row">
-                <div class="col-12">       
+                <div class="col-12 mt-5">       
                     <form role="form" action="AddItemsToCartController" method = "post">    
                         <%
                             InventoryDAO inventoryDAO = new InventoryDAO();

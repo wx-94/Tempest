@@ -32,7 +32,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     
@@ -52,51 +51,50 @@
     </head>
     <body>
         <!--Navigation Bar-->
-        <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="Homepage.jsp">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hair Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Outlets</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tutorials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">E-store</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Appointment Management</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
-            </li>
-          </ul>
-        </div>
-        
-        <!--User Account and Shopping Cart-->
-        <div class="admin">    
-            <div class="dropdown">
-            <img src="img/cart.svg" width="30" height="30">
-                <div class="dropdown-content">
-                  <p>Shopping cart to be displayed</p>
-                </div>
+       <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="Homepage.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="aboutUs.jsp">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Hair Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Outlets</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tutorials</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">E-store</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Appointment Management</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact Us</a>
+                </li>
+              </ul>
             </div>
-            
-            <div class="dropdown">
+
+            <div class="admin">
+                <div class="dropdown">
+                <img src="img/cart.svg" width="30" height="30">
+                    <div class="dropdown-content">
+                      <p>Shopping cart to be displayed</p>
+                    </div>
+                </div>
+
+                <div class="dropdown">
                 <img src="img/account.svg" width="30" height="30">
                     <div class="dropdown-content">
                     <% CustomerDAO custDAO = new CustomerDAO();
@@ -112,30 +110,30 @@
                             session.setAttribute("success", null);
                         }
                     %>
-                        <!--<p>Account cart to be displayed</p>-->
-                    <a href="EditProfile.jsp"> Edit Profile </a>
-                    <br>
-                    <a href="AppointmentBooking.jsp"> Book Appointment </a>
-                    <br>
-                    <a href="viewAppointments"> View Appointments </a>
-                    <br>
-                    <a href="viewAppointmentsHistory"> View Appointments History </a>
-                    <br>
-                    <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
-                    <br>
-                    <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
-                    <br>
-                    <a href="ProcessLogOut.jsp"> Log out </a>
+                              <!--<p>Account cart to be displayed</p>-->
+                        <a href="EditProfile.jsp"> Edit Profile </a>
+                        <br>
+                        <a href="AppointmentBooking.jsp"> Book Appointment </a>
+                        <br>
+                        <a href="viewAppointments"> View Appointments </a>
+                        <br>
+                        <a href="viewAppointmentsHistory"> View Appointments History </a>
+                        <br>
+                        <a href="ViewLoyaltyPointsHistoryController"> View Loyalty Points History </a>
+                        <br>
+                        <a href="AddItemsToCart.jsp"> Add Items to Cart </a>
+                        <br>
+                        <a href="ProcessLogOut.jsp"> Log out </a>
 
+                    </div>
                 </div>
             </div>
-        </div>
-      </nav>
-    </header>
+          </nav>
+        </header>
         
         <div class ="container mt-5">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mt-5">
                 <%
                     ArrayList<Appointment> appointmentList = (ArrayList<Appointment>) session.getAttribute("appointmentList");
                 %>
