@@ -117,6 +117,7 @@
                             <a href="viewInventory">View Inventory</a><br>
                             <a href="AdminViewAllAppointments.jsp">View Current Appointments</a></br>
                             <a href="AdminEditProductDetails.jsp">Edit Item Information</a></br>
+                            <a href="ViewStaffAvailabilityController">View Staff Availability</a></br>
                             <a href="ProcessLogOut.jsp">Log Out</a>
 
                         </div>
@@ -143,6 +144,7 @@
                                         <th scope="col">Date Added</th>
                                         <th scope="col">Comments</th>
                                         <th scope="col">Outlet</th>
+                                        <th scope="col">Selected</th>
                                     </tr>
                                 </thead>
 
@@ -178,7 +180,7 @@
                                 }
                             %>
                         </form><br>
-                        <a href="HAddNewItem.jsp" style="text-decoration:none"> <input type="submit" value="Add New Item" class="btn btn-lg btn-success btn-block "> </a> 
+                        <a href="AddNewItem.jsp" style="text-decoration:none"> <input type="submit" value="Add New Item" class="btn btn-lg btn-success btn-block "> </a> 
                         <a href="AdminHomepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block "> </a> 
                         </body>
                         </html>

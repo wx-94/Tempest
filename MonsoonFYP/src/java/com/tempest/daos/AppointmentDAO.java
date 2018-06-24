@@ -77,22 +77,27 @@ public class AppointmentDAO {
         return success;
     }
 
-    public boolean updateAppointment(Appointment appointment, Appointment newAppointment) throws SQLException {
-        conn = ConnectionManager.getConnection();
-        conn.setAutoCommit(false);
-        boolean success = false;
+    public void updateAppointment(Appointment newAppt, String apptID) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
 
-        //Uncomment and change below lines when deleteAppointment stuff is implemented.
-        //getting PreparedStatement to execute query
-        //stmt = conn.prepareStatement("UPDATE BID SET amount=" + newAmount + " WHERE bidID=" + bid.getBidID() + " AND userid=\"" + bid.getUserID() + "\"");
-        int check = stmt.executeUpdate();
-        if (check == 1) {
-            success = true;
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Appointment SET staffID = ?, outletName = ?, treatment = ?, appointmentDate = ?, appointmentStartTime = ?, appointmentEndTime = ?  where appointmentID = ?");
+           
+            stmt.setString(1, newAppt.getStaff());
+            stmt.setString(2, newAppt.getOutlet());
+            stmt.setString(3, newAppt.getTreatment());
+            stmt.setDate(4, newAppt.getDateOfAppointment());
+            stmt.setTime(5, newAppt.getStartTimeOfAppointment());
+            stmt.setTime(6, newAppt.getEndTimeOfAppointment());
+            stmt.setInt(7, Integer.parseInt(apptID));
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
         }
-
-        conn.commit();
-        ConnectionManager.close(conn, stmt, rs);
-        return success;
     }
 
     public ArrayList<Appointment> retrieveAllAppointmentsByCustomer(String email) {
@@ -249,26 +254,4 @@ public class AppointmentDAO {
         return success;
     }
 
-    public void updateAppointment(Appointment newAppt, String apptID) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
-        try {
-            conn = ConnectionManager.getConnection();
-            stmt = conn.prepareStatement("UPDATE Appointment SET staffID = ?, outletName = ?, treatment = ?, appointmentDate = ?, appointmentStartTime = ?, appointmentEndTime = ?  where appointmentID = ?");
-           
-            stmt.setString(1, newAppt.getStaff());
-            stmt.setString(2, newAppt.getOutlet());
-            stmt.setString(3, newAppt.getTreatment());
-            stmt.setDate(4, newAppt.getDateOfAppointment());
-            stmt.setTime(5, newAppt.getStartTimeOfAppointment());
-            stmt.setTime(6, newAppt.getEndTimeOfAppointment());
-            stmt.setInt(7, Integer.parseInt(apptID));
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionManager.close(conn, stmt);
-        }
-    }
 }

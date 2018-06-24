@@ -1,13 +1,12 @@
 <%-- 
-    Document   : AdminViewAllAppointments
-    Created on : 4 Jun, 2018, 3:22:57 PM
-    Author     : jacky
+    Document   : AdminViewStaffAvailibility
+    Created on : Jun 24, 2018, 4:25:38 PM
+    Author     : Xuan
 --%>
 
-<%@page import="com.tempest.daos.CustomerDAO"%>
-<%@page import="com.tempest.entities.Appointment"%>
+<%@page import="com.tempest.entities.StaffAvailability"%>
+<%@page import="com.tempest.daos.StaffAvailabilityDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.tempest.daos.AppointmentDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>Monsoon Hair Saloon - AdminViewAllAppointments</title>
+        <title>Monsoon Hair Saloon - AdminViewStaffAvailibility</title>
 
         <!-- Bootstrap core CSS -->
         <!--Need to fix the issue of bootstrap file not loading-->
@@ -106,8 +105,7 @@
 
                             <a href="viewInventory">View Inventory</a><br>
                             <a href="AdminViewAllAppointments.jsp">View Current Appointments</a></br>
-                            <a href="AdminEditProductDetails.jsp">Edit Item Information</a></br>
-                            <a href="ViewStaffAvailabilityController">View Staff Availability</a></br>
+                            <a href="AdminViewStaffAvailability.jsp">View Current Appointments</a></br>
                             <a href="ProcessLogOut.jsp">Log Out</a>
 
                         </div>
@@ -120,62 +118,62 @@
         </header>
 
         <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">              
+                    <form role="form" action="deleteStaffAvailability" method = "post">
 
-            <form role="form" action="ShiftAppointmentWhenCompletedController" method = "post">    
-                <%
-                    AppointmentDAO appointmentDAO = new AppointmentDAO();
-                    ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAllAppointments();
-                    CustomerDAO customerDAO = new CustomerDAO();
-                %>
-
-                <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
-
-                <table class="table table-hover" id="appointments">
-                    <thead>
-                        <tr>
-                            <th scope="col">Appointment ID</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Stylist</th>
-                            <th scope="col">Outlet</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Treatment</th>
-                            <th scope="col">Start Time</th>
-                            <th scope="col">End Time</th>
-                            <th scope="col">Selected</th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <%
-                            for (Appointment a : appointmentList) {
-                        %> 
-                        <tr>
-                            <td><%= a.getAppointmentID()%></td>
-                            <td><%= customerDAO.retrieveCustomer(a.getCustomer()).getCustomerName()%></td>
-                            <td><%= a.getStaff()%></td>
-                            <td><%= a.getOutlet()%></td>
-                            <td><%= a.getTreatment()%></td>
-                            <td><%= a.getDateOfAppointment()%></td>
-                            <td><%= a.getStartTimeOfAppointment()%></td>
-                            <td><%= a.getEndTimeOfAppointment()%></td> 
-                            <td><input TYPE="checkbox" NAME="appointment" VALUE="<%=a.getAppointmentID()%>"></td>
-                        </tr>
+                            ArrayList<StaffAvailability> staffAvailabilityList = (ArrayList<StaffAvailability>) session.getAttribute("staffAvailabilityList");
+                        %>
 
+                        <%  if (staffAvailabilityList != null && !staffAvailabilityList.isEmpty()) {           %>
+
+                        <table class="table table-hover" id="availability">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Stylist</th>
+                                    <th scope="col">Outlet</th>
+                                    <th scope="col">Available Date</th>
+                                    <th scope="col">Available Start Time</th>
+                                    <th scope="col">Available End Time</th>
+                                    <th scope="col">Selected</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    for (StaffAvailability a : staffAvailabilityList) {
+                                %> 
+                                <tr>
+                                    <td><%= a.getStaffAvailabilityID()%></td>
+                                    <td><%= a.getStaffName()%></td>
+                                    <td><%= a.getOutletName()%></td>
+                                    <td><%= a.getAvailableDate()%></td>
+                                    <td><%= a.getAvailableStartTime()%></td>
+                                    <td><%= a.getAvailableEndTime()%></td>
+                                    <td><input TYPE="checkbox" NAME="staffAvailabilityID" VALUE="<%=a.getStaffAvailabilityID()%>"></td>
+                                </tr>
+
+                                <%
+                                    }
+                                } else {
+                                %>
+                            <h1>No schedule available!</h1>
+                            <%
+                                }
+                            %>
+                            </tbody>
+                        </table>
+                        <%  if (staffAvailabilityList != null && !staffAvailabilityList.isEmpty()) {           %>
+                        <input type="submit" value="Delete Availability" >
                         <%
                             }
-                        } else {
                         %>
-                    <h1>No bookings made!</h1>
-                    <%
-                        }
-                    %>
-                    </tbody>
-                </table>
-                <!--  <input type="submit" value="Completed Appointments" > -->
-                <button type="submit" class="btn btn-success mb-3">Completed Appointments</button>
-                <br>
-                <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="btn btn-success"> </a> 
-            </form>       
+                    </form><br>
+                    <br>
+                    <a href="AddNewAvailability.jsp" style="text-decoration:none"> <input type="submit" value="Add New Availability" class="btn btn-lg btn-success btn-block "> </a> 
+                    <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="btn btn-success"> </a>   
 
-        </div>
-    </body>
-</html>
+                </div>
+                </body>
+                </html>
