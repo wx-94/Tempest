@@ -40,7 +40,7 @@
         
           <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
+        <img src="img/Monsoon Hair Logo (Black).png" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,7 +50,7 @@
               <a class="nav-link" href="Homepage.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="aboutUs.jsp">About Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Hair Services</a>
@@ -154,7 +154,7 @@
                 
             <div class ="container mt-5">
                 <div class="row">
-                    <div class="col-12 text-center">      
+                    <div class="col-12 text-center mt-5">      
                         <h1>No loyalty points awarded!</h1>
                     </div>
                 </div>

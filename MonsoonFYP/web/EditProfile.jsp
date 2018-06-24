@@ -14,24 +14,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Monsoon - Edit Profile</title>
-
-        <!-- Bootstrap core CSS -->
-        <!--Need to fix the issue of bootstrap file not loading-->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!--temp link-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-
         <!-- Custom styles for this template -->
         <link href="css/carousel.css" rel="stylesheet">
         <link href="css/NavbarAndFooter.css" rel="stylesheet">
         <link href="blog.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="js/jquery.js"></script> 
-        <script src="js/moment.min.js"></script> 
-        <script src="js/combodate.js"></script> 
     </head>
     <body>
         <% CustomerDAO custDAO = new CustomerDAO();
@@ -50,7 +38,7 @@
                             <a class="nav-link" href="Homepage.jsp">Home </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="aboutUs.jsp">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Hair Services</a>
@@ -119,7 +107,7 @@
 
         <div class ="container mt-5">
             <div class="row">
-                <div class="col-12">   
+                <div class="col-12 border border-dark mt-5">   
                     <form role="form" action="EditProfile" method = "post" enctype='multipart/form-data'>
                         <div class="col-12 mb-3">
                             <input name="email" type="hidden" class="form-control" value="<%= custDAO.retrieveCustomer((String) session.getAttribute("username")).getCustomerEmail() %>">
@@ -137,7 +125,7 @@
                             <input name="photo" type="file" class="form-control">
                         </div>
 
-                        <input type="submit" value="Submit" class="btn btn-lg btn-success btn-block mb-3">
+                        <input type="submit" value="Submit" class="col-6 btn btn-lg btn-success btn-block mb-3">
                         <%
                             ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
                             if (error != null) {
@@ -154,7 +142,7 @@
                             }
                         %>  
                     </form>
-                    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block "> </a> 
+                    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="col-6 btn btn-lg btn-success btn-block mb-3 "> </a> 
                 </div>
             </div>
         </div>
