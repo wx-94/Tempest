@@ -6,11 +6,13 @@
 package com.tempest.controllers;
 
 import com.tempest.daos.AppointmentDAO;
+import com.tempest.daos.CommissionDAO;
 import com.tempest.daos.CustomerDAO;
 import com.tempest.daos.HairServicesDAO;
 import com.tempest.daos.LoyaltyPointsDAO;
 import com.tempest.entities.Appointment;
 import com.tempest.entities.LoyaltyPoints;
+import com.tempest.entities.Commission;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -45,6 +47,7 @@ public class ShiftAppointmentWhenCompletedController extends HttpServlet {
             AppointmentDAO apptDAO = new AppointmentDAO();
             ArrayList<Appointment> apptList = new ArrayList<>();
             HairServicesDAO hairServiceDAO = new HairServicesDAO();
+            CommissionDAO commissionDAO = new CommissionDAO();
 
             String apptID[] = request.getParameterValues("appointment"); //need set at jsp
             if (apptID.length != 0) {
@@ -64,9 +67,13 @@ public class ShiftAppointmentWhenCompletedController extends HttpServlet {
                     double currentPoints = customerDAO.retrieveCustomer(appointment.getCustomer()).getCustomerPoints();
                     double newPoints = currentPoints + points;
                     customerDAO.updateLoyaltyPoints(appointment.getCustomer(), newPoints);
+                    
+                    //need find out how much is their commission amount
+                    Commission commission = new Commission(appointment.getStaff(),100.0,appointment.getDateOfAppointment(),"Hair Services",appointment.getTreatment());
+                    commissionDAO.createCommission(commission);
                 }
             }
-            request.getSession().setAttribute("success", "Appointment has been successfully deleted");
+            request.getSession().setAttribute("success", "Appointment has been successfully shifted");
             response.sendRedirect("AdminHomepage.jsp");
         } catch (Exception e) {
             e.printStackTrace();
