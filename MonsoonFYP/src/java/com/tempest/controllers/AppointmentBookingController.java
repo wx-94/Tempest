@@ -17,6 +17,7 @@ import com.tempest.entities.Outlet;
 import com.tempest.entities.Staff;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -64,14 +65,13 @@ public class AppointmentBookingController extends HttpServlet {
         }
 
         try {
-            System.out.print("hello");
+
             String username = request.getParameter("username");
             String outlet = request.getParameter("outletChosen");
             String stylist = request.getParameter("stylistChosen");
             String hairService = request.getParameter("hairService");
             String date = request.getParameter("date");
             String time = request.getParameter("time");
-            System.out.println(date);
 
             AppointmentDAO appointmentDAO = new AppointmentDAO();
             CustomerDAO customerDAO = new CustomerDAO();
@@ -102,7 +102,14 @@ public class AppointmentBookingController extends HttpServlet {
                 appointmentDAO.createAppointment(appointment);
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
-                response.sendRedirect("Homepage.jsp");
+                out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                out.println("<script>");
+                out.println("$(document).ready(function(){");
+                out.println("swal ('WELCOME', 'sucessfull !, 'success');");
+                out.println("});");
+                out.println("</script>");
+                response.sendRedirect("AppointmentBooking.jsp");
             } else {
                 request.setAttribute("errorMsg", "Invalid Appointment");
                 request.getRequestDispatcher("AppointmentBooking.jsp").forward(request, response);

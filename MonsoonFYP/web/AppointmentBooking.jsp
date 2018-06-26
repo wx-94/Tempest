@@ -22,7 +22,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Custom styles for this template -->
+    <!-- Style Sheets -->
     <link href="css/carousel.css" rel="stylesheet">
     <link href="css/NavbarAndFooter.css" rel="stylesheet">
     <link href="css/blog.css" rel="stylesheet">
@@ -31,15 +31,13 @@
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <!--TimePicker-->
     <link type="text/css" href="css/bootstrap.min.css" />
-    <link type="text/css" href="css/bootstrap-timepicker.min.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
-    
-
-    
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <!--TimePicker-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     
     <style>
     .carousel-item > img {
@@ -174,10 +172,7 @@
                                         %>
                                     </select>
                                 </div>
-                                    
-
-
-                                    
+  
                                     <div class="form-group col-md-12">
                                         <label>Select Stylist</label>
                                         <select id="inputState" name="stylistChosen" class="form-control">
@@ -205,36 +200,42 @@
 
                                 <div class="form-group col-md-12">
                                     <label>Select Date</label>
-                                    <!--<input type="text" id="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="01-01-2018">-->
-                                    <!--<input type="text" id="datepicker" name="date" data-format="DD-MM-YYYY" data-template="D MMM YYYY" value="01-01-2018"/>-->
                                     <input type="date" name="date" style="width:100%">
                                 </div>
 
-                          <!-- <div class="input-group bootstrap-timepicker timepicker">
-                                <input id="timepicker1" type="text" class="form-control input-small">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                            </div>-->
-
-
                                 <div class="form-group col-md-12">
                                     <label>Select Time</label>
-                                    <!--<input id="timepicker1"  type="text" name="time" class="form-control input-small">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>-->
-
-                                    <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time">
+                                    <input type="text" id="time" data-format="HH:mm" data-template="HH : mm" name="time" class="time col-12">
                                     <script>
-                                        $(function () {
-                                            $('#time').combodate({
-                                                firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
-                                                minuteStep: 30
-                                            });
+                                        $(document).ready(function(){
+                                            $('input.time').timepicker({});
                                         });
-                                    </script>
-                                    
-                                </div>
+                                            $('.time').timepicker({
+                                            timeFormat: 'H:mm ',
+                                            interval: 30,
+                                            minTime: '10',
+                                            maxTime: '6:00pm',
+                                            defaultTime: '10',
+                                            startTime: '10:00',
+                                            dynamic: false,
+                                            dropdown: true,
+                                            scrollbar: true
+                                        });
+                                    </script>                              
+                                </div>   
+                                    <%
+                                        String msg = (String) session.getAttribute("success");
+                                        if (msg != null) {
+                                           out.println("<b><p style=color:red;font-size:12px;>"); 
+                                           out.println(msg);
+                                           out.println("</p></b>");
+                                            session.setAttribute("success", null);
+                                        }
+                                     %>
                                 <input type="submit" value="Book Appointment" class="btn btn-lg btn-success btn-block mb-2">    
                             </form>
                            <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block"> </a> 
+                           
                         </div>
                     </div>
                
@@ -272,7 +273,6 @@
                                     <p>  Weekdays : 11am - 9pm<br>
                                         Saturday: 11am - 8pm<br>
                                         Sunday & PH: 11am - 7pm</p>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -431,23 +431,8 @@
           <a class="dark-grey-text" href="https://mdbootstrap.com/bootstrap-tutorial/"> Monsoon.com</a>
         </div>
         <!-- Copyright -->
-
-      </footer>
-  <!-- Footer -->
-                                
-        <script>
-//            uiLibrary: 'bootstrap4'
-        $('#datepicker').datepicker({
-//        uiLibrary: 'bootstrap4'
-            format: "dd-mm-yyyy"
-
-        });
-        </script>
-            
-        <script type="text/javascript">
-        $('#timepicker1').timepicker();
-        </script>
-</body>
+        </footer>
+    </body>
 </html>
 
 
