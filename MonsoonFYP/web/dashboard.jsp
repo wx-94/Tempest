@@ -26,8 +26,6 @@
             <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
             <script type="text/javascript" src="js/jquery.validate.js"></script>
 
-            <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             
             <style>
                 .table-wrapper-2 {
@@ -49,7 +47,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="Homepage.jsp">Home</a>
             </li>
@@ -97,7 +95,7 @@
 
         <div class="container mt-5">
             <div class="row">
-                <div class="col-12 mb-5">
+                <div class="col-12 mb-5 mt-5">
                     <h2>History of Clients Spending</h2>
                     <div class="card">
                         <div class="card-body">

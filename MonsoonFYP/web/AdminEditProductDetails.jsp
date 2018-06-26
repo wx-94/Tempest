@@ -23,9 +23,6 @@
         <link href="blog.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
         <style>
 
             input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
@@ -46,12 +43,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav m-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="Homepage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="aboutUs.jsp">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Hair Services</a>
@@ -113,7 +110,7 @@
 
         <div class ="container mt-5">
             <div class="row">
-                <div class="col-12">                         
+                <div class="col-12 mt-5">                         
                     <form role="form" action="UpdateInventoryDetailsController" method = "post">    
                         <%
                             InventoryDAO inventoryDAO = new InventoryDAO();

@@ -31,9 +31,7 @@
     <link href="css/NavbarAndFooter.css" rel="stylesheet">
     <link href="blog.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <script src="js/jquery.js"></script> 
     <script src="js/moment.min.js"></script> 
     <script src="js/combodate.js"></script> 
@@ -112,7 +110,7 @@
     
 
         <div class ="container">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-6 offset-3 mt-5">
                     <div class="card w-10 " id="apptMenu" >
                         <div class="card-body">                           
@@ -182,6 +180,45 @@
             </div>     
                 </div>
             </div>
-        </div>      
+        </div>   
+                            
+                            
+        <footer class="page-footer font-small blue-grey lighten-5 mt-4">
+          <div style="background-color: #000205;">
+            <div class="container">
+
+              <!-- Grid row-->
+              <div class="row py-4 d-flex align-items-center">
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                  <h6 class="mb-0">Get connected with us on social networks!</h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                  <!-- Facebook -->
+                  <a class="fb-ic">
+                    <i class="fa fa-facebook white-text mr-4"> </i>
+                  </a>
+                  <!-- Twitter -->
+                  <a class="tw-ic">
+                    <i class="fa fa-twitter white-text mr-4"> </i>
+                  </a>
+                  <!--Instagram-->
+                  <a class="ins-ic">
+                    <i class="fa fa-instagram white-text"> </i>
+                  </a>
+
+                </div>
+                <!-- Grid column -->
+
+              </div>
+              <!-- Grid row-->
+
+            </div>
+          </div>
     </body>
 </html>

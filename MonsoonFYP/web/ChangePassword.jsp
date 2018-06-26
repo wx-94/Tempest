@@ -17,20 +17,15 @@
 
             <title>Monsoon Hair Saloon</title>
 
-            <!-- Bootstrap core CSS -->
-            <!--Need to fix the issue of bootstrap file not loading-->
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/log.css" rel="stylesheet">
-            <!--<<l!--temp link-->
-            <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
 
             <!-- Custom styles for this template -->
             <link href="css/carousel.css" rel="stylesheet">
             <link href="css/NavbarAndFooter.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-            <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+  
     </head>
     
     
@@ -43,7 +38,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="Homepage.jsp">Home</a>
             </li>

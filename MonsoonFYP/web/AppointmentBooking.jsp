@@ -38,9 +38,7 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
     
-    <script src="js/jquery.js"></script> 
-    <script src="js/moment.min.js"></script> 
-    <script src="js/combodate.js"></script> 
+
     
     
     <style>
@@ -84,7 +82,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="Homepage.jsp">Home </a>
             </li>
