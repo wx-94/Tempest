@@ -93,7 +93,7 @@
              <form class="form-signin" id="signupForm" method="post" class="form-horizontal" action="createaccount">
                 <img src="img/Monsoon Hair Logo (Black).png" id="logoCreate">
                 <div class="form-group mt-3">
-                    <label class="col-sm-12 control-label" >Name</label>
+                    <label class="col-sm-12 control-label" >Full Name</label>
                     <div class="col-sm-12">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Name" required />
                     </div>
@@ -141,12 +141,12 @@
                     <div class="col-sm-9 col-sm-offset-4">
                         <button type="submit" class="btn btn-primary">Submit</button>
                             <%
-                            ArrayList<String> error = (ArrayList<String>) session.getAttribute("errorMsg");
-                            if (error != null) {
+                            ArrayList<String> errorList = (ArrayList<String>) session.getAttribute("errorMsg");
+                            if (errorList != null) {
                              %>
                             <br>
                             <%
-                                for (String str : error) {
+                                for (String str : errorList) {
                                     out.println(str);
                             %>
                             <br>
@@ -249,7 +249,9 @@
                                     required: true,
                                     minlength: 8,
                                     numCheck: true,
-                                    letterCheck: true
+                                    upperCaseLetterCheck: true,
+                                    lowerCaseLetterCheck: true,
+                                    specialCharacterCheck: true
                                 },
                                 confirmPassword: {
                                     required: true,
@@ -265,10 +267,10 @@
                         messages: {
                                 name: "Please enter your name",
                                 mobile:{
-                                required:"Please enter a phone Number",
-                                digits: "Please enter only digits",
-                                minlength: "Please enter a maximum of 8 digits",
-                                maxlength: "Please enter a maximum of 8 digits",
+                                required:"Please enter your mobile number",
+                                digits: "Please enter only numeric digits",
+                                minlength: "Your mobile number must consist of 8 numeric digits only",
+                                maxlength: "Your mobile number must consist of 8 numeric digits only",
                                 },
 
                                 password: {
@@ -276,7 +278,7 @@
                                     minlength: "Your password must be at least 8 characters long"
                                 },
                                 confirmPassword: {
-                                    required: "Please provide a password",
+                                    required: "Please confirm your password",
                                     minlength: "Your password must be at least 8 characters long",
                                     equalTo: "Please enter the same password as above"
                                 },
@@ -304,28 +306,44 @@
                         }
                         
                 } );
-                        //Method to check if phone number start with 8 or 9
+                       //Method to check if phone number start with 8 or 9
                        jQuery.validator.addMethod("phoneSG", function(value, element) {
                           phoneNumberFirst = value.charAt(0);     
                           return phoneNumberFirst == 8 || phoneNumberFirst == 9
-                      }, "Please specify a valid phone number that start with 8 or 9");
+                      }, "Please enter a valid mobile number that starts with 8 or 9");
                       
-                      
+                      //Password checks
+                      //Contains at least 1 number
                       jQuery.validator.addMethod("numCheck", function(value, element) {
                             if (value.search(/\d/) == -1) {
                                 return false;
                             } 
                           return true
-                      }, "Please put in a Number");
+                      }, "Password must contain at least 1 numeric digit");
                       
-                      jQuery.validator.addMethod("letterCheck", function(value, element) {
-                            if (value.search(/[a-zA-Z]/) == -1) {
+                      //Contains at least 1 lower case letter
+                      jQuery.validator.addMethod("lowerCaseLetterCheck", function(value, element) {
+                            if (value.search(/[a-z]/) == -1) {
                                 return false;
                             } 
                           return true
-                      }, "Please put in a Letter");   
+                      }, "Password must contain at least 1 lower-case letter");
                       
+                      //Contains at least 1 upper case letter
+                      jQuery.validator.addMethod("upperCaseLetterCheck", function(value, element) {
+                            if (value.search(/[A-Z]/) == -1) {
+                                return false;
+                            } 
+                          return true
+                      }, "Password must contain at least 1 upper-case letter");   
                       
+                      //Contains at least 1 special character
+                      jQuery.validator.addMethod("specialCharacterCheck", function(value, element) {
+                            if (value.search(/[\W\s_]/) == -1) {
+                                return false;
+                            } 
+                          return true
+                      }, "Password must contain at least 1 special character");
           } );
         </script>
     </body>

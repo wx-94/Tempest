@@ -49,15 +49,23 @@ public class CreateAccountController extends HttpServlet {
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
           
-           
-            //System.out.println("Check acc");
             CustomerDAO customerDAO = new CustomerDAO();
-            //check for mobile
+            
+            errorList.clear();
+            
+            //check for duplicate email
+            ArrayList<String> emailList = customerDAO.retrieveAllEmails();
+            if(emailList.contains(email)){
+                errorList.add("Email has already been used");
+            }
+            
+            //check for duplicate mobile number
             commonValidation(mobile);
             ArrayList<String> numList = customerDAO.retrieveAllNumbers();
             if(numList.contains(mobile)){
                 errorList.add("Number has already been used");
             }
+            
             //check for pw           
             if (!password.equals(confirmPassword)) {
                 errorList.add("Passwords do not match");

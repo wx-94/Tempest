@@ -201,4 +201,28 @@ public class CustomerDAO {
         }
         return numList;
     }
+    
+    public ArrayList<String> retrieveAllEmails() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<String> emailList = new ArrayList<>();
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("select email from Customer");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String email = rs.getString("email");
+                emailList.add(email);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+        return emailList;
+    }
+    
 }
