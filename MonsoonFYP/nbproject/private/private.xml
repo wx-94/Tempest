@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AdminEditProductDetails.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/DeleteStaffAvailabilityController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/UpdateInventoryDetailsController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/StaffAvailabilityDAO.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/LoginController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/DeleteItemController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/entities/StaffAvailability.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/EditProfileController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/EditProfile.jsp</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/CreateAccount.jsp</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/CreateAccountController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/CustomerDAO.java</file>
         </group>
     </open-files>
 </project-private>
