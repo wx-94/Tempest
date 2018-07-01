@@ -30,7 +30,7 @@ public class LoyaltyPointsDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                LoyaltyPoints points = new LoyaltyPoints(rs.getInt("pointsID "), rs.getDate("dateOfChanges"), rs.getDouble("loyaltyPointsAdd"), rs.getDouble("loyaltyPointsAdd"), rs.getString("type"),rs.getString("customerID"),rs.getInt("appointmentID "));
+                LoyaltyPoints points = new LoyaltyPoints(rs.getInt("pointsID"), rs.getDate("dateOfChanges"), rs.getDouble("loyaltyPointsAdd"), rs.getDouble("loyaltyPointsAdd"), rs.getString("type"),rs.getString("customerID"),rs.getInt("appointmentID"));
                 pointsList.add(points);
             }
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class LoyaltyPointsDAO {
             rs = stmt.executeQuery();
 
             while (rs.next()) {                
-                LoyaltyPoints points = new LoyaltyPoints(rs.getInt("pointsID "), rs.getDate("dateOfChanges"), rs.getDouble("loyaltyPointsAdd"), rs.getDouble("loyaltyPointsAdd"), rs.getString("type"),rs.getString("customerID"),rs.getInt("appointmentID "));
+                LoyaltyPoints points = new LoyaltyPoints(rs.getInt("pointsID"), rs.getDate("dateOfChanges"), rs.getDouble("loyaltyPointsAdd"), rs.getDouble("loyaltyPointsMinus"), rs.getString("type"),rs.getString("customerID"),rs.getInt("appointmentID"));
                 pointsList.add(points);
             }
         } catch (SQLException e) {

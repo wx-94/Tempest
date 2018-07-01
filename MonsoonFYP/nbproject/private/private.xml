@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/CreateAccount.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/CreateAccountController.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/dashboard.jsp</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/CustomerDAO.java</file>
-            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AdminHomepage.jsp</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/ViewAppointmentsHistory.jsp</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/LoyaltyPointsDAO.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/ViewLoyaltyPointsHistoryController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/ViewLoyaltyPointsHistory.jsp</file>
         </group>
     </open-files>
 </project-private>

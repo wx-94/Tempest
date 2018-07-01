@@ -142,12 +142,12 @@
                         <thead>
                             <tr class="bg-warning">
                                 <th scope="col">Appointment ID</th>
+                                <th scope="col">Stylist</th>
                                 <th scope="col">Outlet</th>
                                 <th scope="col">Treatment</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Start Time</th>
                                 <th scope="col">End Time</th>
-                                <th scope="col">Selected</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -163,7 +163,6 @@
                                 <td><%= a.getDateOfAppointment()%></td>
                                 <td><%= a.getStartTimeOfAppointment()%></td>
                                 <td><%= a.getEndTimeOfAppointment()%></td> 
-                                <td><input TYPE="checkbox" NAME="appointment" VALUE="<%=a.getAppointmentID()%>"></td>
                             </tr>
 
                             <%

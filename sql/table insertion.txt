@@ -63,3 +63,11 @@ INSERT INTO Commission VALUES
 ('1','audreytan','100.0','2018-06-10','hairService','Cutting'),
 ('2','prisng','150.0','2018-06-11','product',NULL),
 ('3','audreytan','100.0','2018-06-11','hairService','Cutting');
+
+INSERT INTO LoyaltyPoints VALUES
+('1','2018-07-01','5.00','0.00','Services','jacky@hotmail.com','5'),
+('2','2018-07-01','5.00','0.00','Services','alexia@hotmail.com','6');
+
+INSERT INTO AppointmentsHistory VALUES
+('5','jacky@hotmail.com','Audrey Tan','MONSOON @ Novena Square','Cutting','2018-06-10','11:30:00','12:00:00'),
+('6','alexia@hotmail.com','Pris Ng','MONSOON @ Bukit Timah Plaza','Cutting','2018-06-12','13:30:00','14:30:00');

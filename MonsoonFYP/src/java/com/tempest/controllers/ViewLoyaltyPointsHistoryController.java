@@ -49,7 +49,7 @@ public class ViewLoyaltyPointsHistoryController extends HttpServlet {
             ArrayList<LoyaltyPoints> loyaltyList = new ArrayList<LoyaltyPoints>();
             
             LoyaltyPointsDAO loyaltyPointsDAO = new LoyaltyPointsDAO();
-            loyaltyList = loyaltyPointsDAO.retrieveAllPointsByCustomer(customerCheck);
+            loyaltyList = loyaltyPointsDAO.retrieveAllPointsByCustomer(email);
             
             session.setAttribute("loyaltyList", loyaltyList);
             response.sendRedirect("ViewLoyaltyPointsHistory.jsp");
