@@ -84,11 +84,11 @@
                     <td>
                         <select name="hairService"> 
                             <%  ArrayList<HairServices> hairService = HairServicesDAO.retrieveAllHairServices();
-                                for (HairServices hair : hairService){
-                                    if(hair.getHairService().equals(app.getTreatment())){
+                                for (HairServices hair : hairService) {
+                                    if (hair.getHairService().equals(app.getTreatment())) {
                             %>
                             <option value="<%=hair.getHairService()%>" selected="selected"><%=hair.getHairService()%></option> 
-                            <%      } else{
+                            <%      } else {
                             %>
                             <option value="<%=hair.getHairService()%>"><%=hair.getHairService()%></option> 
                             <%
@@ -98,9 +98,9 @@
                         </select>
                     </td>
                     <%--date--%>
-                
+
                     <td><input type="text" name="date" value="<%=app.getDateOfAppointment()%>"></td>
-                    <%--time--%>
+                        <%--time--%>
                     <td><input type="text" name="time" value="<%=app.getStartTimeOfAppointment()%>"></td>
                 </tr>
             </table>
@@ -110,7 +110,7 @@
             %>
             <input type="submit" value="Update Appointment" >
         </form>
-            <a href="ViewAppointments.jsp"> Return to Appointments Page</a><br>
-            <a href="Homepage.jsp"> Return to Homepage</a>
+        <a href="ViewAppointments.jsp"> Return to Appointments Page</a><br>
+        <a href="Homepage.jsp"> Return to Homepage</a>
     </body>
 </html>

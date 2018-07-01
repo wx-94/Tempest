@@ -125,7 +125,7 @@
                      
                   <div>
                      <a href="CreateAccount.jsp">Create Account</a><br>
-                     <a href="ChangePassword.jsp">Change Password</a>
+                     <a href="ForgetPassword.jsp">Forget Password?</a>
                  </div>
                      
                  </form>

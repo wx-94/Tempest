@@ -90,9 +90,9 @@
                 %>
                 <p>Welcome <%out.println(capsName + "!");%></p>
                 <br>
-                
-         
                     <a href="EditProfile.jsp"> Edit Profile </a>
+                    <br>
+                    <a href="ChangePassword.jsp">Change Password</a>
                     <br>
                     <a href="AppointmentBooking.jsp"> Book Appointment </a>
                     <br>
