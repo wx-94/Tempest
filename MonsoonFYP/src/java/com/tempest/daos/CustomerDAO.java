@@ -178,6 +178,36 @@ public class CustomerDAO {
             ConnectionManager.close(conn, stmt);
         }
     }
+    
+    public static void updateProfileNoPhoto(Customer customer, String newNumber, String newEmail) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = ConnectionManager.getConnection();
+            stmt = conn.prepareStatement("UPDATE Customer SET number = ?, email = ? where email = ?");
+
+            if (newNumber != null & !newNumber.isEmpty()) {
+                stmt.setInt(1, Integer.parseInt(newNumber));
+            } else {
+                stmt.setInt(1, Integer.parseInt(customer.getCustomerNumber()));
+            }
+
+            if (newEmail != null && !newEmail.isEmpty()) {
+                stmt.setString(2, newEmail);
+                stmt.setString(3, customer.getCustomerEmail());
+            } else {
+                stmt.setString(2, customer.getCustomerEmail());
+                stmt.setString(3, customer.getCustomerEmail());
+            }
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionManager.close(conn, stmt);
+        }
+    }
 
     public ArrayList<String> retrieveAllNumbers() {
         Connection conn = null;

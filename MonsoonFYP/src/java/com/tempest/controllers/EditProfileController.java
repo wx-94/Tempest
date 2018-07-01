@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +48,7 @@ public class EditProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
+            errorList.clear();
             String email = request.getParameter("email");
             String newEmail = request.getParameter("newEmail");
             String newNumber = request.getParameter("newNumber");
@@ -70,15 +72,30 @@ public class EditProfileController extends HttpServlet {
             Customer customer = customerDAO.retrieveCustomer(email);
             commonValidation(newNumber);
             ArrayList<String> numList = customerDAO.retrieveAllNumbers();
+            /*
             if(numList.contains(newNumber)){
                 errorList.add("Number has already been used");
             }
+             */
+
+            //email validation
+            String regex = "^(.+)@(.+)$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher validEmail = pattern.matcher(newEmail);
+            if (!validEmail.matches()) {
+                errorList.add("Please enter a valid email");
+            }
+
             if (errorList.isEmpty()) {
-                CustomerDAO.updateProfile(customer, newNumber, newEmail, inputStream);
+                if (inputStream.read() != -1) {
+                    CustomerDAO.updateProfile(customer, newNumber, newEmail, inputStream);
+                } else {
+                    CustomerDAO.updateProfileNoPhoto(customer, newNumber, newEmail);
+                }
                 String username = customerDAO.retrieveCustomer(newEmail).getCustomerEmail();
                 request.getSession().setAttribute("success", "Profile has been successfully updated");
                 request.getSession().setAttribute("username", username);
-                response.sendRedirect("Homepage.jsp");
+                response.sendRedirect("EditProfile.jsp");
 
             } else {
                 request.getSession().setAttribute("errorMsg", errorList);

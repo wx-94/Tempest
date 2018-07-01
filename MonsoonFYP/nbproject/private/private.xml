@@ -5,7 +5,9 @@
         <group>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/CreateAccount.jsp</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/controllers/CreateAccountController.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/dashboard.jsp</file>
             <file>file:/E:/Downloads/Tempest/MonsoonFYP/src/java/com/tempest/daos/CustomerDAO.java</file>
+            <file>file:/E:/Downloads/Tempest/MonsoonFYP/web/AdminHomepage.jsp</file>
         </group>
     </open-files>
 </project-private>
