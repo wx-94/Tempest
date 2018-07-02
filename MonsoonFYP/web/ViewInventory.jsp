@@ -51,7 +51,7 @@
         <!--Navigation Bar-->
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" width="200" height="75" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -122,7 +122,7 @@
             </nav>
             <div class ="container mt-5">
                 <div class="row">
-                    <div class="col-12">              
+                    <div class="col-12 mt-5">              
                         <form role="form" action="deleteItem" method = "post">    
                             <%
                                 ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
@@ -171,12 +171,12 @@
                                 </tbody>
                             </table>
                             <%  if (itemList != null && !itemList.isEmpty()) {           %>
-                            <input type="submit" value="Delete Item" >
+                            <input type="submit" value="Delete Item" class="col-3 btn btn-lg btn-success btn-block " >
                             <%
                                 }
                             %>
                         </form><br>
-                        <a href="AddNewItem.jsp" style="text-decoration:none"> <input type="submit" value="Add New Item" class="btn btn-lg btn-success btn-block "> </a> 
-                        <a href="AdminHomepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block "> </a> 
+                        <a href="AddNewItem.jsp" style="text-decoration:none"> <input type="submit" value="Add New Item" class="col-3 btn btn-lg btn-success btn-block mb-3 "> </a> 
+                        <a href="AdminHomepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="col-3 btn btn-lg btn-success btn-block "> </a> 
                         </body>
                         </html>

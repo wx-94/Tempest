@@ -50,7 +50,7 @@
         <!--Navigation Bar-->
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -175,7 +175,7 @@
                         %>
                         </tbody>
                     </table>
-                    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block "> </a> 
+                    <a href="Homepage.jsp" style="text-decoration:none"> <input type="submit" value="Back" class="btn btn-lg btn-success btn-block col-3 "> </a> 
                 </div>
             </div>         
         </div>

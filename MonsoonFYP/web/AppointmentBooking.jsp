@@ -75,7 +75,7 @@
         <!--Navigation Bar-->
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -215,8 +215,8 @@
                                             interval: 30,
                                             minTime: '10',
                                             maxTime: '6:00pm',
-                                            defaultTime: '10',
-                                            startTime: '10:00',
+                                            defaultTime: '11',
+                                            startTime: '11:00',
                                             dynamic: false,
                                             dropdown: true,
                                             scrollbar: true

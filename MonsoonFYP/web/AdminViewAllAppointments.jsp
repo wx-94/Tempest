@@ -52,7 +52,7 @@
 
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -85,7 +85,7 @@
                     </ul>
                 </div>
 
-                <div class="admin">
+                <div class="admin ">
 
                     <div class="dropdown">
                         <img src="img/cart.svg" width="30" height="30">
@@ -106,16 +106,12 @@
 
                         </div>
                     </div>
-
-                    <!--            <img src="img/cart.svg" />
-                                <img src="img/account.svg" />-->
                 </div>
             </nav>
         </header>
 
-        <div class="container mt-5">
-
-            <form role="form" action="ShiftAppointmentWhenCompletedController" method = "post">    
+        <div class="container">
+            <form role="form" action="ShiftAppointmentWhenCompletedController" method = "post" class="mt-5">    
                 <%
                     AppointmentDAO appointmentDAO = new AppointmentDAO();
                     ArrayList<Appointment> appointmentList = appointmentDAO.retrieveAllAppointments();
@@ -124,7 +120,7 @@
 
                 <%  if (appointmentList != null && !appointmentList.isEmpty()) {           %>
 
-                <table class="table table-hover" id="appointments">
+                <table class="table table-hover " id="appointments" style="margin-top:10%">
                     <thead>
                         <tr>
                             <th scope="col">Appointment ID</th>

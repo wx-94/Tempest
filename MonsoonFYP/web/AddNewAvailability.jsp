@@ -58,7 +58,7 @@
                 background-color: #777;
             }
             #apptMenu{
-                margin-top: 20%;
+                margin-top: 10%;
             }
 
             #shopLocationCard{
@@ -79,7 +79,7 @@
         <!--Navigation Bar-->
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -149,11 +149,11 @@
             </nav>
         </header>
 
-        <div class ="container mt-5">
+        <div class ="container">
             <div class="row">
                 <!--User Selection form-->
-                <div class="col-3">
-                    <div class="card w-10 " id="apptMenu" >
+                <div class="col-12">
+                    <div class="card " id="apptMenu" >
                         <div class="card-body">                           
                             <form role="form" action="addStaffAvailability" method = "post">
                                 <div class="form-group col-md-12">
