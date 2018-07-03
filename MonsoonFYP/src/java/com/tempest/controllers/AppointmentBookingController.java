@@ -9,12 +9,14 @@ import com.tempest.daos.AppointmentDAO;
 import com.tempest.daos.CustomerDAO;
 import com.tempest.daos.HairServicesDAO;
 import com.tempest.daos.OutletDAO;
+import com.tempest.daos.StaffAvailabilityDAO;
 import com.tempest.daos.StaffDAO;
 import com.tempest.entities.Appointment;
 import com.tempest.entities.Customer;
 import com.tempest.entities.HairServices;
 import com.tempest.entities.Outlet;
 import com.tempest.entities.Staff;
+import com.tempest.entities.StaffAvailability;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -98,7 +100,7 @@ public class AppointmentBookingController extends HttpServlet {
             HairServices h = hairServicesDAO.retrieveHairService(hairService);
 
             Appointment appointment = new Appointment(o.getOutletName(), c.getCustomerEmail(), s.getStaffName(), dateOfAppointment, startTimeOfAppointment, endTimeOfAppointment, h.getHairService());
-            if (validateAppointment(username, appointment, o)) {
+            if (validateAppointment(username, appointment, o) && validateStaffAvailability(appointment)) {
                 appointmentDAO.createAppointment(appointment);
                 System.out.println("Appointment created");
                 request.getSession().setAttribute("success", "Appointment has been successfully booked");
@@ -120,6 +122,38 @@ public class AppointmentBookingController extends HttpServlet {
         }
     }
 
+    //check whether the stylist working that day
+    public boolean validateStaffAvailability(Appointment appt) {
+        boolean notWorking = false;
+        StaffAvailabilityDAO staffAvailabilityDAO = new StaffAvailabilityDAO();
+        ArrayList<StaffAvailability> staffAvailabilityList = staffAvailabilityDAO.retrieveAllAvailabilityByStaff(appt.getStaff());
+        for (StaffAvailability s : staffAvailabilityList) {
+            if (s.getAvailableDate().equals(appt.getDateOfAppointment())) {
+                if (appt.getStartTimeOfAppointment().before(s.getAvailableStartTime())) {
+                    notWorking = true;
+                } else if (appt.getStartTimeOfAppointment().after(s.getAvailableEndTime())) {
+                    notWorking = true;
+                } else if (appt.getEndTimeOfAppointment().before(s.getAvailableStartTime())) {
+                    notWorking = true;
+                } else if (appt.getEndTimeOfAppointment().after(s.getAvailableEndTime())) {
+                    notWorking = true;
+                } else if (appt.getStartTimeOfAppointment().equals(s.getAvailableEndTime())) {
+                    notWorking = true;
+                } else if (appt.getEndTimeOfAppointment().equals(s.getAvailableStartTime())) {
+                    notWorking = true;
+                } else if (appt.getEndTimeOfAppointment().equals(s.getAvailableEndTime())) {
+                    notWorking = true;
+                }
+            }
+        }
+        if (notWorking){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    //check whether the appointment is valid
     public boolean validateAppointment(String username, Appointment appt, Outlet o) {
         ArrayList<Appointment> appByCustomer = appDAO.retrieveAllAppointmentsByCustomer(username);
         boolean clash = false;
@@ -129,49 +163,49 @@ public class AppointmentBookingController extends HttpServlet {
 
             //check if it falls on the same day
             if (app.getDateOfAppointment().equals(appt.getDateOfAppointment())) {
-                if (startTime.equals(appt.getStartTimeOfAppointment())) {
+                if (startTime.equals(appt.getStartTimeOfAppointment()) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
-                if (startTime.equals(appt.getEndTimeOfAppointment())) {
-                    clash = true;
-                }
-
-                if (endTime.equals(appt.getEndTimeOfAppointment())) {
+                if (startTime.equals(appt.getEndTimeOfAppointment()) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if (appt.getStartTimeOfAppointment().equals(endTime)) {
-                    clash = true;
-                }
-                if (appt.getEndTimeOfAppointment().equals(startTime)) {
+                if (endTime.equals(appt.getEndTimeOfAppointment()) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if ((startTime.after(appt.getStartTimeOfAppointment())) && (startTime.before(appt.getEndTimeOfAppointment()))) {
+                if (appt.getStartTimeOfAppointment().equals(endTime) && app.getStaff().equals(appt.getStaff())) {
+                    clash = true;
+                }
+                if (appt.getEndTimeOfAppointment().equals(startTime) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if ((endTime.after(appt.getStartTimeOfAppointment())) && (endTime.before(appt.getEndTimeOfAppointment()))) {
+                if ((startTime.after(appt.getStartTimeOfAppointment())) && (startTime.before(appt.getEndTimeOfAppointment())) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if ((endTime.after(appt.getEndTimeOfAppointment())) && (startTime.before(appt.getStartTimeOfAppointment()))) {
+                if ((endTime.after(appt.getStartTimeOfAppointment())) && (endTime.before(appt.getEndTimeOfAppointment())) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if ((startTime.after(appt.getStartTimeOfAppointment())) && (endTime.before(appt.getStartTimeOfAppointment()))) {
+                if ((endTime.after(appt.getEndTimeOfAppointment())) && (startTime.before(appt.getStartTimeOfAppointment())) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
 
-                if ((startTime.equals(appt.getStartTimeOfAppointment())) && (endTime.equals(appt.getEndTimeOfAppointment()))) {
+                if ((startTime.after(appt.getStartTimeOfAppointment())) && (endTime.before(appt.getStartTimeOfAppointment())) && app.getStaff().equals(appt.getStaff())) {
+                    clash = true;
+                }
+
+                if ((startTime.equals(appt.getStartTimeOfAppointment())) && (endTime.equals(appt.getEndTimeOfAppointment())) && app.getStaff().equals(appt.getStaff())) {
                     clash = true;
                 }
             }
         }
+
         //need to check for which day of the wk it is
         //check for public hols first
         //check for weekend
-
         Calendar c1 = Calendar.getInstance();
         c1.setTime(appt.getDateOfAppointment());
         if ((c1.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
