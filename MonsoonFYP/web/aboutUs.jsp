@@ -48,7 +48,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="Homepage.jsp">Home</a>
             </li>
@@ -71,7 +71,7 @@
               <a class="nav-link" href="#">Appointment Management</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="contactUs.jsp">Contact Us</a>
             </li>
           </ul>
         </div>

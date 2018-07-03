@@ -80,7 +80,7 @@
                             <a class="nav-link" href="#">Appointment Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="contactUs.jsp">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -161,9 +161,9 @@
                     </tbody>
                 </table>
                 <!--  <input type="submit" value="Completed Appointments" > -->
-                <button type="submit" class="btn btn-success mb-3">Completed Appointments</button>
+                <button type="submit" class="col-3 btn btn-success mb-3">Completed Appointments</button>
                 <br>
-                <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="btn btn-success"> </a> 
+                <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="col-3 btn btn-success"> </a> 
             </form>       
 
         </div>

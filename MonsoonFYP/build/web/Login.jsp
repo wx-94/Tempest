@@ -48,7 +48,7 @@
 <body background="img/loginBg.jpeg">
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+        <img src="img/Monsoon Hair Logo.png" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,7 +76,7 @@
               <a class="nav-link" href="#">Appointment Management</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="contactUs.jsp">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -101,7 +101,7 @@
 
         <div class="wrapper">
          <form class="form-signin"  action="authenticate" method = "post" style="border-radius:5%">       
-           <img src="img/Monsoon Hair Logo (Black).png"  width="300">
+           <img src="img/Monsoon Hair Logo.png"  width="300">
            <!--<form role="form" action="authenticate" method = "post">-->
              <img src="#" class="img-responsive" alt="" />
              <input type="text" name="username" placeholder="Username" required class="form-control input-lg" />  

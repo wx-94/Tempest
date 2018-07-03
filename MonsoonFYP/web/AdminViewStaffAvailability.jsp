@@ -19,11 +19,8 @@
 
         <title>Monsoon Hair Saloon - AdminViewStaffAvailibility</title>
 
-        <!-- Bootstrap core CSS -->
-        <!--Need to fix the issue of bootstrap file not loading-->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!--temp link-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
 
         <!-- Custom styles for this template -->
         <link href="css/carousel.css" rel="stylesheet">
@@ -31,7 +28,6 @@
         <link href="blog.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/6F7421C3-831C-7744-9837-FFD4276FB677/main.js" charset="UTF-8"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -85,7 +81,7 @@
                             <a class="nav-link" href="#">Appointment Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="contactUs.jsp">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -115,7 +111,7 @@
         </header>
 
         <div class="container">
-            <div class="row  mt-5">
+            <div class="row">
                 <div class="col-12">              
                     <form role="form" action="deleteStaffAvailability" method = "post">
 
@@ -162,12 +158,12 @@
                             </tbody>
                         </table>
                         <%  if (staffAvailabilityList != null && !staffAvailabilityList.isEmpty()) {           %>
-                        <input type="submit" value="Delete Availability" >
+                        <input type="submit" value="Delete Availability" class="col-3 btn btn-lg btn-success btn-block mb-3">
                         <%
                             }
                         %>
-                    </form><br>
-                    <br>
+                    </form>
+
                     <a href="AddNewAvailability.jsp" style="text-decoration:none"> <input type="submit" value="Add New Availability" class="col-3 btn btn-lg btn-success btn-block "> </a> 
                     <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="col-3 btn btn-lg btn-success btn-block mt-3"> </a>   
         </div>

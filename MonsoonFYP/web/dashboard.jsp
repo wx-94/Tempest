@@ -52,7 +52,7 @@
                             <a class="nav-link" href="AdminHomepage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About Us</a>
+                            <a class="nav-link" href="aboutUs.jsp">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Hair Services</a>
@@ -70,7 +70,7 @@
                             <a class="nav-link" href="#">Appointment Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact Us</a>
+                            <a class="nav-link" href="contactUs.jsp">Contact Us</a>
                         </li>
                     </ul>
                 </div>
