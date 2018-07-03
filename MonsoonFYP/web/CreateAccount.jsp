@@ -36,7 +36,7 @@
     <body background="img/blurImage_Demo1.jpg">
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+            <img src="img/Monsoon Hair Logo.png" id="logo">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -91,7 +91,7 @@
     <div class="container">
         <div class="wrapper">
              <form class="form-signin" id="signupForm" method="post" class="form-horizontal" action="createaccount">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logoCreate">
+                <img src="img/Monsoon Hair Logo.png" id="logoCreate">
                 <div class="form-group mt-3">
                     <label class="col-sm-12 control-label" >Full Name</label>
                     <div class="col-sm-12">
@@ -131,7 +131,7 @@
                     <div class="col-sm-12 col-sm-offset-4">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" id="agree" name="agree" value="agree" />Please agree to our policy
+                                <input type="checkbox" id="agree" name="agree" value="agree" /> Please agree to our policy
                             </label>
                         </div>
                     </div>

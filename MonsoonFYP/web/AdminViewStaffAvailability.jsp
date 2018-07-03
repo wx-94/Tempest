@@ -57,11 +57,11 @@
 
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-                <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+                <img src="img/Monsoon Hair Logo.png" id="logo">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="collapse navbar-collapse " id="navbarCollapse">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="AdminHomepage.jsp">Home</a>
@@ -110,15 +110,12 @@
 
                         </div>
                     </div>
-
-                    <!--            <img src="img/cart.svg" />
-                                <img src="img/account.svg" />-->
                 </div>
             </nav>
         </header>
 
-        <div class="container mt-5">
-            <div class="row">
+        <div class="container">
+            <div class="row  mt-5">
                 <div class="col-12">              
                     <form role="form" action="deleteStaffAvailability" method = "post">
 
@@ -171,9 +168,8 @@
                         %>
                     </form><br>
                     <br>
-                    <a href="AddNewAvailability.jsp" style="text-decoration:none"> <input type="submit" value="Add New Availability" class="btn btn-lg btn-success btn-block "> </a> 
-                    <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="btn btn-success"> </a>   
-
-                </div>
-                </body>
-                </html>
+                    <a href="AddNewAvailability.jsp" style="text-decoration:none"> <input type="submit" value="Add New Availability" class="col-3 btn btn-lg btn-success btn-block "> </a> 
+                    <a href="AdminHomepage.jsp" style="text-decoration:none"> <input  value="Back" class="col-3 btn btn-lg btn-success btn-block mt-3"> </a>   
+        </div>
+    </body>
+</html>

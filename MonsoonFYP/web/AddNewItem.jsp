@@ -57,12 +57,12 @@
     <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <img src="img/Monsoon Hair Logo (Black).png" id="logo">
+        <img src="img/Monsoon Hair Logo.png" id="logo">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav m-auto">
+          <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="Homepage.jsp">Home</a>
             </li>
@@ -152,10 +152,6 @@
 
                                       <div class="col-12 mb-3">
                                       <input id ="date"name="date" type="text" class="form-control" placeholder="Date Added">
-                                    </div>
-
-                                      <div class="col-12 mb-3">
-                                      <input name="Comments" type="text" class="form-control" placeholder="Comments">
                                     </div>
                                    </div>
                                  <input type="submit" value="Add Item" class="btn btn-lg btn-success btn-block mb-2">
