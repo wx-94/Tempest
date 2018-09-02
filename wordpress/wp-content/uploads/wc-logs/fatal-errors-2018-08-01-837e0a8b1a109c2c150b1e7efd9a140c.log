@@ -1,0 +1,10 @@
+2018-08-02T00:46:46+00:00 CRITICAL Uncaught Error: Call to undefined function request_filesystem_credentials() in /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php:811
+Stack trace:
+#0 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(241): Amazonpolly_Admin->prepare_wp_filesystem()
+#1 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(143): Amazonpolly_Admin->delete_post_audio('171')
+#2 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(286): Amazonpolly_Admin->amazon_polly_delete_post('171')
+#3 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#4 /opt/bitnami/apps/wordpress/htdocs/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#5 /opt/bitnami/apps/wordpress/htdocs/wp-includes/post.php(2557): do_action('before_delete_p...', '171')
+#6 /opt/bitnami/apps/wordpress/htdocs/wp-includes/post.php(6271): wp_delete_post('171',
+

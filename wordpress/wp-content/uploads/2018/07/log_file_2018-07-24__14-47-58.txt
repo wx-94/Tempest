@@ -1,0 +1,107 @@
+
+---Downloaded files---
+The import files for: Theme Demo Content were successfully downloaded!
+Initial max execution time = 120
+Files info:
+Site URL = https://monsoongroup.sg
+Data file = /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ecommerce-gem/includes/demo/demo-content/content.xml
+Widget file = /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ecommerce-gem/includes/demo/demo-content/widget.wie
+Customizer file = /opt/bitnami/apps/wordpress/htdocs/wp-content/themes/ecommerce-gem/includes/demo/demo-content/customizer.dat
+Redux files:
+not defined!
+
+---Importing widgets---
+Blog Sidebar : 
+
+Search - No Title - Imported
+Recent Posts - No Title - Imported
+Recent Comments - No Title - Imported
+Archives - No Title - Imported
+Categories - No Title - Imported
+Meta - No Title - Imported
+
+Shop Sidebar : 
+
+Filter Products by Price - Filter by price - Widget already exists
+Product Categories - Product categories - Widget already exists
+Products - Products - Widget already exists
+
+Advertisements Below Slider : 
+
+eC-Gem: Advertisement - LADIES - Widget already exists
+eC-Gem: Advertisement - FOOTWARE - Widget already exists
+eC-Gem: Advertisement - SMART - Widget already exists
+
+Home Page Widget Area : 
+
+eC-Gem: Products Carousel - Latest Products - Widget already exists
+eC-Gem: CTA - Trending Season - Imported
+eC-Gem: Products Carousel - Featured Products - Widget already exists
+eC-Gem: Latest News - Latest News - Widget already exists
+eC-Gem: Newsletter - Subscribe Newsletter - Widget already exists
+
+Footer 1 : 
+
+Text - About eCommerce Gem - Widget already exists
+eC-Gem: Social - No Title - Widget already exists
+
+Footer 2 : 
+
+eC-Gem: Contact - Contact Us - Widget already exists
+
+Footer 3 : 
+
+eC-Gem: Features - No Title - Widget already exists
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---Importing widgets---
+Blog Sidebar : 
+
+Search - No Title - Widget already exists
+Recent Posts - No Title - Widget already exists
+Recent Comments - No Title - Widget already exists
+Archives - No Title - Widget already exists
+Categories - No Title - Widget already exists
+Meta - No Title - Widget already exists
+
+Shop Sidebar : 
+
+Filter Products by Price - Filter by price - Widget already exists
+Product Categories - Product categories - Widget already exists
+Products - Products - Widget already exists
+
+Advertisements Below Slider : 
+
+eC-Gem: Advertisement - LADIES - Widget already exists
+eC-Gem: Advertisement - FOOTWARE - Widget already exists
+eC-Gem: Advertisement - SMART - Widget already exists
+
+Home Page Widget Area : 
+
+eC-Gem: Products Carousel - Latest Products - Widget already exists
+eC-Gem: CTA - Trending Season - Widget already exists
+eC-Gem: Products Carousel - Featured Products - Widget already exists
+eC-Gem: Latest News - Latest News - Widget already exists
+eC-Gem: Newsletter - Subscribe Newsletter - Widget already exists
+
+Footer 1 : 
+
+Text - About eCommerce Gem - Widget already exists
+eC-Gem: Social - No Title - Widget already exists
+
+Footer 2 : 
+
+eC-Gem: Contact - Contact Us - Widget already exists
+
+Footer 3 : 
+
+eC-Gem: Features - No Title - Widget already exists
+
+
+
+---pt-ocdi/after_import---
+

@@ -1,0 +1,37 @@
+2018-08-31T13:23:11+00:00 CRITICAL Uncaught InvalidArgumentException: Found 1 error while validating the input provided for the DeleteObject operation:
+[Bucket] must be a string or an object that implements __toString(). Found bool(false) in /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/vendor/aws/Aws/Api/Validator.php:65
+Stack trace:
+#0 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/vendor/aws/Aws/Middleware.php(78): Aws\Api\Validator->validate('DeleteObject', Object(Aws\Api\StructureShape), Array)
+#1 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/vendor/aws/Aws/S3/S3Client.php(425): Aws\Middleware::Aws\{closure}(Object(Aws\Command), NULL)
+#2 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/vendor/aws/Aws/S3/S3Client.php(448): Aws\S3\S3Client::Aws\S3\{closure}(Object(Aws\Command), NULL)
+#3 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/vendor/aws/Aws/S3/S3Client.php(382): Aws\S3\S3Client::Aws\S3\{closure}(Object(Aws\Command), NULL)
+#4 /opt/bitna
+
+2018-08-31T14:11:43+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 36864 bytes)
+
+2018-08-31T14:16:31+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 20480 bytes)
+
+2018-08-31T14:17:55+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 36864 bytes)
+
+2018-08-31T14:36:54+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 36864 bytes)
+
+2018-08-31T14:37:01+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 36864 bytes)
+
+2018-08-31T23:32:51+00:00 CRITICAL Uncaught Error: Call to a member function deleteObject() on null in /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php:167
+Stack trace:
+#0 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php(45): AmazonAI_S3FileHandler->delete_s3_object(false, '2018/07/amazon_...')
+#1 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(245): AmazonAI_S3FileHandler->delete(Object(WP_Filesystem_Direct), 'amazon_polly_87...', Array, 87)
+#2 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(143): Amazonpolly_Admin->delete_post_audio(87)
+#3 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(286): Amazonpolly_Admin->amazon_polly_delete_post(87)
+#4 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#5 /opt/bitnami/apps/wordpress/htdocs/wp-includes/plugin.php(453): WP_Hook
+
+2018-09-01T01:07:23+00:00 CRITICAL Uncaught Error: Call to a member function deleteObject() on null in /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php:167
+Stack trace:
+#0 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php(45): AmazonAI_S3FileHandler->delete_s3_object(false, '2018/07/amazon_...')
+#1 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(245): AmazonAI_S3FileHandler->delete(Object(WP_Filesystem_Direct), 'amazon_polly_17...', Array, '171')
+#2 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(143): Amazonpolly_Admin->delete_post_audio('171')
+#3 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(286): Amazonpolly_Admin->amazon_polly_delete_post('171')
+#4 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#5 /opt/bitnami/apps/wordpress/htdocs/wp-includes/plugin.php(453)
+

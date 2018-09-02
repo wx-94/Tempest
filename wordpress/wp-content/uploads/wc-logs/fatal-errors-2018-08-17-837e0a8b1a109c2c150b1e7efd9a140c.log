@@ -1,0 +1,9 @@
+2018-08-18T00:58:15+00:00 CRITICAL Uncaught Error: Call to a member function deleteObject() on null in /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php:167
+Stack trace:
+#0 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/AmazonAI-S3FileHandler.php(45): AmazonAI_S3FileHandler->delete_s3_object(false, '2018/07/amazon_...')
+#1 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(245): AmazonAI_S3FileHandler->delete(Object(WP_Filesystem_Direct), 'amazon_polly_17...', Array, '171')
+#2 /opt/bitnami/apps/wordpress/htdocs/wp-content/plugins/amazon-polly/admin/class-amazonpolly-admin.php(143): Amazonpolly_Admin->delete_post_audio('171')
+#3 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(286): Amazonpolly_Admin->amazon_polly_delete_post('171')
+#4 /opt/bitnami/apps/wordpress/htdocs/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#5 /opt/bitnami/apps/wordpress/htdocs/wp-includes/plugin.php(453)
+

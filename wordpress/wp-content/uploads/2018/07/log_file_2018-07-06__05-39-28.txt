@@ -1,0 +1,62 @@
+
+---Downloaded files---
+The import files for: Theme Demo Content were successfully downloaded!
+Initial max execution time = 120
+Files info:
+Site URL = http://localhost/wordpress
+Data file = C:\wamp64\www\wordpress/wp-content/themes/ecommerce-gem/includes/demo/demo-content/content.xml
+Widget file = C:\wamp64\www\wordpress/wp-content/themes/ecommerce-gem/includes/demo/demo-content/widget.wie
+Customizer file = C:\wamp64\www\wordpress/wp-content/themes/ecommerce-gem/includes/demo/demo-content/customizer.dat
+Redux files:
+not defined!
+
+---Importing widgets---
+Blog Sidebar : 
+
+Search - No Title - Widget already exists
+Recent Posts - No Title - Widget already exists
+Recent Comments - No Title - Widget already exists
+Archives - No Title - Widget already exists
+Categories - No Title - Widget already exists
+Meta - No Title - Widget already exists
+
+shop-sidebar : Sidebar does not exist in theme (moving widget to Inactive)
+
+woocommerce_price_filter - Filter by price - Site does not support widget
+woocommerce_product_categories - Product categories - Site does not support widget
+woocommerce_products - Products - Site does not support widget
+
+Advertisements Below Slider : 
+
+eC-Gem: Advertisement - LADIES - Imported
+eC-Gem: Advertisement - FOOTWARE - Imported
+eC-Gem: Advertisement - SMART - Imported
+
+Home Page Widget Area : 
+
+ecommerce-gem-latest-products - Latest Products - Site does not support widget
+eC-Gem: CTA - Trending Season - Imported
+ecommerce-gem-latest-products - Featured Products - Site does not support widget
+eC-Gem: Latest News - Latest News - Imported
+eC-Gem: Newsletter - Subscribe Newsletter - Imported
+
+Footer 1 : 
+
+Text - About eCommerce Gem - Imported
+eC-Gem: Social - No Title - Imported
+
+Footer 2 : 
+
+eC-Gem: Contact - Contact Us - Imported
+
+Footer 3 : 
+
+eC-Gem: Features - No Title - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---pt-ocdi/after_import---
+
